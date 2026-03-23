@@ -1,0 +1,276 @@
+using System;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    Animator animator;
+    BoxCollider2D boxCollider;
+    Rigidbody2D rb;
+
+
+    float keyHorizontal;
+    bool keyJump;
+    bool keyShoot;
+    bool isGrounded;
+    bool isShooting;
+    bool isTakingDamage;
+    bool isInvincible;
+    bool isFacingRight;
+    bool hitSideRight;
+
+    float shootTime;
+    bool keyShootRelease;
+    public int currentHealth;
+    public int maxHealth = 28;
+
+
+    [SerializeField] float moveSpeed = 1.5f;
+    [SerializeField] float jumpForce = 3.7f;
+
+    [SerializeField] int shootDamage = 1;
+    [SerializeField] float shootSpeed = 5f;
+    [SerializeField] Transform shootPoint;
+    [SerializeField] GameObject bulletPrefab;
+
+
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        isFacingRight = true;
+        currentHealth = maxHealth;
+    }
+
+    void FixedUpdate()
+    {
+        isGrounded = false;
+        Color raycastColor;
+        RaycastHit2D raycastHit;
+        float raycastDistance = 0.05f;
+        int layerMask = 1 << LayerMask.NameToLayer("Ground");
+        Vector3 boxOrigin = boxCollider.bounds.center;
+        boxOrigin.y = boxCollider.bounds.min.y + (boxCollider.bounds.extents.y / 4f);
+        Vector3 boxSize = boxCollider.bounds.size;
+        boxSize.y = boxCollider.bounds.extents.y / 4f;
+        raycastHit = Physics2D.BoxCast(boxOrigin, boxSize, 0f, Vector2.down, raycastDistance, layerMask);
+        if (raycastHit.collider != null)
+        {            
+            isGrounded = true;
+        }
+        raycastColor = isGrounded ? Color.green : Color.red;
+        Debug.DrawRay(boxOrigin + new Vector3(boxCollider.bounds.extents.x, 0), Vector2.down * (boxCollider.bounds.extents.y / 4f + raycastDistance), raycastColor);
+        Debug.DrawRay(boxOrigin - new Vector3(boxCollider.bounds.extents.x, 0), Vector2.down * (boxCollider.bounds.extents.y / 4f + raycastDistance), raycastColor);
+        Debug.DrawRay(boxOrigin - new Vector3(boxCollider.bounds.extents.x, boxCollider.bounds.extents.y / 4f + raycastDistance), Vector2.right * (boxCollider.bounds.extents.x * 2), raycastColor);
+    }
+
+    void Update()
+    {
+        if (isTakingDamage)
+        {
+            animator.Play("Player_Hit");
+            return;
+        }
+        PlayerDirectionInput();
+        PlayerJumpInput();
+        PlayerShootInput();
+        PlayerMovementInput();
+
+    }
+
+    void PlayerDirectionInput()
+    {
+        keyHorizontal = Input.GetAxisRaw("Horizontal");
+    }
+
+    void PlayerJumpInput()
+    {
+        keyJump = Input.GetKeyDown(KeyCode.Space);
+        if (keyJump && isGrounded)
+        {
+                if (isShooting)
+                {
+                    animator.Play("Player_JumpShoot");
+                }
+                else
+                {
+                    animator.Play("Player_Jump");
+                }
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        }
+
+        if(!isGrounded)
+        {
+                if (isShooting)
+                {
+                    animator.Play("Player_JumpShoot");
+                }
+                else
+                {
+                    animator.Play("Player_Jump");
+                }
+        }
+    }
+
+    void PlayerMovementInput()
+    {
+        isShooting = keyShoot;
+
+        if (keyHorizontal < 0)
+        {
+            if (isFacingRight)
+            {
+                Flip();
+            }
+            if (isGrounded)
+            {
+                if (isShooting)
+                {
+                    animator.Play("Player_RunShoot");
+                }
+                else
+                {
+                    animator.Play("Player_Run");
+                }
+            }
+            rb.linearVelocity = new Vector2(-moveSpeed, rb.linearVelocity.y);
+        } 
+        else if (keyHorizontal > 0)
+        {  
+            if (!isFacingRight)
+            {
+                Flip();
+            }
+            if (isGrounded)
+            {
+                if (isShooting)
+                {
+                    animator.Play("Player_RunShoot");
+                }
+                else
+                {
+                    animator.Play("Player_Run");
+                }
+            }
+            rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+        } 
+        else
+        {
+            if (isGrounded)
+            {
+                if (isShooting)
+                {
+                    animator.Play("Player_Shoot");
+                }
+                else
+                {
+                    animator.Play("Player_Idle");
+                }
+            }
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        }
+    }
+
+    void PlayerShootInput()
+    {
+        keyShoot = Input.GetKey(KeyCode.C);
+
+        float shootTimeLength = 0;
+        float keyShootReleaseTimeLength = 0;
+
+        if(keyShoot && keyShootRelease)
+        {
+            isShooting = true;
+            keyShootRelease = false;
+            shootTime = Time.time;
+            Invoke("Shoot", 0.1f);
+        }
+        if(!keyShoot && !keyShootRelease)
+        {
+            keyShootReleaseTimeLength = Time.time - shootTime;
+            keyShootRelease = true;
+        }
+        if(isShooting)
+        {
+            shootTimeLength = Time.time - shootTime;
+            if(shootTimeLength > 0.25f || keyShootReleaseTimeLength >= 0.15f)
+            {
+                isShooting = false;
+            }
+        }
+    }
+
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        transform.Rotate(0f, 180f, 0f);
+    }
+
+    void Shoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+        bullet.name = bulletPrefab.name;
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        bulletScript.SetDamage(shootDamage);
+        bulletScript.SetSpeed(shootSpeed);
+        bulletScript.SetDirection(isFacingRight ? Vector2.right : Vector2.left);
+        bulletScript.Shoot();
+    }
+
+    public void HitSide(bool hitRight)
+    {
+        hitSideRight = hitRight;
+    }
+
+    public void SetInvincible(bool invincible)
+    {
+        isInvincible = invincible;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (!isInvincible)
+        {
+            currentHealth -= damage;
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+            UiHealthBar.Instance.SetHealth(currentHealth / (float)maxHealth);
+            if (currentHealth <= 0)
+            {
+                Die();
+            } else
+            {
+                StartDamageAnimation();
+            }
+        }
+    }
+
+    void StartDamageAnimation()
+    {
+        if (!isTakingDamage)
+        {
+            isTakingDamage = true;
+            isInvincible = true;
+            float hitForceX = 0.5f;
+            float hitForceY = 1.5f;
+
+            if (hitSideRight) hitForceX = -hitForceX;
+            rb.linearVelocity = Vector2.zero;
+            rb.AddForce(new Vector2(hitForceX, hitForceY), ForceMode2D.Impulse);
+        }
+    }
+
+    void StopDamageAnimation()
+    {
+        isTakingDamage = false;
+        isInvincible = false;
+        animator.Play("Player_Hit", -1, 0f);
+    }
+
+    void Die()
+    {
+        // Add death logic here (e.g., play animation, destroy object) --- IGNORE ---
+        Destroy(gameObject);
+    }
+}

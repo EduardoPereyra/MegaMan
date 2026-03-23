@@ -1,0 +1,14 @@
+Temp/
+ConfigurationCache/
+.DS_Store
+BurstCache/
+PackageCache/
+TempArtifacts/
+ShaderCache/
+StateCache/
+Artifacts/
+CachedNodeOutput/
+Logs/
+UserSettings/
+EditorWindows/
+Search/
