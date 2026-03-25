@@ -139,7 +139,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289239060136040960}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -157,7 +157,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!114 &7595789109566624598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +174,28 @@ MonoBehaviour:
   speed: 5
   direction: {x: 1, y: 0}
   destroyDelay: 2
+  collideWithTags:
+  - Enemy
+  bulletType: 0
+  bulletData:
+  - sprite: {fileID: -2346302928887187388, guid: 8387b092cab6a499fa795f3dca7fa799, type: 3}
+    radius: 0.035
+    scale: {x: 1, y: 1, z: 0}
+  - sprite: {fileID: -5401397452797526471, guid: 7a45b3017c5804cf59599b9febb8f41d, type: 3}
+    radius: 0.025
+    scale: {x: 1.5, y: 1.5, z: 0}
+  - sprite: {fileID: -4828031899713449294, guid: 7a45b3017c5804cf59599b9febb8f41d, type: 3}
+    radius: 0.025
+    scale: {x: 1.5, y: 1.5, z: 0}
+  - sprite: {fileID: -7546013581096668113, guid: 7a45b3017c5804cf59599b9febb8f41d, type: 3}
+    radius: 0.025
+    scale: {x: 1.5, y: 1.5, z: 0}
+  - sprite: {fileID: -7366884386083818611, guid: 7a45b3017c5804cf59599b9febb8f41d, type: 3}
+    radius: 0.025
+    scale: {x: 1.5, y: 1.5, z: 0}
+  - sprite: {fileID: 1905420641962833372, guid: 7a45b3017c5804cf59599b9febb8f41d, type: 3}
+    radius: 0.025
+    scale: {x: 1.5, y: 1.5, z: 0}
 --- !u!95 &-4602550741468545759
 Animator:
   serializedVersion: 7

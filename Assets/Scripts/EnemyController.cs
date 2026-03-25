@@ -25,12 +25,16 @@ public class EnemyController: MonoBehaviour
     public int maxHealth = 1;
     public int contactDamage = 1;
     public int explosionDamage = 0;
+    public int bulletDamage = 1;
+    public float bulletSpeed = 3f;
 
     public AudioClip shootSound;
-     [SerializeField]  AudioClip hitSound;
-     [SerializeField]  AudioClip blockAttackSound;
+    public AudioClip hitSound;
+    public AudioClip blockAttackSound;
 
-    [SerializeField] GameObject explosionPrefab;
+    public GameObject bulletShootPos;
+    public GameObject bulletPrefab;
+    public GameObject explosionPrefab;
     
 
     void Start()

@@ -293,6 +293,7 @@ public class PlayerController : MonoBehaviour
         bulletScript.SetDamage(shootDamage);
         bulletScript.SetSpeed(shootSpeed);
         bulletScript.SetDirection(isFacingRight ? Vector2.right : Vector2.left);
+        bulletScript.SetDestroyDelay(5f);
         bulletScript.Shoot();
         SoundManager.Instance.Play(shootSound);
     }

@@ -3,8 +3,9 @@ using UnityEngine;
 public class Bullet:MonoBehaviour
 {
     Animator animator;
+    CircleCollider2D circleCollider;
     Rigidbody2D rb;
-    SpriteRenderer spriteRenderer;
+    SpriteRenderer sprite;
 
     float destroyTime;
 
@@ -16,13 +17,35 @@ public class Bullet:MonoBehaviour
     [SerializeField] float speed = 5f;
     [SerializeField] Vector2 direction;
     [SerializeField] float destroyDelay = 2f;
+    [SerializeField] string[] collideWithTags = {"Enemy"};
+    
+    public enum BulletType
+    {
+        Default,
+        MiniBlue,
+        MiniGreen,
+        MiniOrange,
+        MiniPink,
+        MiniRed
+    }
+    [SerializeField] BulletType bulletType = BulletType.Default;
 
+    [System.Serializable]
+    public struct BulletStruct
+    {
+        public Sprite sprite;
+        public float radius;
+        public Vector3 scale;
+    }
+    [SerializeField] BulletStruct[] bulletData;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        sprite = GetComponent<SpriteRenderer>();
+        circleCollider = GetComponent<CircleCollider2D>();
+        SetBulletType(bulletType);
     }
 
     void Update ()
@@ -34,6 +57,13 @@ public class Bullet:MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SetBulletType(BulletType type)
+    {
+        sprite.sprite = bulletData[(int)type].sprite;
+        circleCollider.radius = bulletData[(int)type].radius;
+        transform.localScale = bulletData[(int)type].scale;
     }
 
     public void SetSpeed(float speed)
@@ -56,9 +86,14 @@ public class Bullet:MonoBehaviour
         this.destroyDelay = destroyDelay;
     }
 
+    public void SetCollideWithTags(string[] tags)
+    {
+        collideWithTags = tags;
+    }
+
     public void Shoot()
     {
-        spriteRenderer.flipX = direction.x < 0;
+        sprite.flipX = direction.x < 0;
         rb.linearVelocity = direction * speed;
         destroyTime = destroyDelay;
     }
@@ -82,16 +117,29 @@ public class Bullet:MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (
-            // collision.gameObject.layer == LayerMask.NameToLayer("Ground") || 
-        collision.gameObject.CompareTag("Enemy"))
+        foreach (string tag in collideWithTags)
         {
-            EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
-            if (enemy)
+            if (collision.gameObject.CompareTag(tag))
             {
-                enemy.TakeDamage(damage);
+                switch(tag) {
+                    case "Enemy":
+                        EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+                        if (enemy)
+                        {
+                            enemy.TakeDamage(damage);
+                        }
+                        break;
+                    case "Player":
+                        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+                        if (player)
+                        {
+                            player.HitSide(transform.position.x < player.transform.position.x);
+                            player.TakeDamage(damage);
+                        }
+                        break;
+                }
+                Destroy(gameObject, 0.01f);
             }
-            Destroy(gameObject, 0.02f);
         }
     }
 }

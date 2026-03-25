@@ -54,7 +54,7 @@ public class PepeController: MonoBehaviour
             float distance = isFacingRight ? bezierDistance : -bezierDistance;
             pathStartPoint = rb.transform.position;
             pathEndPoint = new Vector3(pathStartPoint.x + distance, pathStartPoint.y, pathStartPoint.z);
-            pathMidPoint = pathStartPoint + (pathEndPoint - pathStartPoint) / 2 + bezierHeight;
+            pathMidPoint = pathStartPoint + ((pathEndPoint - pathStartPoint) / 2) + bezierHeight;
             pathTimeStart = Time.time;
             isFollowingPath = true;
         }
@@ -64,7 +64,7 @@ public class PepeController: MonoBehaviour
             rb.transform.position = UtilityFunctions.CalculateQuadraticBezierPoint(pathStartPoint, pathMidPoint, pathEndPoint, percentage);
             if (percentage >= 1f)
             {
-                bezierHeight *= -1f;
+                bezierHeight *= -1;
                 isFollowingPath = false;
             }
         }

@@ -65,7 +65,7 @@ public class KillerBombController:MonoBehaviour
             float distance = isFacingRight ? bezierDistance : -bezierDistance;
             pathStartPoint = rb.transform.position;
             pathEndPoint = new Vector3(pathStartPoint.x + distance, pathStartPoint.y, pathStartPoint.z);
-            pathMidPoint = pathStartPoint + (pathEndPoint - pathStartPoint) / 2 + bezierHeight;
+            pathMidPoint = pathStartPoint + ((pathEndPoint - pathStartPoint) / 2) + bezierHeight;
             pathTimeStart = Time.time;
             isFollowingPath = true;
         }

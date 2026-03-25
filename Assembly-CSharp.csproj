@@ -52,6 +52,7 @@
     <Compile Include="Assets/Scripts/PlayerController.cs" />
     <Compile Include="Assets/Scripts/PlayerDeathController.cs" />
     <Compile Include="Assets/Scripts/KillerBombController.cs" />
+    <Compile Include="Assets/Scripts/MambuController.cs" />
     <Compile Include="Assets/Scripts/EnemyController.cs" />
     <Compile Include="Assets/Scripts/UIHealthBar.cs" />
     <Compile Include="Assets/Scripts/PepeController.cs" />

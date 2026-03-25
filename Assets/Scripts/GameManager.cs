@@ -18,6 +18,16 @@ public class GameManager: MonoBehaviour
     public float gameRestartDelay = 5f;
     public float playerReadyDelay = 3f;
 
+    public struct WorldViewCoordinates
+    {
+        public float Left;
+        public float Right;
+        public float Top;
+        public float Bottom;
+    }
+
+    public WorldViewCoordinates worldViewCoords;
+
     TextMeshProUGUI playerScoreText;
     TextMeshProUGUI screenMessageText;
 
@@ -68,6 +78,9 @@ public class GameManager: MonoBehaviour
 
         if (!isGameOver)
         {
+            // do while game is running
+            DestroyStrayBullets();
+            GetWorldViewCoordinates();
             RepositionEnemies();
         } else
         {
@@ -166,27 +179,52 @@ public class GameManager: MonoBehaviour
         // screenMessageText.text = "\n\n\n\nGAME OVER"; 
     }
 
+    private void GetWorldViewCoordinates()
+    {
+        Vector3 worldBottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(-0.1f, -0.1f, 0));
+        Vector3 worldTopRight = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 1.1f, 0));
+
+        worldViewCoords.Left = worldBottomLeft.x;
+        worldViewCoords.Right = worldTopRight.x;
+        worldViewCoords.Bottom = worldBottomLeft.y;
+        worldViewCoords.Top = worldTopRight.y;
+    }
+
     private void RepositionEnemies()
     {
-        Vector3 worldLeft = Camera.main.ViewportToWorldPoint(new Vector3(-0.1f, 0, 0));
-        Vector3 worldRight = Camera.main.ViewportToWorldPoint(new Vector3(1.1f, 0, 0));
-
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)        {
             Vector3 enemyPos = enemy.transform.position;
-            if (enemyPos.x < worldLeft.x)
+            if (enemyPos.x < worldViewCoords.Left)
             {
                 switch (enemy.name)
                 {
+                    case "Mambu":
+                        enemy.transform.position = new Vector3(worldViewCoords.Right, UnityEngine.Random.Range(-0.9f, 0.7f), enemyPos.z);
+                        break;
                     case "KillerBomb":
-                        enemy.transform.position = new Vector3(worldRight.x, UnityEngine.Random.Range(-1.5f, 1.5f), enemyPos.z);
+                        enemy.transform.position = new Vector3(worldViewCoords.Right, UnityEngine.Random.Range(-1.5f, 1.5f), enemyPos.z);
                         enemy.GetComponent<KillerBombController>().ResetFollowingPath();
                         break;
                     case "Pepe":
-                        enemy.transform.position = new Vector3(worldRight.x, UnityEngine.Random.Range(-1f, 1f), enemyPos.z);
+                        enemy.transform.position = new Vector3(worldViewCoords.Right, UnityEngine.Random.Range(-1f, 1f), enemyPos.z);
                         enemy.GetComponent<PepeController>().ResetFollowingPath();
                         break;
                 }
+            }
+        }
+    }
+
+    private void DestroyStrayBullets()
+    {
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+        foreach (GameObject bullet in bullets)
+        {
+            Vector3 bulletPos = bullet.transform.position;
+            if (bulletPos.x < worldViewCoords.Left || bulletPos.x > worldViewCoords.Right ||
+                bulletPos.y < worldViewCoords.Bottom || bulletPos.y > worldViewCoords.Top)
+            {
+                Destroy(bullet);
             }
         }
     }
