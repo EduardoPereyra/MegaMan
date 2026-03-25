@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class Bullet:MonoBehaviour
 {
+    Animator animator;
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
 
     float destroyTime;
+
+    bool freezeBullet = false;
+    RigidbodyConstraints2D originalConstraints;
 
     public int damage = 1;
 
@@ -16,12 +20,15 @@ public class Bullet:MonoBehaviour
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update ()
     {
+        if (freezeBullet) return;
+
         destroyTime -= Time.deltaTime;
         if (destroyTime < 0f)
         {
@@ -54,6 +61,23 @@ public class Bullet:MonoBehaviour
         spriteRenderer.flipX = direction.x < 0;
         rb.linearVelocity = direction * speed;
         destroyTime = destroyDelay;
+    }
+
+    public void Freeze(bool freeze)
+    {
+        if (freeze)
+        {
+            originalConstraints = rb.constraints;
+            animator.speed = 0;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb.linearVelocity = Vector2.zero;
+        } else
+        {
+            animator.speed = 1;
+            rb.constraints = originalConstraints;
+            rb.linearVelocity = direction * speed;
+        }
+        freezeBullet = freeze;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

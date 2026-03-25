@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,20 +5,30 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     BoxCollider2D boxCollider;
     Rigidbody2D rb;
+    SpriteRenderer sprite;
+
 
 
     float keyHorizontal;
     bool keyJump;
     bool keyShoot;
     bool isGrounded;
+    bool isJumping;
     bool isShooting;
     bool isTakingDamage;
     bool isInvincible;
     bool isFacingRight;
     bool hitSideRight;
 
+    bool freezeInput;
+    bool freezePlayer;
+    bool freezeBullets;
+
     float shootTime;
     bool keyShootRelease;
+
+    RigidbodyConstraints2D originalConstraints;
+
     public int currentHealth;
     public int maxHealth = 28;
 
@@ -32,6 +40,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float shootSpeed = 5f;
     [SerializeField] Transform shootPoint;
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField] GameObject explosionPrefab;
+
+    [SerializeField] AudioClip jumpLandedSound;
+    [SerializeField] AudioClip shootSound;
+    [SerializeField] AudioClip hitSound;
+    [SerializeField] AudioClip deathSound;
 
 
 
@@ -40,6 +54,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+        sprite = GetComponent<SpriteRenderer>();
+
         isFacingRight = true;
         currentHealth = maxHealth;
     }
@@ -59,6 +75,11 @@ public class PlayerController : MonoBehaviour
         if (raycastHit.collider != null)
         {            
             isGrounded = true;
+            if (isJumping)
+            {
+                SoundManager.Instance.Play(jumpLandedSound);
+                isJumping = false;
+            } 
         }
         raycastColor = isGrounded ? Color.green : Color.red;
         Debug.DrawRay(boxOrigin + new Vector3(boxCollider.bounds.extents.x, 0), Vector2.down * (boxCollider.bounds.extents.y / 4f + raycastDistance), raycastColor);
@@ -73,6 +94,7 @@ public class PlayerController : MonoBehaviour
             animator.Play("Player_Hit");
             return;
         }
+        PlayerDebugInput();
         PlayerDirectionInput();
         PlayerJumpInput();
         PlayerShootInput();
@@ -80,37 +102,93 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void PlayerDebugInput()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+            if (bullets.Length > 0)
+            {
+                freezeBullets = !freezeBullets;
+                foreach (GameObject bullet in bullets)                {
+                    bullet.GetComponent<Bullet>().Freeze(freezeBullets);
+                }
+            }
+            Debug.Log("Bullet freeze toggled. Now frozen: " + freezeBullets);
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            TakeDamage(1);
+            Debug.Log("Player took damage. Current health: " + currentHealth);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Die();
+            Debug.Log("Player died.");
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Invincible(!isInvincible);
+            Debug.Log("Player invincibility toggled. Now invincible: " + isInvincible);
+        }
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            FreezeInput(!freezeInput);
+            Debug.Log("Input freeze toggled. Now frozen: " + freezeInput);
+        }
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            FreezePlayer(!freezePlayer);
+            Debug.Log("Player freeze toggled. Now frozen: " + freezePlayer);
+        }
+    }
+
     void PlayerDirectionInput()
     {
-        keyHorizontal = Input.GetAxisRaw("Horizontal");
+        if (!freezeInput)
+        {
+            keyHorizontal = Input.GetAxisRaw("Horizontal");
+        }
     }
 
     void PlayerJumpInput()
     {
-        keyJump = Input.GetKeyDown(KeyCode.Space);
-        if (keyJump && isGrounded)
+        if (!freezeInput)
         {
-                if (isShooting)
-                {
-                    animator.Play("Player_JumpShoot");
-                }
-                else
-                {
-                    animator.Play("Player_Jump");
-                }
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            keyJump = Input.GetKeyDown(KeyCode.Space);
+        }
+    }
+
+    void PlayerShootInput()
+    {
+        if (!freezeInput)
+        {
+            keyShoot = Input.GetKey(KeyCode.C);
         }
 
-        if(!isGrounded)
+        float shootTimeLength = 0;
+        float keyShootReleaseTimeLength = 0;
+
+        if(keyShoot && keyShootRelease)
         {
-                if (isShooting)
-                {
-                    animator.Play("Player_JumpShoot");
-                }
-                else
-                {
-                    animator.Play("Player_Jump");
-                }
+            isShooting = true;
+            keyShootRelease = false;
+            shootTime = Time.time;
+            Invoke("Shoot", 0.1f);
+        }
+        if(!keyShoot && !keyShootRelease)
+        {
+            keyShootReleaseTimeLength = Time.time - shootTime;
+            keyShootRelease = true;
+        }
+        if(isShooting)
+        {
+            shootTimeLength = Time.time - shootTime;
+            if(shootTimeLength > 0.25f || keyShootReleaseTimeLength >= 0.15f)
+            {
+                isShooting = false;
+            }
         }
     }
 
@@ -171,36 +249,35 @@ public class PlayerController : MonoBehaviour
             }
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
-    }
 
-    void PlayerShootInput()
-    {
-        keyShoot = Input.GetKey(KeyCode.C);
-
-        float shootTimeLength = 0;
-        float keyShootReleaseTimeLength = 0;
-
-        if(keyShoot && keyShootRelease)
+        if (keyJump && isGrounded)
         {
-            isShooting = true;
-            keyShootRelease = false;
-            shootTime = Time.time;
-            Invoke("Shoot", 0.1f);
+                if (isShooting)
+                {
+                    animator.Play("Player_JumpShoot");
+                }
+                else
+                {
+                    animator.Play("Player_Jump");
+                }
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-        if(!keyShoot && !keyShootRelease)
+
+        if(!isGrounded)
         {
-            keyShootReleaseTimeLength = Time.time - shootTime;
-            keyShootRelease = true;
-        }
-        if(isShooting)
-        {
-            shootTimeLength = Time.time - shootTime;
-            if(shootTimeLength > 0.25f || keyShootReleaseTimeLength >= 0.15f)
-            {
-                isShooting = false;
-            }
+                isJumping = true;
+                if (isShooting)
+                {
+                    animator.Play("Player_JumpShoot");
+                }
+                else
+                {
+                    animator.Play("Player_Jump");
+                }
         }
     }
+
+
 
     void Flip()
     {
@@ -217,6 +294,7 @@ public class PlayerController : MonoBehaviour
         bulletScript.SetSpeed(shootSpeed);
         bulletScript.SetDirection(isFacingRight ? Vector2.right : Vector2.left);
         bulletScript.Shoot();
+        SoundManager.Instance.Play(shootSound);
     }
 
     public void HitSide(bool hitRight)
@@ -251,26 +329,72 @@ public class PlayerController : MonoBehaviour
         if (!isTakingDamage)
         {
             isTakingDamage = true;
-            isInvincible = true;
+            Invincible(true);
+            FreezeInput(true);
             float hitForceX = 0.5f;
             float hitForceY = 1.5f;
 
             if (hitSideRight) hitForceX = -hitForceX;
             rb.linearVelocity = Vector2.zero;
             rb.AddForce(new Vector2(hitForceX, hitForceY), ForceMode2D.Impulse);
+            SoundManager.Instance.Play(hitSound);
         }
     }
 
     void StopDamageAnimation()
     {
         isTakingDamage = false;
-        isInvincible = false;
+        Invincible(false);
+        FreezeInput(false);
         animator.Play("Player_Hit", -1, 0f);
+    }
+
+    void StartDeathAnimation()
+    {
+        FreezeInput(true);
+        FreezePlayer(true);
+        GameObject explosion = Instantiate(explosionPrefab);
+        explosion.name = explosionPrefab.name;
+        explosion.transform.position = sprite.bounds.center;
+        SoundManager.Instance.Play(deathSound);
+        Destroy(gameObject);
+    }
+
+    void StopDeathAnimation()
+    {
+        FreezeInput(false);
+        FreezePlayer(false);
+    }
+
+    public void Invincible(bool invincible)
+    {
+        isInvincible = invincible;
     }
 
     void Die()
     {
-        // Add death logic here (e.g., play animation, destroy object) --- IGNORE ---
-        Destroy(gameObject);
+        GameManager.Instance.GameOver();
+        Invoke("StartDeathAnimation", 0.5f);
+    }
+
+    public void FreezeInput(bool freeze)
+    {
+        freezeInput = freeze;
+    }
+
+    public void FreezePlayer(bool freeze)
+    {
+        if (freeze)
+        {
+            originalConstraints = rb.constraints;
+            animator.speed = 0;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            rb.constraints = originalConstraints;
+            animator.speed = 1;
+        }
+        freezePlayer = freeze;
     }
 }
