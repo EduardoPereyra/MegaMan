@@ -57,6 +57,7 @@
     <Compile Include="Assets/Scripts/UIHealthBar.cs" />
     <Compile Include="Assets/Scripts/PepeController.cs" />
     <Compile Include="Assets/Scripts/SoundManager.cs" />
+    <Compile Include="Assets/Scripts/BigEyeController.cs" />
     <Compile Include="Assets/Scripts/BulletController.cs" />
     <Compile Include="Assets/Scripts/GameManager.cs" />
     <Compile Include="Assets/Scripts/CameraFollow.cs" />

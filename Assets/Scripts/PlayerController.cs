@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         Vector3 boxOrigin = boxCollider.bounds.center;
         boxOrigin.y = boxCollider.bounds.min.y + (boxCollider.bounds.extents.y / 4f);
         Vector3 boxSize = boxCollider.bounds.size;
-        boxSize.y = boxCollider.bounds.extents.y / 4f;
+        boxSize.y = boxCollider.bounds.size.y / 4f;
         raycastHit = Physics2D.BoxCast(boxOrigin, boxSize, 0f, Vector2.down, raycastDistance, layerMask);
         if (raycastHit.collider != null)
         {            

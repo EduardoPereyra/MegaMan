@@ -2499,15 +2499,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_92
+      name: BigEye_Grounded_Red
       rect:
         serializedVersion: 2
-        x: 0
-        y: 42
-        width: 34
-        height: 42
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1
+        y: 43
+        width: 32
+        height: 40
+      alignment: 9
+      pivot: {x: 0.625, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2565,15 +2565,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_95
+      name: BigEye_Jumping_Red
       rect:
         serializedVersion: 2
-        x: 34
-        y: 42
-        width: 34
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 35
+        y: 43
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.625, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2631,15 +2631,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_98
+      name: BigEye_Grounded_Blue
       rect:
         serializedVersion: 2
-        x: 68
-        y: 42
-        width: 34
-        height: 42
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 69
+        y: 43
+        width: 32
+        height: 40
+      alignment: 9
+      pivot: {x: 0.625, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2697,15 +2697,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_101
+      name: BigEye_Jumping_Blue
       rect:
         serializedVersion: 2
-        x: 102
-        y: 42
-        width: 34
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 103
+        y: 43
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.625, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2763,15 +2763,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_104
+      name: BigEye_Grounded_Orange
       rect:
         serializedVersion: 2
-        x: 136
-        y: 42
-        width: 34
-        height: 42
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 137
+        y: 43
+        width: 32
+        height: 40
+      alignment: 9
+      pivot: {x: 0.625, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2829,15 +2829,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_107
+      name: BigEye_Jumping_Orange
       rect:
         serializedVersion: 2
-        x: 170
-        y: 42
-        width: 34
-        height: 50
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 171
+        y: 43
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.625, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3348,6 +3348,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      BigEye_Grounded_Blue: 1022375911754598535
+      BigEye_Grounded_Orange: 8662134870801284164
+      BigEye_Grounded_Red: -2466028019760136625
+      BigEye_Jumping_Blue: -3568872811551625381
+      BigEye_Jumping_Orange: 7463001118374419328
+      BigEye_Jumping_Red: -2489064055260442124
       Bullet_Blue: -5401397452797526471
       Bullet_Green: -4828031899713449294
       Bullet_Orange: -7546013581096668113
@@ -3366,13 +3372,10 @@ TextureImporter:
       NES_megaman1_enemies_1: 5852019012255676814
       NES_megaman1_enemies_10: -6491441291470000421
       NES_megaman1_enemies_100: 8518643019441895290
-      NES_megaman1_enemies_101: -3568872811551625381
       NES_megaman1_enemies_102: 7710579466409525744
       NES_megaman1_enemies_103: 2856878962068274730
-      NES_megaman1_enemies_104: 8662134870801284164
       NES_megaman1_enemies_105: -8082315569521546239
       NES_megaman1_enemies_106: -4290551642303600392
-      NES_megaman1_enemies_107: 7463001118374419328
       NES_megaman1_enemies_108: -412770293093218067
       NES_megaman1_enemies_109: -3968246825737117478
       NES_megaman1_enemies_11: -4049050300606909917
@@ -3467,13 +3470,10 @@ TextureImporter:
       NES_megaman1_enemies_9: 2044468052953663848
       NES_megaman1_enemies_90: -3582742242660765427
       NES_megaman1_enemies_91: -9143810901922419765
-      NES_megaman1_enemies_92: -2466028019760136625
       NES_megaman1_enemies_93: 2792428259991039371
       NES_megaman1_enemies_94: -4534425508300367753
-      NES_megaman1_enemies_95: -2489064055260442124
       NES_megaman1_enemies_96: -2903476849993777475
       NES_megaman1_enemies_97: -1757125910326167255
-      NES_megaman1_enemies_98: 1022375911754598535
       NES_megaman1_enemies_99: -5754367268752012892
       Pepe1: -1535591506885524323
       Pepe2: -2966624504715918606
