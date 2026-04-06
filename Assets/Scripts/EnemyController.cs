@@ -28,10 +28,20 @@ public class EnemyController: MonoBehaviour
     public int bulletDamage = 1;
     public float bulletSpeed = 3f;
 
+    [Header("Bonus Item drop settings")]
+    public ItemsController.ItemType bonusItemType;
+    public ItemsController.BonusBallColor bonusBallColor;
+    public ItemsController.WeaponPartColor weaponPartColor;
+    public float bonusDestroyDelay = 5f;
+    public Vector2 bonusVelocity = new(0, 3f);
+
+    [Header("Audio Clips")]
     public AudioClip shootSound;
     public AudioClip hitSound;
     public AudioClip blockAttackSound;
+    public AudioClip energyFullSound;
 
+    [Header("Position and Prefabs")]
     public GameObject bulletShootPos;
     public GameObject bulletPrefab;
     public GameObject explosionPrefab;
@@ -81,6 +91,19 @@ public class EnemyController: MonoBehaviour
         explodeEffect.transform.position = sprite.bounds.center;
         explodeEffect.GetComponent<ExplosionController>().SetDamage(explosionDamage);
         Destroy(explodeEffect, 2f);
+
+        GameObject bonusItemsPrefab = GameManager.Instance.GetBonusItem(bonusItemType);
+        if (bonusItemsPrefab)
+        {
+            GameObject bonusItem = Instantiate(bonusItemsPrefab);
+            bonusItem.name = bonusItemsPrefab.name;
+            bonusItem.transform.position = explodeEffect.transform.position;
+            bonusItem.GetComponent<ItemsController>().Animate(true);
+            bonusItem.GetComponent<ItemsController>().SetDestroyDelay(bonusDestroyDelay);
+            bonusItem.GetComponent<ItemsController>().SetBonusBallColor(bonusBallColor);
+            bonusItem.GetComponent<ItemsController>().SetWeaponPartColor(weaponPartColor);
+            bonusItem.GetComponent<Rigidbody2D>().linearVelocity = bonusVelocity;
+        }
     }
 
     void EndDeathAnimation()

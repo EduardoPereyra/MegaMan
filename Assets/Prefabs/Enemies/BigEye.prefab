@@ -212,9 +212,15 @@ MonoBehaviour:
   explosionDamage: 0
   bulletDamage: 1
   bulletSpeed: 3
+  bonusItemType: 10
+  bonusBallColor: 0
+  weaponPartColor: 0
+  bonusDestroyDelay: 5
+  bonusVelocity: {x: 0, y: 3}
   shootSound: {fileID: 0}
   hitSound: {fileID: 8300000, guid: 5baf7398b368547039c77079f5534b55, type: 3}
   blockAttackSound: {fileID: 8300000, guid: 9fb026b4834dd476d9541ee81abe6326, type: 3}
+  energyFullSound: {fileID: 8300000, guid: ad267ffa379f84865a7ee8016b56de0e, type: 3}
   bulletShootPos: {fileID: 0}
   bulletPrefab: {fileID: 0}
   explosionPrefab: {fileID: 9145198834329177098, guid: 4a7d68d88703143fa89859bdfd63fdce, type: 3}

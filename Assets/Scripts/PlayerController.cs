@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     bool isTakingDamage;
     bool isInvincible;
     bool isFacingRight;
+    bool isTeleporting;
     bool hitSideRight;
 
     bool freezeInput;
@@ -38,24 +40,44 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] int shootDamage = 1;
     [SerializeField] float shootSpeed = 5f;
+
+
+    [Header("Audio Clips")]
+    [SerializeField] AudioClip teleportSound;
+    [SerializeField] AudioClip jumpLandedSound;
+    [SerializeField] AudioClip shootSound;
+    [SerializeField] AudioClip hitSound;
+    [SerializeField] AudioClip energyFillSound;
+    [SerializeField] AudioClip deathSound;
+
+
+    [Header("Position and Prefabs")]
     [SerializeField] Transform shootPoint;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject explosionPrefab;
 
-    [SerializeField] AudioClip jumpLandedSound;
-    [SerializeField] AudioClip shootSound;
-    [SerializeField] AudioClip hitSound;
-    [SerializeField] AudioClip deathSound;
+
+    [Header("Teleportation Settings")]
+    [SerializeField] float teleportSpeed = -10f;
+    public enum TeleportState
+    {
+        Descending,
+        Landed,
+        Idle
+    }
+    [SerializeField] TeleportState teleportState;
 
 
-
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
+    }
 
+    void Start()
+    {
         isFacingRight = true;
         currentHealth = maxHealth;
     }
@@ -89,6 +111,28 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (isTeleporting)
+        {
+            switch (teleportState)
+            {
+                case TeleportState.Descending:
+                    isJumping = false;
+                    if (isGrounded)
+                    {
+                        teleportState = TeleportState.Landed;
+                    }
+                    break;
+                case TeleportState.Landed:
+                    animator.speed = 1;
+                    break;
+                case TeleportState.Idle:
+                    Teleport(false);
+                    break;
+            }
+
+            return;
+        }
+
         if (isTakingDamage)
         {
             animator.Play("Player_Hit");
@@ -141,6 +185,18 @@ public class PlayerController : MonoBehaviour
         {
             FreezePlayer(!freezePlayer);
             Debug.Log("Player freeze toggled. Now frozen: " + freezePlayer);
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Teleport(true);
+            Debug.Log("Player teleport initiated.");
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ApplyLifeEnergy(10);
+            Debug.Log("Applied life energy. Current health: " + currentHealth);
         }
     }
 
@@ -285,6 +341,35 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
+    public void ApplyLifeEnergy(int energy)
+    {
+        if(currentHealth < maxHealth)
+        {
+            int healthDiff = maxHealth - currentHealth;
+            if (healthDiff > energy) healthDiff = energy;
+            StartCoroutine(ApplyLifeEnergyCoroutine(healthDiff));
+
+        }
+    }
+
+    private IEnumerator ApplyLifeEnergyCoroutine(int energy)
+    {
+        SoundManager.Instance.Play(energyFillSound, true);
+        for (int i = 0; i < energy; i++)
+        {
+            currentHealth++;
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+            UiHealthBar.Instance.SetHealth(currentHealth / (float)maxHealth);
+            yield return new WaitForSeconds(0.05f);
+        }
+        SoundManager.Instance.Stop();
+    }
+
+    public void ApplyWeaponEnergy(int energy)
+    {
+        // Implement weapon energy logic here
+    }
+
     void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
@@ -331,7 +416,7 @@ public class PlayerController : MonoBehaviour
         {
             isTakingDamage = true;
             Invincible(true);
-            FreezeInput(true);
+            // FreezeInput(true);
             float hitForceX = 0.5f;
             float hitForceY = 1.5f;
 
@@ -348,6 +433,20 @@ public class PlayerController : MonoBehaviour
         Invincible(false);
         FreezeInput(false);
         animator.Play("Player_Hit", -1, 0f);
+        StartCoroutine(FlashAfterDamage());
+    }
+
+    private IEnumerator FlashAfterDamage()
+    {
+        float flashDelay = 0.0833f;
+        for (int i = 0; i < 10; i++)
+        {
+            sprite.color = Color.clear;
+            yield return new WaitForSeconds(flashDelay);
+            sprite.color = Color.white;
+            yield return new WaitForSeconds(flashDelay);
+        }
+        Invincible(false);
     }
 
     void StartDeathAnimation()
@@ -381,6 +480,34 @@ public class PlayerController : MonoBehaviour
     public void FreezeInput(bool freeze)
     {
         freezeInput = freeze;
+    }
+
+    public void Teleport(bool teleport)
+    {
+        if(teleport)
+        {
+            isTeleporting = true;
+            FreezeInput(true);
+            animator.Play("Player_Teleport");
+            animator.speed = 0;
+            teleportState = TeleportState.Descending;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, teleportSpeed);
+        } 
+        else
+        {
+            isTeleporting = false;
+            FreezeInput(false);
+        }   
+    }
+
+    public void TeleportAnimationSound()
+    {
+        SoundManager.Instance.Play(teleportSound);
+    }
+
+    public void TeleportAnimationEnd()
+    {
+        teleportState = TeleportState.Idle;
     }
 
     public void FreezePlayer(bool freeze)

@@ -1,0 +1,2828 @@
+fileFormatVersion: 2
+guid: 6c869975b15364f2d9e52a033e643c26
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4748469181255687948
+    second: NES - Mega Man - Items_0
+  - first:
+      213: 2912690107828186401
+    second: NES - Mega Man - Items_1
+  - first:
+      213: -3855903524673618856
+    second: NES - Mega Man - Items_2
+  - first:
+      213: -1968367189720390895
+    second: NES - Mega Man - Items_3
+  - first:
+      213: -4873471217445715639
+    second: NES - Mega Man - Items_4
+  - first:
+      213: -1377999515568503379
+    second: NES - Mega Man - Items_5
+  - first:
+      213: 8094204041899124840
+    second: NES - Mega Man - Items_6
+  - first:
+      213: 8445325129805435008
+    second: NES - Mega Man - Items_7
+  - first:
+      213: 238715513887758857
+    second: NES - Mega Man - Items_8
+  - first:
+      213: 4704337150702958302
+    second: NES - Mega Man - Items_9
+  - first:
+      213: 1977342212722649946
+    second: NES - Mega Man - Items_10
+  - first:
+      213: -8090621567884914762
+    second: NES - Mega Man - Items_11
+  - first:
+      213: 623681331728242014
+    second: NES - Mega Man - Items_12
+  - first:
+      213: 5678099975075093408
+    second: NES - Mega Man - Items_13
+  - first:
+      213: 6433882819730362251
+    second: NES - Mega Man - Items_14
+  - first:
+      213: 7128526318266118533
+    second: NES - Mega Man - Items_15
+  - first:
+      213: 5271177240416144
+    second: NES - Mega Man - Items_16
+  - first:
+      213: 7539625204300265544
+    second: NES - Mega Man - Items_17
+  - first:
+      213: 3421181140184896103
+    second: NES - Mega Man - Items_18
+  - first:
+      213: -2313566186408088932
+    second: NES - Mega Man - Items_19
+  - first:
+      213: 8345189179510270838
+    second: NES - Mega Man - Items_20
+  - first:
+      213: -6200974647848775674
+    second: NES - Mega Man - Items_21
+  - first:
+      213: 2446084611446455424
+    second: NES - Mega Man - Items_22
+  - first:
+      213: 7396254313501842963
+    second: NES - Mega Man - Items_23
+  - first:
+      213: -2181028549758109698
+    second: NES - Mega Man - Items_24
+  - first:
+      213: -7962157905319882976
+    second: NES - Mega Man - Items_25
+  - first:
+      213: -2793743367422598519
+    second: NES - Mega Man - Items_26
+  - first:
+      213: -4009121899727096623
+    second: NES - Mega Man - Items_27
+  - first:
+      213: 6715063999936240310
+    second: NES - Mega Man - Items_28
+  - first:
+      213: -5030991495900574840
+    second: NES - Mega Man - Items_29
+  - first:
+      213: 4936956270964357826
+    second: NES - Mega Man - Items_30
+  - first:
+      213: 7279288289547199107
+    second: NES - Mega Man - Items_31
+  - first:
+      213: 5334190915281453740
+    second: NES - Mega Man - Items_32
+  - first:
+      213: -8044622717431340906
+    second: NES - Mega Man - Items_33
+  - first:
+      213: 1885598088498459649
+    second: NES - Mega Man - Items_34
+  - first:
+      213: 7419796167017425670
+    second: NES - Mega Man - Items_35
+  - first:
+      213: 4209748783703915497
+    second: NES - Mega Man - Items_36
+  - first:
+      213: -2317952667951342625
+    second: NES - Mega Man - Items_37
+  - first:
+      213: 4280697503447267765
+    second: NES - Mega Man - Items_38
+  - first:
+      213: -6976788339430562702
+    second: NES - Mega Man - Items_39
+  - first:
+      213: 2033349798141630539
+    second: NES - Mega Man - Items_40
+  - first:
+      213: 6240699368844540964
+    second: NES - Mega Man - Items_41
+  - first:
+      213: -2946046573412792234
+    second: NES - Mega Man - Items_42
+  - first:
+      213: 6531115368202790888
+    second: NES - Mega Man - Items_43
+  - first:
+      213: 4857938403713637303
+    second: NES - Mega Man - Items_44
+  - first:
+      213: 3595679089131988659
+    second: NES - Mega Man - Items_45
+  - first:
+      213: -2929759318517053301
+    second: NES - Mega Man - Items_46
+  - first:
+      213: -697736591411766291
+    second: NES - Mega Man - Items_47
+  - first:
+      213: 1954310858886756097
+    second: NES - Mega Man - Items_48
+  - first:
+      213: -3359505695497028028
+    second: NES - Mega Man - Items_49
+  - first:
+      213: 6926441356275961197
+    second: NES - Mega Man - Items_50
+  - first:
+      213: 8783239297132405177
+    second: NES - Mega Man - Items_51
+  - first:
+      213: 1075206451834167853
+    second: NES - Mega Man - Items_52
+  - first:
+      213: -1730439457900365438
+    second: NES - Mega Man - Items_53
+  - first:
+      213: -8212894399338674546
+    second: NES - Mega Man - Items_54
+  - first:
+      213: 7109900631700997622
+    second: NES - Mega Man - Items_55
+  - first:
+      213: -4265821747420792639
+    second: NES - Mega Man - Items_56
+  - first:
+      213: 1725216080791339035
+    second: NES - Mega Man - Items_57
+  - first:
+      213: 9001731523188721191
+    second: NES - Mega Man - Items_58
+  - first:
+      213: 548710699021490254
+    second: NES - Mega Man - Items_59
+  - first:
+      213: 1423539315440077347
+    second: NES - Mega Man - Items_60
+  - first:
+      213: -856635939025664503
+    second: NES - Mega Man - Items_61
+  - first:
+      213: 1006595598741128432
+    second: NES - Mega Man - Items_62
+  - first:
+      213: 6473234799560050537
+    second: NES - Mega Man - Items_63
+  - first:
+      213: 8705860770791501836
+    second: NES - Mega Man - Items_64
+  - first:
+      213: -311380220770540428
+    second: NES - Mega Man - Items_65
+  - first:
+      213: 5884484171048906640
+    second: NES - Mega Man - Items_66
+  - first:
+      213: 3774469994313379431
+    second: NES - Mega Man - Items_67
+  - first:
+      213: 219526214355434514
+    second: NES - Mega Man - Items_68
+  - first:
+      213: -1334732243658634581
+    second: NES - Mega Man - Items_69
+  - first:
+      213: -5311322441426012875
+    second: NES - Mega Man - Items_70
+  - first:
+      213: 1914291298634179837
+    second: NES - Mega Man - Items_71
+  - first:
+      213: -6743415386326025963
+    second: NES - Mega Man - Items_72
+  - first:
+      213: -3838631048271873261
+    second: NES - Mega Man - Items_73
+  - first:
+      213: -5844051647406709846
+    second: NES - Mega Man - Items_74
+  - first:
+      213: -4909450707168002665
+    second: NES - Mega Man - Items_75
+  - first:
+      213: 2141501024534591178
+    second: NES - Mega Man - Items_76
+  - first:
+      213: 25942022520044596
+    second: NES - Mega Man - Items_77
+  - first:
+      213: -5332573588617564420
+    second: NES - Mega Man - Items_78
+  - first:
+      213: -5940501323026672337
+    second: NES - Mega Man - Items_79
+  - first:
+      213: -7261519779022607911
+    second: NES - Mega Man - Items_80
+  - first:
+      213: 7648694228126882481
+    second: NES - Mega Man - Items_81
+  - first:
+      213: 2679897528450661129
+    second: NES - Mega Man - Items_82
+  - first:
+      213: 8762144082148947577
+    second: NES - Mega Man - Items_83
+  - first:
+      213: -8959426352192862626
+    second: NES - Mega Man - Items_84
+  - first:
+      213: 5802128808100011062
+    second: NES - Mega Man - Items_85
+  - first:
+      213: 982704196676720844
+    second: NES - Mega Man - Items_86
+  - first:
+      213: 6708874759936362651
+    second: NES - Mega Man - Items_87
+  - first:
+      213: 6116721977577596706
+    second: NES - Mega Man - Items_88
+  - first:
+      213: -748382143073139987
+    second: NES - Mega Man - Items_89
+  - first:
+      213: -893032741218476405
+    second: NES - Mega Man - Items_90
+  - first:
+      213: -6646780414153595506
+    second: NES - Mega Man - Items_91
+  - first:
+      213: -6764522290388728947
+    second: NES - Mega Man - Items_92
+  - first:
+      213: 5762446270842905211
+    second: NES - Mega Man - Items_93
+  - first:
+      213: -6811577038861452517
+    second: NES - Mega Man - Items_94
+  - first:
+      213: -1543637278879335551
+    second: NES - Mega Man - Items_95
+  - first:
+      213: 8955595671971628621
+    second: NES - Mega Man - Items_96
+  - first:
+      213: 8128276697423776551
+    second: NES - Mega Man - Items_97
+  - first:
+      213: 8789652356611295646
+    second: NES - Mega Man - Items_98
+  - first:
+      213: -2254670952444868638
+    second: NES - Mega Man - Items_99
+  - first:
+      213: -7412195442784287249
+    second: NES - Mega Man - Items_100
+  - first:
+      213: -3433258150364897280
+    second: NES - Mega Man - Items_101
+  - first:
+      213: 6741718602807144867
+    second: NES - Mega Man - Items_102
+  - first:
+      213: 1275935497177921011
+    second: NES - Mega Man - Items_103
+  - first:
+      213: 6473450463998784459
+    second: NES - Mega Man - Items_104
+  - first:
+      213: -2161396296585007170
+    second: NES - Mega Man - Items_105
+  - first:
+      213: 7784886124446625788
+    second: NES - Mega Man - Items_106
+  - first:
+      213: 8315222875943012473
+    second: NES - Mega Man - Items_107
+  - first:
+      213: 1904301325611622559
+    second: NES - Mega Man - Items_108
+  - first:
+      213: 882884041118073757
+    second: NES - Mega Man - Items_109
+  - first:
+      213: 6288878025561632619
+    second: NES - Mega Man - Items_110
+  - first:
+      213: 991433094306799318
+    second: NES - Mega Man - Items_111
+  - first:
+      213: 472248409127186896
+    second: NES - Mega Man - Items_112
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LifeEnergySmall
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 125
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0f92a7df83f5e140800000000000000
+      internalID: 4748469181255687948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponEnergySmall
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 125
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12da4e19834fb6820800000000000000
+      internalID: 2912690107828186401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeEnergyBig1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 125
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85cf6ab7c241d7ac0800000000000000
+      internalID: -3855903524673618856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeEnergyBig2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 125
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 113ae254874fea4e0800000000000000
+      internalID: -1968367189720390895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponEnergyBig1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 125
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 941ce0d9fb3fd5cb0800000000000000
+      internalID: -4873471217445715639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponEnergyBig2
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 125
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da501e5ddbc50ece0800000000000000
+      internalID: -1377999515568503379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponPart1
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 125
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 868ade0f0b3645070800000000000000
+      internalID: 8094204041899124840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponPart2
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 125
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0809bb6d572d33570800000000000000
+      internalID: 8445325129805435008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponPart3
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 125
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90a97afbe76105300800000000000000
+      internalID: 238715513887758857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponPart4
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 125
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed6b253c6b9294140800000000000000
+      internalID: 4704337150702958302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagnetBeam
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 125
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5be7bc144ee07b10800000000000000
+      internalID: 1977342212722649946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yashichi
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 125
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bf0b1acc8658bf80800000000000000
+      internalID: -8090621567884914762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BonusBallRed
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 103
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5554b6edd2c7a800800000000000000
+      internalID: 623681331728242014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BonusBallBlue
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 103
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ab518de7d9acce40800000000000000
+      internalID: 5678099975075093408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BonusBallGreen
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 103
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8f448c165eb94950800000000000000
+      internalID: 6433882819730362251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BonusBallOrange
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 103
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 581764cfaec9de260800000000000000
+      internalID: 7128526318266118533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BonusBallGray
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 103
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09f86f69b1ab21000800000000000000
+      internalID: 5271177240416144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 102
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84836e93d2122a860800000000000000
+      internalID: 7539625204300265544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_18
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 102
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7629cfcee1a7a7f20800000000000000
+      internalID: 3421181140184896103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_19
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 102
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9a6aceafcf84efd0800000000000000
+      internalID: -2313566186408088932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_20
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 102
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67ba424185110d370800000000000000
+      internalID: 8345189179510270838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_21
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 103
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60055c57966b1f9a0800000000000000
+      internalID: -6200974647848775674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_22
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 103
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08cb0d38efc32f120800000000000000
+      internalID: 2446084611446455424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_23
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 103
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31e5ab07c16c4a660800000000000000
+      internalID: 7396254313501842963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_24
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 103
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef7beaee61e6bb1e0800000000000000
+      internalID: -2181028549758109698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExtraLife
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 104
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02f07d7029bb08190800000000000000
+      internalID: -7962157905319882976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_26
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 80
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9822c2f8531aa39d0800000000000000
+      internalID: -2793743367422598519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_27
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 80
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d4f6899fdcbc58c0800000000000000
+      internalID: -4009121899727096623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_28
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 80
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ba96384123b03d50800000000000000
+      internalID: 6715063999936240310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_29
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 80
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88bc5dac3e35e2ab0800000000000000
+      internalID: -5030991495900574840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_30
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 80
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cab7724297938440800000000000000
+      internalID: 4936956270964357826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_31
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 80
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3822f1cc12a350560800000000000000
+      internalID: 7279288289547199107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_32
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 80
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca2877d206ad60a40800000000000000
+      internalID: 5334190915281453740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_33
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 80
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 690a77fb242cb5090800000000000000
+      internalID: -8044622717431340906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_34
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 80
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1043b1e987dfa2a10800000000000000
+      internalID: 1885598088498459649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_35
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 80
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60be0e85d4968f660800000000000000
+      internalID: 7419796167017425670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_36
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 57
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ebfd4ee6380c6a30800000000000000
+      internalID: 4209748783703915497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_37
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 57
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdb579c545af4dfd0800000000000000
+      internalID: -2317952667951342625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_38
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 57
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b930e303b7186b30800000000000000
+      internalID: 4280697503447267765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_39
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 57
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 274672b48f77d2f90800000000000000
+      internalID: -6976788339430562702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_40
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 57
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4818564ed8e73c10800000000000000
+      internalID: 2033349798141630539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_41
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 57
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42cbbf5e20b6b9650800000000000000
+      internalID: 6240699368844540964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_42
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 57
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65849f3104a8d17d0800000000000000
+      internalID: -2946046573412792234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_43
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 57
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e762d4f2de23aa50800000000000000
+      internalID: 6531115368202790888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_44
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 57
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bb541e5d3dda6340800000000000000
+      internalID: 4857938403713637303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_45
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 57
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b62302b41b66e130800000000000000
+      internalID: 3595679089131988659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_46
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 57
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b88866e1c676757d0800000000000000
+      internalID: -2929759318517053301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_47
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 37
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb1c1254442156f0800000000000000
+      internalID: -697736591411766291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_58
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 43
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 726891b80239cec70800000000000000
+      internalID: 9001731523188721191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_59
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 43
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e48d1ab39796d9700800000000000000
+      internalID: 548710699021490254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_60
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 43
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32acb94177d61c310800000000000000
+      internalID: 1423539315440077347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_61
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 43
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 906ca80f62e9c14f0800000000000000
+      internalID: -856635939025664503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_63
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 37
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9674977e0cc85d950800000000000000
+      internalID: 6473234799560050537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_64
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 31
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c003903de3e61d870800000000000000
+      internalID: 8705860770791501836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_65
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 29
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 474a3e6c651cdabf0800000000000000
+      internalID: -311380220770540428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_66
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 29
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09f67cd1d23e9a150800000000000000
+      internalID: 5884484171048906640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_67
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 31
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76e6b6a367c916430800000000000000
+      internalID: 3774469994313379431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_68
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 31
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21cba89cde9eb0300800000000000000
+      internalID: 219526214355434514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_69
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 31
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baa877a98141a7de0800000000000000
+      internalID: -1334732243658634581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_70
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 29
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 535fd3f41646a46b0800000000000000
+      internalID: -5311322441426012875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_71
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 31
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df426b33bcde09a10800000000000000
+      internalID: 1914291298634179837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_72
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 30
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 519322d2f639a62a0800000000000000
+      internalID: -6743415386326025963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_73
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 31
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31b38f746617abac0800000000000000
+      internalID: -3838631048271873261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_74
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 31
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa369436df1c5eea0800000000000000
+      internalID: -5844051647406709846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_75
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 29
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79df5fcd7902edbb0800000000000000
+      internalID: -4909450707168002665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_76
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 31
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac6f48de5d328bd10800000000000000
+      internalID: 2141501024534591178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_77
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 31
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43cff0dc12a2c5000800000000000000
+      internalID: 25942022520044596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_78
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 31
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfee1d70394eef5b0800000000000000
+      internalID: -5332573588617564420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_79
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 31
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f25d14555891f8da0800000000000000
+      internalID: -5940501323026672337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_80
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 29
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d962e1fb36e93b90800000000000000
+      internalID: -7261519779022607911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_81
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 31
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ba551f30ee952a60800000000000000
+      internalID: 7648694228126882481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_82
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 31
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90bbfb97a98e03520800000000000000
+      internalID: 2679897528450661129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_83
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 31
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 976774f6e93699970800000000000000
+      internalID: 8762144082148947577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_84
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 19
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e564546a339b9a380800000000000000
+      internalID: -8959426352192862626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_85
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 19
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63c9cd3f86d458050800000000000000
+      internalID: 5802128808100011062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_86
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 17
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc89332a24443ad00800000000000000
+      internalID: 982704196676720844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_87
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 17
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b98479c8c06ba1d50800000000000000
+      internalID: 6708874759936362651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_88
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 17
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22766571b36f2e450800000000000000
+      internalID: 6116721977577596706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_89
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 19
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de241ede7663d95f0800000000000000
+      internalID: -748382143073139987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_90
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 19
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8e11ee047f4b93f0800000000000000
+      internalID: -893032741218476405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_91
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 19
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e85e952fd64e1c3a0800000000000000
+      internalID: -6646780414153595506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_92
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 19
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d830b2e11d69f12a0800000000000000
+      internalID: -6764522290388728947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_93
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 17
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b72add24a5258ff40800000000000000
+      internalID: 5762446270842905211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_94
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 19
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1bb47eb5ca6871a0800000000000000
+      internalID: -6811577038861452517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_95
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 19
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18bb85ac216e39ae0800000000000000
+      internalID: -1543637278879335551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_96
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 19
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4605eb90daa84c70800000000000000
+      internalID: 8955595671971628621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_97
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 7
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72b870247907dc070800000000000000
+      internalID: 8128276697423776551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_98
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 7
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e99cdfeaf3e1bf970800000000000000
+      internalID: 8789652356611295646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_99
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 7
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e7c12ae6bcc5b0e0800000000000000
+      internalID: -2254670952444868638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_100
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 7
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe5c21b2487922990800000000000000
+      internalID: -7412195442784287249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_101
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 7
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 000294507ed9a50d0800000000000000
+      internalID: -3433258150364897280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_102
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 7
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a176ff99556f8d50800000000000000
+      internalID: 6741718602807144867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_103
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 7
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f5f991139805b110800000000000000
+      internalID: 1275935497177921011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_104
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 7
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc33cb136e056d950800000000000000
+      internalID: 6473450463998784459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_105
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 7
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebfa433158d2102e0800000000000000
+      internalID: -2161396296585007170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_106
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 7
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cff22802fa8790c60800000000000000
+      internalID: 7784886124446625788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_107
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 7
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97809c4562b956370800000000000000
+      internalID: 8315222875943012473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_108
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 7
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f90e26a57ff6d6a10800000000000000
+      internalID: 1904301325611622559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_109
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 7
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9344b09b52a04c00800000000000000
+      internalID: 882884041118073757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_110
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 7
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6f6c5d8e35964750800000000000000
+      internalID: 6288878025561632619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_111
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 7
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de19bc752742cd00800000000000000
+      internalID: 991433094306799318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES - Mega Man - Items_112
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 5
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d1f4cf0d63cd8600800000000000000
+      internalID: 472248409127186896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0facc278dfe4341e097ef57b600ae52d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BonusBallBlue: 5678099975075093408
+      BonusBallGray: 5271177240416144
+      BonusBallGreen: 6433882819730362251
+      BonusBallOrange: 7128526318266118533
+      BonusBallRed: 623681331728242014
+      ExtraLife: -7962157905319882976
+      LifeEnergyBig1: -3855903524673618856
+      LifeEnergyBig2: -1968367189720390895
+      LifeEnergySmall: 4748469181255687948
+      MagnetBeam: 1977342212722649946
+      NES - Mega Man - Items_0: -1149755711
+      NES - Mega Man - Items_100: -7412195442784287249
+      NES - Mega Man - Items_101: -3433258150364897280
+      NES - Mega Man - Items_102: 6741718602807144867
+      NES - Mega Man - Items_103: 1275935497177921011
+      NES - Mega Man - Items_104: 6473450463998784459
+      NES - Mega Man - Items_105: -2161396296585007170
+      NES - Mega Man - Items_106: 7784886124446625788
+      NES - Mega Man - Items_107: 8315222875943012473
+      NES - Mega Man - Items_108: 1904301325611622559
+      NES - Mega Man - Items_109: 882884041118073757
+      NES - Mega Man - Items_110: 6288878025561632619
+      NES - Mega Man - Items_111: 991433094306799318
+      NES - Mega Man - Items_112: 472248409127186896
+      NES - Mega Man - Items_113: -532137773
+      NES - Mega Man - Items_17: 7539625204300265544
+      NES - Mega Man - Items_18: 3421181140184896103
+      NES - Mega Man - Items_19: -2313566186408088932
+      NES - Mega Man - Items_20: 8345189179510270838
+      NES - Mega Man - Items_21: -6200974647848775674
+      NES - Mega Man - Items_22: 2446084611446455424
+      NES - Mega Man - Items_23: 7396254313501842963
+      NES - Mega Man - Items_24: -2181028549758109698
+      NES - Mega Man - Items_26: -2793743367422598519
+      NES - Mega Man - Items_27: -4009121899727096623
+      NES - Mega Man - Items_28: 6715063999936240310
+      NES - Mega Man - Items_29: -5030991495900574840
+      NES - Mega Man - Items_30: 4936956270964357826
+      NES - Mega Man - Items_31: 7279288289547199107
+      NES - Mega Man - Items_32: 5334190915281453740
+      NES - Mega Man - Items_33: -8044622717431340906
+      NES - Mega Man - Items_34: 1885598088498459649
+      NES - Mega Man - Items_35: 7419796167017425670
+      NES - Mega Man - Items_36: 4209748783703915497
+      NES - Mega Man - Items_37: -2317952667951342625
+      NES - Mega Man - Items_38: 4280697503447267765
+      NES - Mega Man - Items_39: -6976788339430562702
+      NES - Mega Man - Items_40: 2033349798141630539
+      NES - Mega Man - Items_41: 6240699368844540964
+      NES - Mega Man - Items_42: -2946046573412792234
+      NES - Mega Man - Items_43: 6531115368202790888
+      NES - Mega Man - Items_44: 4857938403713637303
+      NES - Mega Man - Items_45: 3595679089131988659
+      NES - Mega Man - Items_46: -2929759318517053301
+      NES - Mega Man - Items_47: -697736591411766291
+      NES - Mega Man - Items_48: 1954310858886756097
+      NES - Mega Man - Items_49: -3359505695497028028
+      NES - Mega Man - Items_50: 6926441356275961197
+      NES - Mega Man - Items_51: 8783239297132405177
+      NES - Mega Man - Items_52: 1075206451834167853
+      NES - Mega Man - Items_53: -1730439457900365438
+      NES - Mega Man - Items_54: -8212894399338674546
+      NES - Mega Man - Items_55: 7109900631700997622
+      NES - Mega Man - Items_56: -4265821747420792639
+      NES - Mega Man - Items_57: 1725216080791339035
+      NES - Mega Man - Items_58: 9001731523188721191
+      NES - Mega Man - Items_59: 548710699021490254
+      NES - Mega Man - Items_60: 1423539315440077347
+      NES - Mega Man - Items_61: -856635939025664503
+      NES - Mega Man - Items_62: 1006595598741128432
+      NES - Mega Man - Items_63: 6473234799560050537
+      NES - Mega Man - Items_64: 8705860770791501836
+      NES - Mega Man - Items_65: -311380220770540428
+      NES - Mega Man - Items_66: 5884484171048906640
+      NES - Mega Man - Items_67: 3774469994313379431
+      NES - Mega Man - Items_68: 219526214355434514
+      NES - Mega Man - Items_69: -1334732243658634581
+      NES - Mega Man - Items_70: -5311322441426012875
+      NES - Mega Man - Items_71: 1914291298634179837
+      NES - Mega Man - Items_72: -6743415386326025963
+      NES - Mega Man - Items_73: -3838631048271873261
+      NES - Mega Man - Items_74: -5844051647406709846
+      NES - Mega Man - Items_75: -4909450707168002665
+      NES - Mega Man - Items_76: 2141501024534591178
+      NES - Mega Man - Items_77: 25942022520044596
+      NES - Mega Man - Items_78: -5332573588617564420
+      NES - Mega Man - Items_79: -5940501323026672337
+      NES - Mega Man - Items_80: -7261519779022607911
+      NES - Mega Man - Items_81: 7648694228126882481
+      NES - Mega Man - Items_82: 2679897528450661129
+      NES - Mega Man - Items_83: 8762144082148947577
+      NES - Mega Man - Items_84: -8959426352192862626
+      NES - Mega Man - Items_85: 5802128808100011062
+      NES - Mega Man - Items_86: 982704196676720844
+      NES - Mega Man - Items_87: 6708874759936362651
+      NES - Mega Man - Items_88: 6116721977577596706
+      NES - Mega Man - Items_89: -748382143073139987
+      NES - Mega Man - Items_90: -893032741218476405
+      NES - Mega Man - Items_91: -6646780414153595506
+      NES - Mega Man - Items_92: -6764522290388728947
+      NES - Mega Man - Items_93: 5762446270842905211
+      NES - Mega Man - Items_94: -6811577038861452517
+      NES - Mega Man - Items_95: -1543637278879335551
+      NES - Mega Man - Items_96: 8955595671971628621
+      NES - Mega Man - Items_97: 8128276697423776551
+      NES - Mega Man - Items_98: 8789652356611295646
+      NES - Mega Man - Items_99: -2254670952444868638
+      WeaponEnergyBig1: -4873471217445715639
+      WeaponEnergyBig2: -1377999515568503379
+      WeaponEnergySmall: 2912690107828186401
+      WeaponPart1: 8094204041899124840
+      WeaponPart2: 8445325129805435008
+      WeaponPart3: 238715513887758857
+      WeaponPart4: 4704337150702958302
+      Yashichi: -8090621567884914762
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
