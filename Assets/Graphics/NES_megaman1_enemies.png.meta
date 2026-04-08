@@ -1443,15 +1443,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_43
+      name: ScrewDriver3_Orange
       rect:
         serializedVersion: 2
         x: 36
-        y: 108
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 109
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1465,15 +1465,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_44
+      name: ScrewDriver4_Orange
       rect:
         serializedVersion: 2
-        x: 53
-        y: 108
-        width: 18
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 54
+        y: 109
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1509,15 +1509,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_46
+      name: ScrewDriver5_Orange
       rect:
         serializedVersion: 2
-        x: 71
-        y: 108
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 72
+        y: 109
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1619,15 +1619,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_51
+      name: ScrewDriver3_Blue
       rect:
         serializedVersion: 2
         x: 124
-        y: 108
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 109
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1663,15 +1663,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_53
+      name: ScrewDriver4_Blue
       rect:
         serializedVersion: 2
-        x: 141
-        y: 108
-        width: 18
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 142
+        y: 109
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1707,15 +1707,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_55
+      name: ScrewDriver5_Blue
       rect:
         serializedVersion: 2
-        x: 159
-        y: 108
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 160
+        y: 109
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1729,15 +1729,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_56
+      name: Blaster1_Red
       rect:
         serializedVersion: 2
-        x: 248
-        y: 108
-        width: 11
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 249
+        y: 109
+        width: 9
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1751,15 +1751,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_57
+      name: Blaster2_Red
       rect:
         serializedVersion: 2
-        x: 259
-        y: 108
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 260
+        y: 109
+        width: 8
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1795,15 +1795,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_59
+      name: Blaster3_Red
       rect:
         serializedVersion: 2
-        x: 269
-        y: 108
-        width: 11
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 270
+        y: 109
+        width: 9
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1817,15 +1817,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_60
+      name: Blaster4_Red
       rect:
         serializedVersion: 2
-        x: 280
-        y: 108
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 281
+        y: 109
+        width: 15
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1861,15 +1861,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_62
+      name: Blaster1_Orange
       rect:
         serializedVersion: 2
-        x: 297
-        y: 108
-        width: 11
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 298
+        y: 109
+        width: 9
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1905,15 +1905,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_64
+      name: Blaster2_Orange
       rect:
         serializedVersion: 2
-        x: 308
-        y: 108
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 309
+        y: 109
+        width: 8
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1927,15 +1927,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_65
+      name: Blaster3_Orange
       rect:
         serializedVersion: 2
-        x: 318
-        y: 108
-        width: 11
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 319
+        y: 109
+        width: 9
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1949,15 +1949,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_66
+      name: Blaster4_Orange
       rect:
         serializedVersion: 2
-        x: 329
-        y: 108
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 330
+        y: 109
+        width: 15
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1993,15 +1993,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_68
+      name: Blaster1_Blue
       rect:
         serializedVersion: 2
-        x: 346
-        y: 108
-        width: 11
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 347
+        y: 109
+        width: 9
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2037,13 +2037,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_70
+      name: Blaster2_Blue
       rect:
         serializedVersion: 2
-        x: 357
-        y: 108
-        width: 10
-        height: 18
+        x: 358
+        y: 109
+        width: 8
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2059,15 +2059,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_72
+      name: Blaster3_Blue
       rect:
         serializedVersion: 2
-        x: 367
-        y: 108
-        width: 11
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 368
+        y: 109
+        width: 9
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2081,15 +2081,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_73
+      name: Blaster4_Blue
       rect:
         serializedVersion: 2
-        x: 378
-        y: 108
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 379
+        y: 109
+        width: 15
+        height: 16
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2235,15 +2235,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_80
+      name: ScrewDriver1_Orange
       rect:
         serializedVersion: 2
-        x: 0
-        y: 108
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1
+        y: 109
+        width: 16
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2257,15 +2257,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_81
+      name: ScrewDriver2_Orange
       rect:
         serializedVersion: 2
-        x: 18
-        y: 108
-        width: 18
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 19
+        y: 109
+        width: 16
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2279,15 +2279,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_82
+      name: ScrewDriver1_Blue
       rect:
         serializedVersion: 2
-        x: 88
-        y: 108
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 89
+        y: 109
+        width: 16
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2301,15 +2301,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_83
+      name: ScrewDriver2_Blue
       rect:
         serializedVersion: 2
-        x: 106
-        y: 108
-        width: 18
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 107
+        y: 109
+        width: 16
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3354,6 +3354,18 @@ TextureImporter:
       BigEye_Jumping_Blue: -3568872811551625381
       BigEye_Jumping_Orange: 7463001118374419328
       BigEye_Jumping_Red: -2489064055260442124
+      Blaster1_Blue: -3871533904601463960
+      Blaster1_Orange: 577544615367966049
+      Blaster1_Red: 8405077097289509408
+      Blaster2_Blue: -2017105200848001492
+      Blaster2_Orange: -6262718668659393763
+      Blaster2_Red: -235176937731077898
+      Blaster3_Blue: -3574842804201782180
+      Blaster3_Orange: -388718194015319817
+      Blaster3_Red: -2652183250458664324
+      Blaster4_Blue: 1858479254397673200
+      Blaster4_Orange: -1335936248729203070
+      Blaster4_Red: -7995931141193687455
       Bullet_Blue: -5401397452797526471
       Bullet_Green: -4828031899713449294
       Bullet_Orange: -7546013581096668113
@@ -3421,46 +3433,24 @@ TextureImporter:
       NES_megaman1_enemies_40: -3099072773121256887
       NES_megaman1_enemies_41: -6147997279171176761
       NES_megaman1_enemies_42: -2499168318046860962
-      NES_megaman1_enemies_43: -8553683098769675968
-      NES_megaman1_enemies_44: -4699558761115824528
       NES_megaman1_enemies_45: -2129079362322956492
-      NES_megaman1_enemies_46: 8160184738429315913
       NES_megaman1_enemies_47: 8165333002277163974
       NES_megaman1_enemies_48: -2216156311161561887
       NES_megaman1_enemies_49: -5228916718348426351
       NES_megaman1_enemies_5: 8521763619538590367
       NES_megaman1_enemies_50: -1051702327257760667
-      NES_megaman1_enemies_51: -1576374170037368807
       NES_megaman1_enemies_52: -4935111038899205285
-      NES_megaman1_enemies_53: 8648312654387181627
       NES_megaman1_enemies_54: 1418021841656747700
-      NES_megaman1_enemies_55: 5609420993104994698
-      NES_megaman1_enemies_56: 8405077097289509408
-      NES_megaman1_enemies_57: -235176937731077898
       NES_megaman1_enemies_58: 4147537097490079022
-      NES_megaman1_enemies_59: -2652183250458664324
       NES_megaman1_enemies_6: 24516260657374521
-      NES_megaman1_enemies_60: -7995931141193687455
-      NES_megaman1_enemies_62: 577544615367966049
-      NES_megaman1_enemies_64: -6262718668659393763
-      NES_megaman1_enemies_65: -388718194015319817
-      NES_megaman1_enemies_66: -1335936248729203070
       NES_megaman1_enemies_67: -5864392795534387455
-      NES_megaman1_enemies_68: -3871533904601463960
       NES_megaman1_enemies_69: 2453816055096435802
       NES_megaman1_enemies_7: 5526297054552531677
-      NES_megaman1_enemies_70: -2017105200848001492
-      NES_megaman1_enemies_72: -3574842804201782180
-      NES_megaman1_enemies_73: 1858479254397673200
       NES_megaman1_enemies_76: 310754106573642496
       NES_megaman1_enemies_77: 2383074450919207147
       NES_megaman1_enemies_78: 2890224239125029497
       NES_megaman1_enemies_79: -1332395438377109804
       NES_megaman1_enemies_8: 4057960441014977838
-      NES_megaman1_enemies_80: -1097589451979077859
-      NES_megaman1_enemies_81: -5106065611069124220
-      NES_megaman1_enemies_82: 9061660462612958382
-      NES_megaman1_enemies_83: -667762629220721171
       NES_megaman1_enemies_84: 1053981822668135033
       NES_megaman1_enemies_85: 72210753871198836
       NES_megaman1_enemies_86: 6540192713657597858
@@ -3477,6 +3467,16 @@ TextureImporter:
       NES_megaman1_enemies_99: -5754367268752012892
       Pepe1: -1535591506885524323
       Pepe2: -2966624504715918606
+      ScrewDriver1_Blue: 9061660462612958382
+      ScrewDriver1_Orange: -1097589451979077859
+      ScrewDriver2_Blue: -667762629220721171
+      ScrewDriver2_Orange: -5106065611069124220
+      ScrewDriver3_Blue: -1576374170037368807
+      ScrewDriver3_Orange: -8553683098769675968
+      ScrewDriver4_Blue: 8648312654387181627
+      ScrewDriver4_Orange: -4699558761115824528
+      ScrewDriver5_Blue: 5609420993104994698
+      ScrewDriver5_Orange: 8160184738429315913
       https:www.youtube.comwatch?v=-2f6Qg-CFcs: 1150858502
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

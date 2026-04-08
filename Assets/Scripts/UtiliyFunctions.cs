@@ -22,4 +22,15 @@ public class UtilityFunctions : MonoBehaviour
         p += tt * p2;
         return p;
     }
+
+    public static Vector2 RotateByAngle(Vector2 v, float angle)
+    {
+        Vector2 nv;
+        float theta = angle * Mathf.Deg2Rad;
+        float cs = Mathf.Cos(theta);
+        float sn = Mathf.Sin(theta);
+        nv.x = v.x * cs - v.y * sn;
+        nv.y = v.x * sn + v.y * cs;
+        return nv;
+    }
 }

@@ -3,11 +3,11 @@ using UnityEngine;
 public class CameraFollow: MonoBehaviour
 {
 
-    [SerializeField] private Transform player;
-    [SerializeField] private float timeOffset;
-    [SerializeField] private Vector3 offsetPos;
-    [SerializeField] private Vector3 boundsMin;
-    [SerializeField] private Vector3 boundsMax;
+    public Transform player;
+    public float timeOffset;
+    public Vector3 offsetPos;
+    public Vector3 boundsMin;
+    public Vector3 boundsMax;
 
 
     private void LateUpdate()

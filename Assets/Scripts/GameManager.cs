@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -60,6 +61,13 @@ public class GameManager : MonoBehaviour
 
         // Set GameManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene
         DontDestroyOnLoad(gameObject);
+
+        // set the asset palette up only one time
+        if (assetPalette == null)
+        {
+            assetPalette = GetComponent<AssetPalette>();
+            enemyPrefabCount = Enum.GetNames(typeof(AssetPalette.EnemyList)).Length;
+        }
     }
 
     // called third
@@ -109,9 +117,9 @@ public class GameManager : MonoBehaviour
         {
             // here is where we can do things while the game is running
             GetWorldViewCoordinates();
-            ShowMessage();
+            // ShowMessage();
             UpdateScore();
-            SpawnEnemies();
+            // SpawnEnemies();
             RepositionEnemies();
             DestroyStrayBullets();
         }
@@ -307,12 +315,6 @@ public class GameManager : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
-            // set the asset palette up only one time
-            if (assetPalette == null)
-            {
-                assetPalette = GetComponent<AssetPalette>();
-                enemyPrefabCount = Enum.GetNames(typeof(AssetPalette.EnemyList)).Length;
-            }
             // 5 enemies at most on screen at one time
             int randomEnemyCount = UnityEngine.Random.Range(1, 6);
             GameObject[] randomEnemies = new GameObject[randomEnemyCount];
@@ -394,6 +396,22 @@ public class GameManager : MonoBehaviour
                 Destroy(bullet);
             }
         }
+    }
+
+    public void CheckpointReached()
+    {
+        StartCoroutine(CoCheckpointReached());
+    }
+
+    private IEnumerator CoCheckpointReached()
+    {
+        screenMessageText.alignment = TextAlignmentOptions.Center;
+        screenMessageText.alignment = TextAlignmentOptions.Top;
+        screenMessageText.fontStyle = FontStyles.UpperCase;
+        screenMessageText.fontSize = 24;
+        screenMessageText.text = "CHECKPOINT REACHED";
+        yield return new WaitForSeconds(5f);
+        screenMessageText.text = "";
     }
 
      // internal to the game manager to pick a random bonus item

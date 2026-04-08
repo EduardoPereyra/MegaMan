@@ -52,6 +52,7 @@
     <Compile Include="Assets/Scripts/PlayerController.cs" />
     <Compile Include="Assets/Scripts/PlayerDeathController.cs" />
     <Compile Include="Assets/Scripts/AssetPalette.cs" />
+    <Compile Include="Assets/Scripts/CameraTransition.cs" />
     <Compile Include="Assets/Scripts/KillerBombController.cs" />
     <Compile Include="Assets/Scripts/MambuController.cs" />
     <Compile Include="Assets/Scripts/EnemyController.cs" />
@@ -59,11 +60,13 @@
     <Compile Include="Assets/Scripts/UIHealthBar.cs" />
     <Compile Include="Assets/Scripts/PepeController.cs" />
     <Compile Include="Assets/Scripts/SoundManager.cs" />
+    <Compile Include="Assets/Scripts/ScrewDriverController.cs" />
     <Compile Include="Assets/Scripts/BigEyeController.cs" />
     <Compile Include="Assets/Scripts/BulletController.cs" />
     <Compile Include="Assets/Scripts/GameManager.cs" />
     <Compile Include="Assets/Scripts/CameraFollow.cs" />
     <Compile Include="Assets/Scripts/UtiliyFunctions.cs" />
+    <Compile Include="Assets/Scripts/BlasterController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
