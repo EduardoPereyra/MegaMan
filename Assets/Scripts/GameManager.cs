@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     // Singleton instance
     public static GameManager Instance = null;
 
+    bool startNextScene;
+
     AssetPalette assetPalette;
     int enemyPrefabCount;
 
@@ -32,6 +34,13 @@ public class GameManager : MonoBehaviour
 
     public float gameRestartDelay = 5f;
     public float gamePlayerReadyDelay = 3f;
+
+    public enum GameStates
+    {
+        TitleScreen,
+        MainScene
+    };
+    public GameStates gameState = GameStates.TitleScreen;
 
     public struct WorldViewCoordinates
     {
@@ -70,6 +79,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
+        // called first
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    // called when the game is terminated
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    // called second
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch (gameState)
+        {
+            case GameStates.TitleScreen:
+                StartTitleScreen();
+                break;
+            case GameStates.MainScene:
+                StartMainScene();
+                break;
+        }
+    }
+
     // called third
     private void Start()
     {
@@ -78,7 +113,55 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // player ready screen - wait the delay time and show READY on screen
+        switch (gameState)
+        {
+            case GameStates.TitleScreen:
+                TitleScreenLoop();
+                break;
+            case GameStates.MainScene:
+                MainSceneLoop();
+                break;
+        }
+    }
+
+    public void StartNextScene()
+    {
+        startNextScene = true;
+    }
+
+    private void StartTitleScreen()
+    {
+        
+    }
+
+    private void TitleScreenLoop()
+    {
+        if (startNextScene)
+        {
+            startNextScene = false;
+            gameState = GameStates.MainScene;
+            SceneManager.LoadScene("Main Scene");
+        }
+    }
+
+    private void StartMainScene()
+    {
+        isGameOver = false;
+        playerReady = true;
+        initReadyScreen = true;
+        firstMessage = true;
+        gamePlayerReadyTime = gamePlayerReadyDelay;
+        playerScoreText = GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>();
+        screenMessageText = GameObject.Find("ScreenMessage").GetComponent<TextMeshProUGUI>();
+        SoundManager.Instance.MusicSource.clip = GameObject.Find("Main Scene").GetComponent<MainScene>().musicClip;
+        SoundManager.Instance.MusicSource.volume = 0.75f;
+        SoundManager.Instance.MusicSource.loop = true;
+        SoundManager.Instance.MusicSource.Play();
+    }
+
+    private void MainSceneLoop()
+    {
+                // player ready screen - wait the delay time and show READY on screen
         if (playerReady)
         {
             // initialize objects and set READY text
@@ -134,37 +217,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // called first
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    // called when the game is terminated
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    // called second
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Do Startup Functions - Scene has to be fully loaded
-        // otherwise we can't get a handle on the player score text object
-        StartGame();
-    }
-
     // initializes and starts the game
     private void StartGame()
     {
-        isGameOver = false;
-        playerReady = true;
-        initReadyScreen = true;
-        firstMessage = true;
-        gamePlayerReadyTime = gamePlayerReadyDelay;
-        playerScoreText = GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>();
-        screenMessageText = GameObject.Find("ScreenMessage").GetComponent<TextMeshProUGUI>();
-        SoundManager.Instance.MusicSource.Play();
+
     }
 
     // objects that offer score points should call this method upon their defeat to add to the player's score
@@ -396,22 +452,6 @@ public class GameManager : MonoBehaviour
                 Destroy(bullet);
             }
         }
-    }
-
-    public void CheckpointReached()
-    {
-        StartCoroutine(CoCheckpointReached());
-    }
-
-    private IEnumerator CoCheckpointReached()
-    {
-        screenMessageText.alignment = TextAlignmentOptions.Center;
-        screenMessageText.alignment = TextAlignmentOptions.Top;
-        screenMessageText.fontStyle = FontStyles.UpperCase;
-        screenMessageText.fontSize = 24;
-        screenMessageText.text = "CHECKPOINT REACHED";
-        yield return new WaitForSeconds(5f);
-        screenMessageText.text = "";
     }
 
      // internal to the game manager to pick a random bonus item
