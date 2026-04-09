@@ -3615,7 +3615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainScene
   showRunTime: 0
-  musicClip: {fileID: 8300000, guid: e78a230fe3fd344a2a1f5fbeef1c967e, type: 3}
+  musicClip: {fileID: 8300000, guid: fb3d8352f5fad45378462757d4342b4e, type: 3}
   player: {fileID: 7841792917095978392}
   hologram: {fileID: 841857227}
   startSeqBeginPoint: 5.6
