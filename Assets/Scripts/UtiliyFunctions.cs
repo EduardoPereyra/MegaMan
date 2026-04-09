@@ -33,4 +33,24 @@ public class UtilityFunctions : MonoBehaviour
         nv.y = v.x * sn + v.y * cs;
         return nv;
     }
+
+    public static bool InTime(float runTime, float xTime)
+    {
+        return runTime >= xTime && runTime < (xTime + Time.deltaTime);
+    }
+
+    public static bool InTime(float runTime, float startTime, float endTime)
+    {
+        return runTime >= startTime && runTime < endTime;
+    }
+
+    public static bool UntilTime(float runTime, float startTime)
+    {
+        return runTime < startTime;
+    }
+
+    public static bool OverTime(float runTime, float endTime)
+    {
+        return runTime >= endTime;
+    }
 }

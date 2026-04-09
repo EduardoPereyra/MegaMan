@@ -54,6 +54,7 @@
     <Compile Include="Assets/Scripts/AssetPalette.cs" />
     <Compile Include="Assets/Scripts/CameraTransition.cs" />
     <Compile Include="Assets/Scripts/Scenes/TitleScreen.cs" />
+    <Compile Include="Assets/Scripts/Scenes/IntroScene.cs" />
     <Compile Include="Assets/Scripts/KillerBombController.cs" />
     <Compile Include="Assets/Scripts/Scenes/MainScene.cs" />
     <Compile Include="Assets/Scripts/MambuController.cs" />

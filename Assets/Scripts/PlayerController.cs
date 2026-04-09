@@ -480,6 +480,12 @@ public class PlayerController : MonoBehaviour
     public void FreezeInput(bool freeze)
     {
         freezeInput = freeze;
+        if (freeze)
+        {
+            keyHorizontal = 0;
+            keyJump = false;
+            keyShoot = false;
+        }
     }
 
     public void Teleport(bool teleport)
@@ -525,4 +531,65 @@ public class PlayerController : MonoBehaviour
         }
         freezePlayer = freeze;
     }
+
+    // public void MobileShootWrapper()
+    // {
+    //     // wrapper function for button handler script
+    //     // can't directly call coroutines
+    //     if (!freezeInput)
+    //     {
+    //         StartCoroutine(MobileShoot());
+    //     }
+    // }
+
+    // private IEnumerator MobileShoot()
+    // {
+    //     // press shoot and release
+    //     keyShoot = true;
+    //     yield return new WaitForSeconds(0.01f);
+    //     keyShoot = false;
+    // }
+
+    // public void MobileJumpWrapper()
+    // {
+    //     // wrapper function for button handler script
+    //     // can't directly call coroutines
+    //     if (!freezeInput)
+    //     {
+    //         StartCoroutine(MobileJump());
+    //     }
+    // }
+
+    // private IEnumerator MobileJump()
+    // {
+    //     // press jump and release
+    //     keyJump = true;
+    //     yield return new WaitForSeconds(0.01f);
+    //     keyJump = false;
+    // }
+
+    public void SimulateMoveStop()
+    {
+        keyHorizontal = 0;
+    }
+
+    public void SimulateMoveLeft()
+    {
+        keyHorizontal = -1;
+    }
+
+    public void SimulateMoveRight()
+    {
+        keyHorizontal = 1;
+    }
+    // public void SimulateShoot()
+    // {
+    //    StartCoroutine(MobileShoot());
+    // }
+
+    // public void SimulateJump()
+    // {
+    //     keyJump = true;
+    //     StartCoroutine(MobileJump());
+    // }
 }

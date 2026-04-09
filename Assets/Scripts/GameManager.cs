@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public enum GameStates
     {
         TitleScreen,
+        IntroScene,
         MainScene
     };
     public GameStates gameState = GameStates.TitleScreen;
@@ -99,6 +100,9 @@ public class GameManager : MonoBehaviour
             case GameStates.TitleScreen:
                 StartTitleScreen();
                 break;
+            case GameStates.IntroScene:
+                StartIntroScene();
+                break;
             case GameStates.MainScene:
                 StartMainScene();
                 break;
@@ -118,6 +122,9 @@ public class GameManager : MonoBehaviour
             case GameStates.TitleScreen:
                 TitleScreenLoop();
                 break;
+            case GameStates.IntroScene:
+                IntroSceneLoop();
+                break;
             case GameStates.MainScene:
                 MainSceneLoop();
                 break;
@@ -135,6 +142,20 @@ public class GameManager : MonoBehaviour
     }
 
     private void TitleScreenLoop()
+    {
+        if (startNextScene)
+        {
+            startNextScene = false;
+            gameState = GameStates.IntroScene;
+            SceneManager.LoadScene("Intro Scene");
+        }
+    }
+
+    private void StartIntroScene()
+    {
+
+    }
+    private void IntroSceneLoop()
     {
         if (startNextScene)
         {
