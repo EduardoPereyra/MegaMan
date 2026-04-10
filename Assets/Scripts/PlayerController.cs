@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,8 +8,7 @@ public class PlayerController : MonoBehaviour
     BoxCollider2D boxCollider;
     Rigidbody2D rb;
     SpriteRenderer sprite;
-
-
+    ColorSwap colorSwap;
 
     float keyHorizontal;
     bool keyJump;
@@ -30,6 +30,32 @@ public class PlayerController : MonoBehaviour
     bool keyShootRelease;
 
     RigidbodyConstraints2D originalConstraints;
+
+    private enum SwapIndex
+    {
+        Primary = 64,
+        Secondary = 128
+    };
+    public enum PlayerWeapons
+    {
+        Default,
+        BombMan,
+        CutMan,
+        ElecMan,
+        FireMan,
+        GutsMan,
+        IceMan,
+    }
+    public PlayerWeapons currentWeapon = PlayerWeapons.Default;
+
+    [Serializable]
+    public struct PlayerWeaponStats
+    {
+        public PlayerWeapons weapon;
+        public int currentEnergy;
+        public int maxEnergy;
+    }
+    public PlayerWeaponStats[] weaponStats;
 
     public int currentHealth;
     public int maxHealth = 28;
@@ -80,6 +106,14 @@ public class PlayerController : MonoBehaviour
     {
         isFacingRight = true;
         currentHealth = maxHealth;
+
+        // Initialize weapon stats
+        for (int i = 0; i < weaponStats.Length; i++)
+        {
+            weaponStats[i].currentEnergy = weaponStats[i].maxEnergy;
+        }
+        colorSwap = GetComponent<ColorSwap>();
+        SetWeapon(currentWeapon);
     }
 
     void FixedUpdate()
@@ -189,6 +223,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
+            SetWeapon((PlayerWeapons)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PlayerWeapons)).Length));
             Teleport(true);
             Debug.Log("Player teleport initiated.");
         }
@@ -197,6 +232,12 @@ public class PlayerController : MonoBehaviour
         {
             ApplyLifeEnergy(10);
             Debug.Log("Applied life energy. Current health: " + currentHealth);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.EnemyHealth, (UIEnergyBars.EnergyBarTypes)UnityEngine.Random.Range(0, 
+                Enum.GetValues(typeof(UIEnergyBars.EnergyBarTypes)).Length));
+            Debug.Log("Set enemy health bar to random type.");
         }
     }
 
@@ -341,6 +382,68 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
+    public void SetWeapon(PlayerWeapons weapon)
+    {
+        currentWeapon = weapon;
+        int currentEnergy = weaponStats[(int)weapon].currentEnergy;
+        int maxEnergy = weaponStats[(int)weapon].maxEnergy;
+        float weaponEnergyValue = (float)currentEnergy / maxEnergy;
+
+        switch (currentWeapon)
+        {
+            case PlayerWeapons.Default:
+                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x0073F7));
+                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0x00FFFF));
+                UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.PlayerLife);
+                UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, false);
+                break;
+            case PlayerWeapons.BombMan:
+                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x009400));
+                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.HyperBomb);
+                UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
+                UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
+                break;
+            case PlayerWeapons.CutMan:
+                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x747474));
+                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.RollingCutter);
+                UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
+                UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
+                break;
+            case PlayerWeapons.ElecMan:
+                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x747474));
+                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCE4A0));
+                UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.ThunderBeam);
+                UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
+                UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
+                break;
+            case PlayerWeapons.FireMan:
+                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0xD82800));
+                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xF0BC3C));
+                UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.FireStorm);
+                UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
+                UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
+                break;
+            case PlayerWeapons.GutsMan:
+                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0xC84C0C));
+                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.SuperArm);
+                UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
+                UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
+                break;
+            case PlayerWeapons.IceMan:
+                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x2038EC));
+                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.IceSlasher);
+                UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
+                UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
+                break;
+        }
+
+        colorSwap.ApplyColor();
+    }
+
     public void ApplyLifeEnergy(int energy)
     {
         if(currentHealth < maxHealth)
@@ -359,7 +462,7 @@ public class PlayerController : MonoBehaviour
         {
             currentHealth++;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-            UiHealthBar.Instance.SetHealth(currentHealth / (float)maxHealth);
+            UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerHealth, currentHealth / (float)maxHealth);
             yield return new WaitForSeconds(0.05f);
         }
         SoundManager.Instance.Stop();
@@ -399,7 +502,7 @@ public class PlayerController : MonoBehaviour
         {
             currentHealth -= damage;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-            UiHealthBar.Instance.SetHealth(currentHealth / (float)maxHealth);
+            UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerHealth, currentHealth / (float)maxHealth);
             if (currentHealth <= 0)
             {
                 Die();
@@ -439,11 +542,14 @@ public class PlayerController : MonoBehaviour
     private IEnumerator FlashAfterDamage()
     {
         float flashDelay = 0.0833f;
+        Material material = sprite.material;
         for (int i = 0; i < 10; i++)
         {
-            sprite.color = Color.clear;
+            // sprite.color = Color.clear;
+            sprite.material = null;
             yield return new WaitForSeconds(flashDelay);
-            sprite.color = Color.white;
+            // sprite.color = Color.white;
+            sprite.material = material;
             yield return new WaitForSeconds(flashDelay);
         }
         Invincible(false);

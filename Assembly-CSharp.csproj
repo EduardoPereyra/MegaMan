@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/ExplosionController.cs" />
+    <Compile Include="Assets/Scripts/UIEnergyBars.cs" />
     <Compile Include="Assets/Scripts/PlayerController.cs" />
     <Compile Include="Assets/Scripts/PlayerDeathController.cs" />
     <Compile Include="Assets/Scripts/AssetPalette.cs" />
@@ -57,10 +58,10 @@
     <Compile Include="Assets/Scripts/Scenes/IntroScene.cs" />
     <Compile Include="Assets/Scripts/KillerBombController.cs" />
     <Compile Include="Assets/Scripts/Scenes/MainScene.cs" />
+    <Compile Include="Assets/Scripts/ColorSwap.cs" />
     <Compile Include="Assets/Scripts/MambuController.cs" />
     <Compile Include="Assets/Scripts/EnemyController.cs" />
     <Compile Include="Assets/Scripts/ItemsController.cs" />
-    <Compile Include="Assets/Scripts/UIHealthBar.cs" />
     <Compile Include="Assets/Scripts/PepeController.cs" />
     <Compile Include="Assets/Scripts/SoundManager.cs" />
     <Compile Include="Assets/Scripts/ScrewDriverController.cs" />
@@ -89,6 +90,7 @@
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets/Shaders/ColorSwap.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" />
     <None Include="Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt" />

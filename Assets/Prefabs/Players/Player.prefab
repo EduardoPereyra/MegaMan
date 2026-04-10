@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 4497462869724253353}
   - component: {fileID: 8651312477957225215}
   - component: {fileID: 6781173550414071556}
+  - component: {fileID: 8695277953009421842}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -94,7 +95,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 6cbe0c1a625874797a04de0cae6288a5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,7 +123,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.09, y: 0.34}
+  m_Size: {x: 0.21, y: 0.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -188,7 +189,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.21, y: 0.24}
-    newSize: {x: 0.09, y: 0.34}
+    newSize: {x: 0.21, y: 0.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -234,6 +235,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18706a2224ade48c0b6741924f1bfae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  currentWeapon: 0
+  weaponStats:
+  - weapon: 0
+    currentEnergy: 28
+    maxEnergy: 28
+  - weapon: 1
+    currentEnergy: 28
+    maxEnergy: 28
+  - weapon: 2
+    currentEnergy: 28
+    maxEnergy: 28
+  - weapon: 3
+    currentEnergy: 28
+    maxEnergy: 28
+  - weapon: 4
+    currentEnergy: 28
+    maxEnergy: 28
+  - weapon: 5
+    currentEnergy: 28
+    maxEnergy: 28
+  - weapon: 6
+    currentEnergy: 28
+    maxEnergy: 28
   currentHealth: 0
   maxHealth: 28
   moveSpeed: 1.5
@@ -251,3 +275,15 @@ MonoBehaviour:
   explosionPrefab: {fileID: 4363664761137772310, guid: fd35b559db3bf42d58e503f2a95a1107, type: 3}
   teleportSpeed: -10
   teleportState: 0
+--- !u!114 &8695277953009421842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100455234822760735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4030eae37506e42a7980aec83906b748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorSwap
