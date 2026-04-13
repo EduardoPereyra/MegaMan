@@ -10,34 +10,64 @@ using UnityEngine;
 
 public class ColorSwap : MonoBehaviour
 {
-    SpriteRenderer mSpriteRenderer;
-
-    Texture2D mColorSwapTex;
-    Color[] mSpriteColors;
-
-    void Awake()
+       [Header("Shader Properties")]
+    [SerializeField] private string primaryColorRef = "_PrimaryColor";
+    [SerializeField] private string secondaryColorRef = "_SecondaryColor";
+    
+    [Header("Color Settings")]
+    [SerializeField] private Color newPrimaryColor = Color.red;
+    [SerializeField] private Color newSecondaryColor = Color.blue;
+    
+    private Renderer objectRenderer;
+    private Material materialInstance;
+    
+    void Start()
     {
-        // sprite renderer of gameobject this script is attached to
-        mSpriteRenderer = GetComponent<SpriteRenderer>();
-
-        InitColorSwapTex();
+        // Get the renderer component
+        objectRenderer = GetComponent<Renderer>();
+        
+        if (objectRenderer == null)
+        {
+            Debug.LogError("No Renderer found on this GameObject!");
+            return;
+        }
+        
+        // Create a material instance to avoid affecting the original asset
+        materialInstance = objectRenderer.material;
     }
-
-    public void InitColorSwapTex()
+    
+    // Public method to change both colors at once
+    public void SwapColors(Color primary, Color secondary)
     {
-        Texture2D colorSwapTex = new Texture2D(256, 1, TextureFormat.RGBA32, false, false);
-        colorSwapTex.filterMode = FilterMode.Point;
-
-        for (int i = 0; i < colorSwapTex.width; ++i)
-            colorSwapTex.SetPixel(i, 0, new Color(0.0f, 0.0f, 0.0f, 0.0f));
-
-        colorSwapTex.Apply();
-
-        mSpriteRenderer.material.SetTexture("_SwapTex", colorSwapTex);
-
-        mSpriteColors = new Color[colorSwapTex.width];
-        mColorSwapTex = colorSwapTex;
+        if (materialInstance == null) return;
+        
+        materialInstance.SetColor(primaryColorRef, primary);
+        materialInstance.SetColor(secondaryColorRef, secondary);
     }
+    
+    // Individual color change methods
+    public void SetPrimaryColor(Color newColor)
+    {
+        materialInstance?.SetColor(primaryColorRef, newColor);
+    }
+    
+    public void SetSecondaryColor(Color newColor)
+    {
+        materialInstance?.SetColor(secondaryColorRef, newColor);
+    }
+    
+    // // Example method to swap primary and secondary colors
+    // public void SwapPrimaryAndSecondary()
+    // {
+    //     if (materialInstance == null) return;
+        
+    //     Color currentPrimary = materialInstance.GetColor(primaryColorRef);
+    //     Color currentSecondary = materialInstance.GetColor(secondaryColorRef);
+        
+    //     materialInstance.SetColor(primaryColorRef, currentSecondary);
+    //     materialInstance.SetColor(secondaryColorRef, currentPrimary);
+    // }
+    
 
     public static Color ColorFromInt(int c, float alpha = 1.0f)
     {
@@ -53,30 +83,13 @@ public class ColorSwap : MonoBehaviour
 
     public static Color ColorFromIntRGB(int r, int g, int b)
     {
-        return new Color((float)r / 255.0f, (float)g / 255.0f, (float)b / 255.0f, 1.0f);
+        return new Color(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
     }
 
-    public void SwapColors(List<int> indexes, List<Color> colors)
+    void OnDestroy()
     {
-        for (int i = 0; i < indexes.Count; ++i)
-        {
-            mSpriteColors[indexes[i]] = colors[i];
-            mColorSwapTex.SetPixel(indexes[i], 0, colors[i]);
-        }
-        mColorSwapTex.Apply();
-    }
-
-    public void SwapColor(int index, Color color)
-    {
-        mSpriteColors[index] = color;
-        mColorSwapTex.SetPixel(index, 0, color);
-    }
-
-    public void ApplyColor()
-    {
-        mColorSwapTex.Apply();
-        // save the color swap texture to local storage for debugging
-        // byte[] data = mColorSwapTex.EncodeToPNG();
-        // File.WriteAllBytes(Application.dataPath + "/../ColorSwapTexture.png", data);
+        // Clean up the material instance when the object is destroyed
+        if (materialInstance != null)
+            Destroy(materialInstance);
     }
 }

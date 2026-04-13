@@ -392,56 +392,56 @@ public class PlayerController : MonoBehaviour
         switch (currentWeapon)
         {
             case PlayerWeapons.Default:
-                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x0073F7));
-                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0x00FFFF));
+                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x0073F7));
+                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0x00FFFF));
                 UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.PlayerLife);
                 UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, false);
                 break;
             case PlayerWeapons.BombMan:
-                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x009400));
-                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x009400));
+                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xFCFCFC));
                 UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.HyperBomb);
                 UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
                 UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 break;
             case PlayerWeapons.CutMan:
-                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x747474));
-                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x747474));
+                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xFCFCFC));
                 UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.RollingCutter);
                 UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
                 UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 break;
             case PlayerWeapons.ElecMan:
-                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x747474));
-                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCE4A0));
+                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x747474));
+                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xFCE4A0));
                 UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.ThunderBeam);
                 UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
                 UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 break;
             case PlayerWeapons.FireMan:
-                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0xD82800));
-                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xF0BC3C));
+                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0xD82800));
+                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xF0BC3C));
                 UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.FireStorm);
                 UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
                 UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 break;
             case PlayerWeapons.GutsMan:
-                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0xC84C0C));
-                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0xC84C0C));
+                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xFCFCFC));
                 UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.SuperArm);
                 UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
                 UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 break;
             case PlayerWeapons.IceMan:
-                colorSwap.SwapColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x2038EC));
-                colorSwap.SwapColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x2038EC));
+                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xFCFCFC));
                 UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.IceSlasher);
                 UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
                 UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 break;
         }
 
-        colorSwap.ApplyColor();
+        // colorSwap.ApplyColor();
     }
 
     public void ApplyLifeEnergy(int energy)

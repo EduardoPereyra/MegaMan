@@ -2626,9 +2626,11 @@ m_ResolvedPackages:
     - 1.8.9
     - 1.8.10
     - 1.8.11
+    - 1.8.12
     compatible:
     - 1.8.11
-    recommended: 1.8.11
+    - 1.8.12
+    recommended: 1.8.12
     deprecated: []
   dependencies:
   - name: com.unity.modules.audio
@@ -7521,9 +7523,11 @@ m_ResolvedPackages:
     - 1.8.26
     - 1.8.27
     - 1.8.28
+    - 1.8.29
     compatible:
     - 1.8.28
-    recommended: 1.8.28
+    - 1.8.29
+    recommended: 1.8.29
     deprecated: []
   dependencies:
   - name: com.unity.mathematics
@@ -7786,10 +7790,12 @@ m_ResolvedPackages:
     - 3.2.0
     - 3.2.1
     - 3.3.0
+    - 3.4.0
     compatible:
     - 3.2.0
     - 3.2.1
     - 3.3.0
+    - 3.4.0
     recommended: 3.2.1
     deprecated: []
   dependencies:
