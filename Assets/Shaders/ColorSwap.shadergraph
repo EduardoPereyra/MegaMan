@@ -215,10 +215,10 @@
         },
         "m_Blocks": [
             {
-                "m_Id": "b83ffc6a526e4eb6917a45ade5bc56b6"
+                "m_Id": "428bc53e88024c628ae9f94033eaa139"
             },
             {
-                "m_Id": "428bc53e88024c628ae9f94033eaa139"
+                "m_Id": "b83ffc6a526e4eb6917a45ade5bc56b6"
             },
             {
                 "m_Id": "33d18788514f4e1e9b5382d68f1a5775"
@@ -227,8 +227,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 1279.0001220703125,
-            "y": 91.99999237060547
+            "x": 1344.9998779296875,
+            "y": 44.99999237060547
         },
         "m_Blocks": [
             {
@@ -549,9 +549,9 @@
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_RenderFace": 2,
-    "m_AlphaClip": false,
-    "m_CastShadows": true,
+    "m_RenderFace": 0,
+    "m_AlphaClip": true,
+    "m_CastShadows": false,
     "m_ReceiveShadows": true,
     "m_DisableTint": false,
     "m_Sort3DAs2DCompatible": false,
@@ -1301,10 +1301,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 0.0,
-            "y": 0.0,
-            "width": 0.0,
-            "height": 0.0
+            "x": 1372.0,
+            "y": -137.00003051757813,
+            "width": 200.0001220703125,
+            "height": 41.00001525878906
         }
     },
     "m_Slots": [

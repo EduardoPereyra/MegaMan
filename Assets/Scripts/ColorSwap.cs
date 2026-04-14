@@ -85,11 +85,4 @@ public class ColorSwap : MonoBehaviour
     {
         return new Color(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
     }
-
-    void OnDestroy()
-    {
-        // Clean up the material instance when the object is destroyed
-        if (materialInstance != null)
-            Destroy(materialInstance);
-    }
 }

@@ -545,11 +545,11 @@ public class PlayerController : MonoBehaviour
         Material material = sprite.material;
         for (int i = 0; i < 10; i++)
         {
-            // sprite.color = Color.clear;
-            sprite.material = null;
+            sprite.color = Color.clear;
+            // sprite.material = null;
             yield return new WaitForSeconds(flashDelay);
-            // sprite.color = Color.white;
-            sprite.material = material;
+            sprite.color = Color.white;
+            // sprite.material = material;
             yield return new WaitForSeconds(flashDelay);
         }
         Invincible(false);
