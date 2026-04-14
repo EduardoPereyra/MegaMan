@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public enum PlayerWeapons
     {
         Default,
+        MagnetBeam,
         BombMan,
         CutMan,
         ElecMan,
@@ -396,6 +397,13 @@ public class PlayerController : MonoBehaviour
                 colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0x00FFFF));
                 UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.PlayerLife);
                 UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, false);
+                break;
+                case PlayerWeapons.MagnetBeam:
+                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x0073F7));
+                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0x00FFFF));
+                UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.MagnetBeam);
+                UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, weaponEnergyValue);
+                UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 break;
             case PlayerWeapons.BombMan:
                 colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x009400));

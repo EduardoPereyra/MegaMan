@@ -258,6 +258,9 @@ MonoBehaviour:
   - weapon: 6
     currentEnergy: 28
     maxEnergy: 28
+  - weapon: 7
+    currentEnergy: 28
+    maxEnergy: 28
   currentHealth: 0
   maxHealth: 28
   moveSpeed: 1.5
@@ -287,3 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4030eae37506e42a7980aec83906b748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorSwap
+  primaryColorRef: _PrimaryColor
+  secondaryColorRef: _SecondaryColor
+  newPrimaryColor: {r: 1, g: 0, b: 0, a: 1}
+  newSecondaryColor: {r: 0, g: 0, b: 1, a: 1}
