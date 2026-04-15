@@ -48,29 +48,31 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/Resources/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/Scripts/Enemies/KillerBombController.cs" />
     <Compile Include="Assets/Scripts/ExplosionController.cs" />
+    <Compile Include="Assets/Scripts/Weapons/BulletController.cs" />
     <Compile Include="Assets/Scripts/UIEnergyBars.cs" />
+    <Compile Include="Assets/Scripts/Enemies/BlasterController.cs" />
     <Compile Include="Assets/Scripts/PlayerController.cs" />
+    <Compile Include="Assets/Scripts/Enemies/EnemyController.cs" />
     <Compile Include="Assets/Scripts/PlayerDeathController.cs" />
     <Compile Include="Assets/Scripts/AssetPalette.cs" />
     <Compile Include="Assets/Scripts/CameraTransition.cs" />
     <Compile Include="Assets/Scripts/Scenes/TitleScreen.cs" />
     <Compile Include="Assets/Scripts/Scenes/IntroScene.cs" />
-    <Compile Include="Assets/Scripts/KillerBombController.cs" />
+    <Compile Include="Assets/Scripts/Enemies/ScrewDriverController.cs" />
     <Compile Include="Assets/Scripts/Scenes/MainScene.cs" />
+    <Compile Include="Assets/Scripts/Weapons/BombScript.cs" />
+    <Compile Include="Assets/Scripts/Enemies/BigEyeController.cs" />
     <Compile Include="Assets/Scripts/ColorSwap.cs" />
-    <Compile Include="Assets/Scripts/MambuController.cs" />
-    <Compile Include="Assets/Scripts/EnemyController.cs" />
     <Compile Include="Assets/Scripts/ItemsController.cs" />
-    <Compile Include="Assets/Scripts/PepeController.cs" />
+    <Compile Include="Assets/Scripts/Enemies/Bosses/BombManController.cs" />
     <Compile Include="Assets/Scripts/SoundManager.cs" />
-    <Compile Include="Assets/Scripts/ScrewDriverController.cs" />
-    <Compile Include="Assets/Scripts/BigEyeController.cs" />
-    <Compile Include="Assets/Scripts/BulletController.cs" />
+    <Compile Include="Assets/Scripts/Enemies/PepeController.cs" />
+    <Compile Include="Assets/Scripts/Enemies/MambuController.cs" />
     <Compile Include="Assets/Scripts/GameManager.cs" />
     <Compile Include="Assets/Scripts/CameraFollow.cs" />
     <Compile Include="Assets/Scripts/UtiliyFunctions.cs" />
-    <Compile Include="Assets/Scripts/BlasterController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

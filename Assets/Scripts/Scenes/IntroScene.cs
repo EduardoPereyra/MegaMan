@@ -72,10 +72,8 @@ public class IntroScene : MonoBehaviour
     {
         startTime = Time.time;
 
-        SoundManager.Instance.MusicSource.clip = musicClip;
         SoundManager.Instance.MusicSource.volume = 0.75f;
-        SoundManager.Instance.MusicSource.loop = false;
-        SoundManager.Instance.MusicSource.Play();
+        SoundManager.Instance.PlayMusic(musicClip, false);
     }
 
     void Update()

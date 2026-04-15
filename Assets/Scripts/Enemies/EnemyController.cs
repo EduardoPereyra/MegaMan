@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -20,6 +21,9 @@ public class EnemyController: MonoBehaviour
     RigidbodyConstraints2D originalConstraints;
     public bool freezeEnemy;
 
+    public bool hasHealthBar;
+
+    [Header("Enemy Settings")]
     public int scorePoints = 500;
     public int currentHealth;
     public int maxHealth = 1;
@@ -34,6 +38,7 @@ public class EnemyController: MonoBehaviour
     public ItemsController.WeaponPartColor weaponPartColor;
     public float bonusDestroyDelay = 5f;
     public Vector2 bonusVelocity = new(0, 3f);
+    public UnityAction BonusItemAction;
 
     [Header("Audio Clips")]
     public AudioClip shootSound;
@@ -45,6 +50,11 @@ public class EnemyController: MonoBehaviour
     public GameObject bulletShootPos;
     public GameObject bulletPrefab;
     public GameObject explosionPrefab;
+    public float explodeEffectDestroyDelay = 2f;
+
+    [Header("Enemy Events")]
+    public UnityEvent TakeDamageEvent;
+    public UnityEvent DefeatEvent;
     
 
     void Start()
@@ -71,8 +81,13 @@ public class EnemyController: MonoBehaviour
     {
         if (!isInvincible)
         {
+            TakeDamageEvent.Invoke();
             currentHealth -= damage;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+            if(hasHealthBar && UIEnergyBars.Instance)
+            {
+                UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.EnemyHealth, currentHealth / (float)maxHealth);
+            }
             SoundManager.Instance.Play(hitSound);
             if (currentHealth <= 0)
             {
@@ -90,7 +105,7 @@ public class EnemyController: MonoBehaviour
         explodeEffect.name = explosionPrefab.name;
         explodeEffect.transform.position = sprite.bounds.center;
         explodeEffect.GetComponent<ExplosionController>().SetDamage(explosionDamage);
-        Destroy(explodeEffect, 2f);
+        Destroy(explodeEffect, explodeEffectDestroyDelay);
 
         GameObject bonusItemsPrefab = GameManager.Instance.GetBonusItem(bonusItemType);
         if (bonusItemsPrefab)
@@ -102,6 +117,11 @@ public class EnemyController: MonoBehaviour
             bonusItem.GetComponent<ItemsController>().SetDestroyDelay(bonusDestroyDelay);
             bonusItem.GetComponent<ItemsController>().SetBonusBallColor(bonusBallColor);
             bonusItem.GetComponent<ItemsController>().SetWeaponPartColor(weaponPartColor);
+            if (BonusItemAction != null)
+            {
+                bonusItem.GetComponent<ItemsController>().BonusItemEvent.AddListener(BonusItemAction);
+            }
+
             bonusItem.GetComponent<Rigidbody2D>().linearVelocity = bonusVelocity;
         }
     }
@@ -113,9 +133,10 @@ public class EnemyController: MonoBehaviour
 
     void Die()
     {
+        DefeatEvent.Invoke();
         StartDeathAnimation();
-        GameManager.Instance.AddScorePoints(scorePoints);
         Destroy(gameObject);
+        GameManager.Instance.AddScorePoints(scorePoints);
     }
     
     public void FreezeEnemy(bool freeze)

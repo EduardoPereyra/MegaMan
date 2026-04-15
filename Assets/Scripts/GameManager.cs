@@ -1,8 +1,10 @@
 using System;
+using System.Linq;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,15 +27,17 @@ public class GameManager : MonoBehaviour
     bool playerReady;
     bool initReadyScreen;
 
+    int levelPoints;
     int playerScore;
-    int bonusCount;
-    int bonusScore;
+    List<int> bonusScore = new List<int>();
 
     float gameRestartTime;
     float gamePlayerReadyTime;
 
     public float gameRestartDelay = 5f;
     public float gamePlayerReadyDelay = 3f;
+
+    PlayerController.PlayerWeaponStats[] playerWeapons;
 
     public enum GameStates
     {
@@ -172,12 +176,11 @@ public class GameManager : MonoBehaviour
         initReadyScreen = true;
         firstMessage = true;
         gamePlayerReadyTime = gamePlayerReadyDelay;
+        RestorePlayerWeapons();
         playerScoreText = GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>();
         screenMessageText = GameObject.Find("ScreenMessage").GetComponent<TextMeshProUGUI>();
-        SoundManager.Instance.MusicSource.clip = GameObject.Find("Main Scene").GetComponent<MainScene>().musicClip;
         SoundManager.Instance.MusicSource.volume = 0.75f;
-        SoundManager.Instance.MusicSource.loop = true;
-        SoundManager.Instance.MusicSource.Play();
+        SoundManager.Instance.PlayMusic(GameObject.Find("Main Scene").GetComponent<MainScene>().musicClip);
     }
 
     private void MainSceneLoop()
@@ -222,10 +225,18 @@ public class GameManager : MonoBehaviour
             // here is where we can do things while the game is running
             GetWorldViewCoordinates();
             // ShowMessage();
-            UpdateScore();
+            // UpdateScore();
             // SpawnEnemies();
-            RepositionEnemies();
+            // RepositionEnemies();
             DestroyStrayBullets();
+            if(startNextScene)
+            {
+                SavePlayerWeapons();
+                startNextScene = false;
+                // load the next scene - unfortunately since there is only one main scene, we will just reload the same scene but reset everything to start the next level
+                gameState = GameStates.MainScene;
+                SceneManager.LoadScene("Main Scene");
+            }
         }
         else
         {
@@ -254,11 +265,15 @@ public class GameManager : MonoBehaviour
     // at the end of a boss battle the bonus score would be added to the overall player score
     public void AddBonusPoints(int points)
     {
-        bonusCount++;
-        bonusScore += points;
+        bonusScore.Add(points);
     }
 
-    private void FreezePlayer(bool freeze)
+    public void SetLevelPoints(int points)
+    {
+        levelPoints = points;
+    }
+
+    public void FreezePlayer(bool freeze)
     {
         // freeze player and input
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -269,7 +284,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void FreezeEnemies(bool freeze)
+    public void FreezeEnemies(bool freeze)
     {
         // freeze all enemies
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -279,7 +294,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void FreezeBullets(bool freeze)
+    public void FreezeBullets(bool freeze)
     {
         // freeze all bullets
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
@@ -293,9 +308,26 @@ public class GameManager : MonoBehaviour
     {
         // teleport player - happens after READY screen
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player?.GetComponent<PlayerController>().Teleport(teleport);
+    }
+
+    public void SavePlayerWeapons()
+    {
+        // save player weapon stats to carry over to next level
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            player.GetComponent<PlayerController>().Teleport(teleport);
+            playerWeapons = player.GetComponent<PlayerController>().weaponStats;
+        }
+    }
+
+    public void RestorePlayerWeapons()
+    {
+        // restore player weapon stats at the start of the level
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null && playerWeapons != null)
+        {
+            player.GetComponent<PlayerController>().weaponStats = playerWeapons;
         }
     }
 
@@ -311,18 +343,10 @@ public class GameManager : MonoBehaviour
         FreezePlayer(true);
         // freeze all enemies
         FreezeEnemies(true);
-        // remove all bullets
-        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
-        foreach (GameObject bullet in bullets)
-        {
-            Destroy(bullet);
-        }
-        // remove all explosions
-        GameObject[] explosions = GameObject.FindGameObjectsWithTag("Explosion");
-        foreach (GameObject explosion in explosions)
-        {
-            Destroy(explosion);
-        }
+        // destroy all weapons
+        DestroyWeapons();
+        // save player weapons
+        SavePlayerWeapons();
     }
 
     private void GetWorldViewCoordinates()
@@ -382,9 +406,8 @@ public class GameManager : MonoBehaviour
         // update the player score each wave by adding on any bonus points
         if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
-            playerScore += bonusScore;
-            bonusCount = 0;
-            bonusScore = 0;
+            playerScore += bonusScore.Sum();
+            bonusScore.Clear();
         }
     }
 
@@ -472,6 +495,124 @@ public class GameManager : MonoBehaviour
                 // buh bye bullet
                 Destroy(bullet);
             }
+        }
+    }
+
+    public void DestroyWeapons()
+    {
+        // remove all bullets
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+        foreach (GameObject bullet in bullets) Destroy(bullet);
+        // remove all bombs
+        GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
+        foreach (GameObject bomb in bombs) Destroy(bomb);
+        // remove all explosions
+        GameObject[] explosions = GameObject.FindGameObjectsWithTag("Explosion");
+        foreach (GameObject explosion in explosions) Destroy(explosion);
+    }
+
+    public void TallyPlayerScore()
+    {
+        // wrapper function to the points tally coroutine
+        StartCoroutine(TallyPlayerScoreCo());
+    }
+
+    private IEnumerator TallyPlayerScoreCo()
+    {
+        // we begin with a string of just CLEAR POINTS 
+        string scoreString = "CLEAR\nPOINTS\n\n";
+
+        // adjust textmesh pro text properties
+        screenMessageText.alignment = TextAlignmentOptions.Center;
+        screenMessageText.alignment = TextAlignmentOptions.Top;
+        screenMessageText.fontStyle = FontStyles.UpperCase;
+        screenMessageText.fontSize = 18;
+        screenMessageText.text = string.Format("<mspace=\"{0}\">" + scoreString + "</mspace>", screenMessageText.fontSize);
+
+        // start with CLEAR POINTS and pause
+        yield return new WaitForSeconds(1f);
+
+        // add on the level points string
+        scoreString += "{1:000000}\n\n";
+
+        // var to add up the level points and how many iterations to loop
+        int levelPointsTally = 0;
+        int tallyLoops = levelPoints / 1000;
+
+        // start the point tally sound loop
+        SoundManager.Instance.Play(assetPalette.pointTallyLoopClip, true);
+
+        /*
+         * add the iteration points to the player score
+         * add up the level points, show it, with a tiny delay
+         * in between each pass and when we hit the end then
+         * play the point tally end sound clip
+         */
+        for (int i = 0; i < tallyLoops; i++)
+        {
+            playerScore += 1000;
+            levelPointsTally += 1000;
+            screenMessageText.text = string.Format("<mspace=\"{0}\">" + scoreString + "</mspace>",
+                screenMessageText.fontSize, levelPointsTally);
+            if (i == tallyLoops - 1)
+            {
+                SoundManager.Instance.Play(assetPalette.pointTallyEndClip);
+            }
+            yield return new WaitForSeconds(0.025f);
+        }
+
+        // add another delay before the bonus points part
+        yield return new WaitForSeconds(1f);
+
+        // add on the bonus ball points string (we have a sprite atlas for the bonus ball)
+        scoreString += "<sprite=\"BonusItems\" index=\"16\">1000X{2:00}\nBONUS\n\n{3:000000}";
+
+        // var to add up the bonus points collected
+        int bonusPointsTally = 0;
+
+        // start the point tally sound loop
+        SoundManager.Instance.Play(assetPalette.pointTallyLoopClip, true);
+
+        /*
+         * much like how we did the level points tally, but this time we
+         * are doing the bonus points. same bit of code except for a couple
+         * more variables passed to the string format for how many balls
+         * collected the bonus ball total points
+         */
+        if (bonusScore.Count > 0)
+        {
+            // balls collected
+            for (int i = 0; i < bonusScore.Count; i++)
+            {
+                playerScore += bonusScore[i];
+                bonusPointsTally += bonusScore[i];
+                screenMessageText.text = string.Format("<mspace=\"{0}\">" + scoreString + "</mspace>",
+                    screenMessageText.fontSize, levelPointsTally, bonusScore.Count, bonusPointsTally);
+                if (i == bonusScore.Count - 1)
+                {
+                    SoundManager.Instance.Play(assetPalette.pointTallyEndClip);
+                }
+                yield return new WaitForSeconds(0.025f);
+            }
+        }
+        else
+        {
+            // nothing collected, just display the bonus and play the end clip
+            screenMessageText.text = string.Format("<mspace=\"{0}\">" + scoreString + "</mspace>",
+                screenMessageText.fontSize, levelPointsTally, bonusScore.Count, bonusPointsTally);
+            SoundManager.Instance.Play(assetPalette.pointTallyEndClip);
+        }
+    }
+
+    public void ResetPointsCollected(bool resetPlayerScore = false)
+    {
+        // reset points collected and should be called at the end of each level
+        // pass true to clear the player score (should reset when death and no more lives to continue)
+        levelPoints = 0;
+        bonusScore.Clear();
+        if (resetPlayerScore)
+        {
+            playerScore = 0;
         }
     }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -69,6 +70,11 @@ public class ItemsController: MonoBehaviour
         Orange
     }
     [SerializeField] WeaponPartColor weaponPartColor = WeaponPartColor.Blue;
+    public enum WeaponPartEnemies { None, BombMan, CutMan, ElecMan, FireMan, GutsMan, IceMan };
+    [SerializeField] WeaponPartEnemies weaponPartEnemy = WeaponPartEnemies.None;
+
+    [Header("Bonus Item Events")]
+    public UnityEvent BonusItemEvent;
 
     void Awake()
     {
@@ -82,10 +88,8 @@ public class ItemsController: MonoBehaviour
     {
         Animate(animate);
 
-        if (destroyDelay > 0)
-        {
-            SetDestroyDelay(destroyDelay);
-        }
+        SetDestroyDelay(destroyDelay);
+
 
         if(itemType == ItemType.BonusBall)
         {
@@ -115,7 +119,11 @@ public class ItemsController: MonoBehaviour
 
     public void SetDestroyDelay(float delay)
     {
-        Destroy(gameObject, delay);
+        destroyDelay = delay;
+        if (delay > 0)
+        {
+            Destroy(gameObject, delay);
+        }
     }
 
     public void SetBonusBallColor(BonusBallColor color)
@@ -209,10 +217,17 @@ public class ItemsController: MonoBehaviour
                 GameManager.Instance.AddBonusPoints(bonusPointsValue);
             }
 
+            if (itemType == ItemType.WeaponPart)
+            {
+                player.ApplyWeaponPart(weaponPartEnemy);
+            }
+
             if (itemClip)
             {
                 SoundManager.Instance.Play(itemClip);
             }
+
+            BonusItemEvent?.Invoke();
 
             Destroy(gameObject);
         }   

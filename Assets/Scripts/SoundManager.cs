@@ -41,6 +41,7 @@ public class SoundManager : MonoBehaviour
     // Play a single clip through the sound effects source.
     public void Play(AudioClip clip, bool loop = false)
     {
+        EffectsSource.time = 0f;
         EffectsSource.loop = loop;
         EffectsSource.clip = clip;
         EffectsSource.Play();
@@ -49,6 +50,7 @@ public class SoundManager : MonoBehaviour
     // Play a single clip through the music source.
     public void PlayMusic(AudioClip clip, bool loop = true)
     {
+        MusicSource.time = 0f;
         MusicSource.loop = loop;
         MusicSource.clip = clip;
         MusicSource.Play();

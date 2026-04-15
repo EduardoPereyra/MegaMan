@@ -240,27 +240,51 @@ MonoBehaviour:
   - weapon: 0
     currentEnergy: 28
     maxEnergy: 28
+    energyCost: 0
+    weaponDamage: 0
+    weaponPrefab: {fileID: 0}
   - weapon: 1
     currentEnergy: 28
     maxEnergy: 28
+    energyCost: 0
+    weaponDamage: 0
+    weaponPrefab: {fileID: 0}
   - weapon: 2
     currentEnergy: 28
     maxEnergy: 28
+    energyCost: 0
+    weaponDamage: 0
+    weaponPrefab: {fileID: 0}
   - weapon: 3
     currentEnergy: 28
     maxEnergy: 28
+    energyCost: 0
+    weaponDamage: 0
+    weaponPrefab: {fileID: 0}
   - weapon: 4
     currentEnergy: 28
     maxEnergy: 28
+    energyCost: 0
+    weaponDamage: 0
+    weaponPrefab: {fileID: 0}
   - weapon: 5
     currentEnergy: 28
     maxEnergy: 28
+    energyCost: 0
+    weaponDamage: 0
+    weaponPrefab: {fileID: 0}
   - weapon: 6
     currentEnergy: 28
     maxEnergy: 28
+    energyCost: 0
+    weaponDamage: 0
+    weaponPrefab: {fileID: 0}
   - weapon: 7
     currentEnergy: 28
     maxEnergy: 28
+    energyCost: 0
+    weaponDamage: 0
+    weaponPrefab: {fileID: 0}
   currentHealth: 0
   maxHealth: 28
   moveSpeed: 1.5

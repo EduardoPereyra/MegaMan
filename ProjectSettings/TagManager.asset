@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Bullet
   - Explosion
+  - Bomb
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Player
   - Enemy
   - Item
-  - 
+  - Weapon
   - 
   - 
   - 
