@@ -236,51 +236,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   currentWeapon: 0
-  weaponStats:
-  - weapon: 0
-    currentEnergy: 28
+  weaponsData:
+  - weaponType: 0
+    enabled: 1
+    currentEnergy: 0
+    maxEnergy: 28
+    energyCost: 0
+    weaponDamage: 1
+    weaponPrefab: {fileID: 1289239060136040960, guid: 0518b3d52922e47a39486b90ce932bde, type: 3}
+  - weaponType: 0
+    enabled: 0
+    currentEnergy: 0
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
     weaponPrefab: {fileID: 0}
-  - weapon: 1
-    currentEnergy: 28
+  - weaponType: 2
+    enabled: 0
+    currentEnergy: 0
+    maxEnergy: 28
+    energyCost: 2
+    weaponDamage: 4
+    weaponPrefab: {fileID: 3440074353480861832, guid: 5b761752630104d318568cd5aee02282, type: 3}
+  - weaponType: 3
+    enabled: 0
+    currentEnergy: 0
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
     weaponPrefab: {fileID: 0}
-  - weapon: 2
-    currentEnergy: 28
+  - weaponType: 4
+    enabled: 0
+    currentEnergy: 0
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
     weaponPrefab: {fileID: 0}
-  - weapon: 3
-    currentEnergy: 28
+  - weaponType: 5
+    enabled: 0
+    currentEnergy: 0
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
     weaponPrefab: {fileID: 0}
-  - weapon: 4
-    currentEnergy: 28
+  - weaponType: 6
+    enabled: 0
+    currentEnergy: 0
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
     weaponPrefab: {fileID: 0}
-  - weapon: 5
-    currentEnergy: 28
-    maxEnergy: 28
-    energyCost: 0
-    weaponDamage: 0
-    weaponPrefab: {fileID: 0}
-  - weapon: 6
-    currentEnergy: 28
-    maxEnergy: 28
-    energyCost: 0
-    weaponDamage: 0
-    weaponPrefab: {fileID: 0}
-  - weapon: 7
-    currentEnergy: 28
+  - weaponType: 7
+    enabled: 0
+    currentEnergy: 0
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
@@ -297,7 +305,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: 7bba765a7affd4b56a36243523bad0b6, type: 3}
   energyFillSound: {fileID: 8300000, guid: ad267ffa379f84865a7ee8016b56de0e, type: 3}
   deathSound: {fileID: 8300000, guid: 0b76802ca62c444b3858734d6402d505, type: 3}
-  shootPoint: {fileID: 1516658697690703886}
+  bulletShootPos: {fileID: 1516658697690703886}
   bulletPrefab: {fileID: 1289239060136040960, guid: 0518b3d52922e47a39486b90ce932bde, type: 3}
   explosionPrefab: {fileID: 4363664761137772310, guid: fd35b559db3bf42d58e503f2a95a1107, type: 3}
   teleportSpeed: -10
@@ -316,5 +324,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ColorSwap
   primaryColorRef: _PrimaryColor
   secondaryColorRef: _SecondaryColor
-  newPrimaryColor: {r: 1, g: 0, b: 0, a: 1}
-  newSecondaryColor: {r: 0, g: 0, b: 1, a: 1}
+  newPrimaryColorRef: _NewPrimaryColor
+  newSecondaryColorRef: _NewSecondaryColor
+  mainTexRef: _MainTex

@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 502f64e69f8d3478795b07f0c063aaaa, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -82,11 +82,13 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _NewPrimaryColor: {r: 0, g: 0.45098037, b: 0.9686275, a: 1}
+    - _NewSecondaryColor: {r: 0, g: 1, b: 1, a: 1}
     - _Primary: {r: 0, g: 0.4509804, b: 0.96862745, a: 1}
-    - _PrimaryColor: {r: 0, g: 0.45098037, b: 0.9686275, a: 1}
+    - _PrimaryColor: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _Secondary: {r: 0, g: 1, b: 1, a: 1}
-    - _SecondaryColor: {r: 0, g: 1, b: 1, a: 1}
+    - _SecondaryColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2127572239011219850

@@ -178,7 +178,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5313128788771032553}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -194,9 +194,9 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 7
 --- !u!61 &5177277758129066428
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   freezeEnemy: 0
+  hasHealthBar: 0
   scorePoints: 200
   currentHealth: 0
   maxHealth: 1
@@ -334,6 +335,13 @@ MonoBehaviour:
   bulletShootPos: {fileID: 464046242358214029}
   bulletPrefab: {fileID: 1289239060136040960, guid: 0518b3d52922e47a39486b90ce932bde, type: 3}
   explosionPrefab: {fileID: 9145198834329177098, guid: 4a7d68d88703143fa89859bdfd63fdce, type: 3}
+  explodeEffectDestroyDelay: 2
+  TakeDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  DefeatEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5704101058483171749
 MonoBehaviour:
   m_ObjectHideFlags: 0

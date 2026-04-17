@@ -743,15 +743,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_16
+      name: Player_Throw
       rect:
         serializedVersion: 2
-        x: 181
-        y: 334
-        width: 29
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 182
+        y: 335
+        width: 27
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -765,15 +765,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_17
+      name: Player_JumpThrow
       rect:
         serializedVersion: 2
-        x: 212
-        y: 334
-        width: 30
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 213
+        y: 335
+        width: 28
+        height: 30
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2635,8 +2635,6 @@ TextureImporter:
       Player_13: 6472545519820947264
       Player_14: -2472340072831945791
       Player_15: 4681514556078180949
-      Player_16: -2521826894279438384
-      Player_17: -7338765713033929952
       Player_18: 1522305984107872113
       Player_19: -661973496601677656
       Player_2: -6287787046888575383
@@ -2727,6 +2725,8 @@ TextureImporter:
       Player_97: -5039018455694910679
       Player_98: 4188594116505358882
       Player_99: -2051070822076930994
+      Player_JumpThrow: -7338765713033929952
+      Player_Throw: -2521826894279438384
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -81,19 +81,26 @@ public class EnemyController: MonoBehaviour
     {
         if (!isInvincible)
         {
-            TakeDamageEvent.Invoke();
-            currentHealth -= damage;
-            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-            if(hasHealthBar && UIEnergyBars.Instance)
+            if (damage > 0)
             {
-                UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.EnemyHealth, currentHealth / (float)maxHealth);
+                TakeDamageEvent.Invoke();
+                currentHealth -= damage;
+                currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+                if(hasHealthBar && UIEnergyBars.Instance)
+                {
+                    UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.EnemyHealth, currentHealth / (float)maxHealth);
+                }
+                if (hitSound)
+                {
+                    SoundManager.Instance.Play(hitSound);
+                }
             }
-            SoundManager.Instance.Play(hitSound);
             if (currentHealth <= 0)
             {
                 Die();
             }
-        } else
+        } 
+        else
         {
             SoundManager.Instance.Play(blockAttackSound);
         }

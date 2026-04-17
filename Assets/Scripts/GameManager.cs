@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public float gameRestartDelay = 5f;
     public float gamePlayerReadyDelay = 3f;
 
-    PlayerController.PlayerWeaponStats[] playerWeapons;
+    PlayerController.WeaponsStruct[] playerWeapons;
 
     public enum GameStates
     {
@@ -317,7 +317,7 @@ public class GameManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            playerWeapons = player.GetComponent<PlayerController>().weaponStats;
+            playerWeapons = player.GetComponent<PlayerController>().weaponsData;
         }
     }
 
@@ -327,7 +327,7 @@ public class GameManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null && playerWeapons != null)
         {
-            player.GetComponent<PlayerController>().weaponStats = playerWeapons;
+            player.GetComponent<PlayerController>().weaponsData = playerWeapons;
         }
     }
 
@@ -746,6 +746,16 @@ public class GameManager : MonoBehaviour
 
         // return bonus item prefab
         return bonusItem;
+    }
+
+    public void SetBonusItemsColorPalette()
+    {
+        // find all objects with the item script and update the color palettes
+        ItemsController[] itemScripts = FindObjectsByType<ItemsController>();
+        foreach (ItemsController itemScript in itemScripts)
+        {
+            itemScript.SetColorPalette();
+        }
     }
 
 }

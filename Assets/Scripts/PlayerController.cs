@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     bool isGrounded;
     bool isJumping;
     bool isShooting;
+    bool isThrowing;
     bool isTakingDamage;
     bool isInvincible;
     bool isFacingRight;
@@ -27,7 +28,11 @@ public class PlayerController : MonoBehaviour
     bool freezeBullets;
 
     float shootTime;
+    float shootTimeLength;
     bool keyShootRelease;
+    float keyShootReleaseTimeLength;
+
+    bool canUseWeapon;
 
     RigidbodyConstraints2D originalConstraints;
 
@@ -36,23 +41,23 @@ public class PlayerController : MonoBehaviour
         Primary = 64,
         Secondary = 128
     };
-    public enum PlayerWeapons
+    public enum WeaponTypes
     {
-        Default,
+        MegaBuster,
         MagnetBeam,
-        BombMan,
-        CutMan,
-        ElecMan,
-        FireMan,
-        GutsMan,
-        IceMan,
-    }
-    public PlayerWeapons currentWeapon = PlayerWeapons.Default;
+        HyperBomb,
+        RollingCutter,
+        ThunderBeam,
+        FireStorm,
+        SuperArm,
+        IceSlasher
+    };
+    public WeaponTypes currentWeapon = WeaponTypes.MegaBuster;
 
     [Serializable]
-    public struct PlayerWeaponStats
+    public struct WeaponsStruct
     {
-        public PlayerWeapons weapon;
+        public WeaponTypes weaponType;
         public bool enabled;
         public int currentEnergy;
         public int maxEnergy;
@@ -60,7 +65,7 @@ public class PlayerController : MonoBehaviour
         public int weaponDamage;
         public GameObject weaponPrefab;
     }
-    public PlayerWeaponStats[] weaponStats;
+    public WeaponsStruct[] weaponsData;
 
     public int currentHealth;
     public int maxHealth = 28;
@@ -83,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Position and Prefabs")]
-    [SerializeField] Transform shootPoint;
+    [SerializeField] Transform bulletShootPos;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject explosionPrefab;
 
@@ -114,6 +119,8 @@ public class PlayerController : MonoBehaviour
 
         colorSwap = GetComponent<ColorSwap>();
         SetWeapon(currentWeapon);
+
+        FillWeaponEnergies();
     }
 
     void FixedUpdate()
@@ -178,6 +185,7 @@ public class PlayerController : MonoBehaviour
         PlayerShootInput();
         PlayerMovementInput();
 
+        FireWeapon();
     }
 
     void PlayerDebugInput()
@@ -221,9 +229,31 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Player freeze toggled. Now frozen: " + freezePlayer);
         }
 
+        // S for Switch Weapon
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            int nextWeapon = (int)currentWeapon;
+            int maxWeapons = weaponsData.Length;
+            while (true)
+            {
+                // cycle to next weapon index
+                if (++nextWeapon > maxWeapons - 1)
+                {
+                    nextWeapon = 0;
+                }
+                // if weapon is enabled then use it
+                if (weaponsData[nextWeapon].enabled)
+                {
+                    SwitchWeapon((WeaponTypes)nextWeapon);
+                    break;
+                }
+            }
+            Debug.Log("SwitchWeapon()");
+        }
+
         if (Input.GetKeyDown(KeyCode.T))
         {
-            SetWeapon((PlayerWeapons)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PlayerWeapons)).Length));
+            // SetWeapon((PlayerWeapons)UnityEngine.Random.Range(0, Enum.GetValues(typeof(PlayerWeapons)).Length));
             Teleport(true);
             Debug.Log("Player teleport initiated.");
         }
@@ -263,114 +293,130 @@ public class PlayerController : MonoBehaviour
         {
             keyShoot = Input.GetKey(KeyCode.C);
         }
-
-        float shootTimeLength = 0;
-        float keyShootReleaseTimeLength = 0;
-
-        if(keyShoot && keyShootRelease)
-        {
-            isShooting = true;
-            keyShootRelease = false;
-            shootTime = Time.time;
-            Invoke("Shoot", 0.1f);
-        }
-        if(!keyShoot && !keyShootRelease)
-        {
-            keyShootReleaseTimeLength = Time.time - shootTime;
-            keyShootRelease = true;
-        }
-        if(isShooting)
-        {
-            shootTimeLength = Time.time - shootTime;
-            if(shootTimeLength > 0.25f || keyShootReleaseTimeLength >= 0.15f)
-            {
-                isShooting = false;
-            }
-        }
     }
 
     void PlayerMovementInput()
     {
-        isShooting = keyShoot;
+        // override speed may vary depending on state
+        float speed = moveSpeed;
 
+        // left arrow key - moving left
         if (keyHorizontal < 0)
         {
+            // facing right while moving left - flip
             if (isFacingRight)
             {
                 Flip();
             }
+            // grounded play run animation
             if (isGrounded)
             {
+                // play run shoot or run animation
                 if (isShooting)
                 {
                     animator.Play("Player_RunShoot");
+                }
+                else if (isThrowing)
+                {
+                    speed = 0f;
+                    animator.Play("Player_Throw");
                 }
                 else
                 {
                     animator.Play("Player_Run");
                 }
             }
-            rb.linearVelocity = new Vector2(-moveSpeed, rb.linearVelocity.y);
-        } 
-        else if (keyHorizontal > 0)
-        {  
+            // negative move speed to go left
+            rb.linearVelocity = new Vector2(-speed, rb.linearVelocity.y);
+        }
+        else if (keyHorizontal > 0) // right arrow key - moving right
+        {
+            // facing left while moving right - flip
             if (!isFacingRight)
             {
                 Flip();
             }
+            // grounded play run animation
             if (isGrounded)
             {
+                // play run shoot or run animation
                 if (isShooting)
                 {
                     animator.Play("Player_RunShoot");
+                }
+                else if (isThrowing)
+                {
+                    speed = 0f;
+                    animator.Play("Player_Throw");
                 }
                 else
                 {
                     animator.Play("Player_Run");
                 }
             }
-            rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
-        } 
-        else
+            // positive move speed to go right
+            rb.linearVelocity = new Vector2(speed, rb.linearVelocity.y);
+        }
+        else   // no movement
         {
+            // grounded play idle animation
             if (isGrounded)
             {
+                // play shoot or idle animation
                 if (isShooting)
                 {
                     animator.Play("Player_Shoot");
+                }
+                else if (isThrowing)
+                {
+                    animator.Play("Player_Throw");
                 }
                 else
                 {
                     animator.Play("Player_Idle");
                 }
             }
+            // no movement zero x velocity
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
 
+        // pressing jump while grounded - can only jump once
         if (keyJump && isGrounded)
         {
-                if (isShooting)
-                {
-                    animator.Play("Player_JumpShoot");
-                }
-                else
-                {
-                    animator.Play("Player_Jump");
-                }
+            // play jump/jump shoot animation and jump speed on y velocity
+            if (isShooting)
+            {
+                animator.Play("Player_JumpShoot");
+            }
+            else if (isThrowing)
+            {
+                animator.Play("Player_JumpThrow");
+            }
+            else
+            {
+                animator.Play("Player_Jump");
+            }
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
 
-        if(!isGrounded)
+        // while not grounded play jump animation (jumping or falling)
+        if (!isGrounded)
         {
-                isJumping = true;
-                if (isShooting)
-                {
-                    animator.Play("Player_JumpShoot");
-                }
-                else
-                {
-                    animator.Play("Player_Jump");
-                }
+            // triggers jump landing sound effect in FixedUpdate
+            isJumping = true;
+            // jump or jump shoot animation
+            if (isShooting)
+            {
+                animator.Play("Player_JumpShoot");
+            }
+            else if (isThrowing)
+            {
+                animator.Play("Player_JumpThrow");
+            }
+            else
+            {
+                animator.Play("Player_Jump");
+            }
         }
     }
 
@@ -382,27 +428,29 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
-    public void SetWeapon(PlayerWeapons weapon)
+    public void SetWeapon(WeaponTypes weapon)
     {
         currentWeapon = weapon;
-        int currentEnergy = weaponStats[(int)weapon].currentEnergy;
-        int maxEnergy = weaponStats[(int)weapon].maxEnergy;
+        int currentEnergy = weaponsData[(int)weapon].currentEnergy;
+        int maxEnergy = weaponsData[(int)weapon].maxEnergy;
         float weaponEnergyValue = (float)currentEnergy / maxEnergy;
+
+        colorSwap.SetMainSprite(sprite.sprite);
 
         switch (currentWeapon)
         {
-            case PlayerWeapons.Default:
-                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x0073F7));
-                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0x00FFFF));
+            case WeaponTypes.MegaBuster:
+                colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x0073F7));
+                colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0x00FFFF));
                 if (UIEnergyBars.Instance)
                 {                    
                     UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.PlayerLife);
                     UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, false);
                 }
                 break;
-                case PlayerWeapons.MagnetBeam:
-                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x0073F7));
-                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0x00FFFF));
+                case WeaponTypes.MagnetBeam:
+                colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x0073F7));
+                colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0x00FFFF));
                 if (UIEnergyBars.Instance)
                 {      
                     UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.MagnetBeam);
@@ -410,9 +458,9 @@ public class PlayerController : MonoBehaviour
                     UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 }
                 break;
-            case PlayerWeapons.BombMan:
-                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x009400));
-                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xFCFCFC));
+            case WeaponTypes.HyperBomb:
+                colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x009400));
+                colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
                 if (UIEnergyBars.Instance)
                 {
                     UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.HyperBomb);
@@ -420,9 +468,9 @@ public class PlayerController : MonoBehaviour
                     UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 }
                 break;
-            case PlayerWeapons.CutMan:
-                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x747474));
-                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xFCFCFC));
+            case WeaponTypes.RollingCutter:
+                colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x747474));
+                colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
                 if (UIEnergyBars.Instance)
                 {
                     UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.RollingCutter);
@@ -430,9 +478,9 @@ public class PlayerController : MonoBehaviour
                     UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 }
                 break;
-            case PlayerWeapons.ElecMan:
-                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x747474));
-                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xFCE4A0));
+            case WeaponTypes.ThunderBeam:
+                colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x747474));
+                colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCE4A0));
                 if (UIEnergyBars.Instance)
                 {
                     UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.ThunderBeam);
@@ -440,9 +488,9 @@ public class PlayerController : MonoBehaviour
                     UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 }
                 break;
-            case PlayerWeapons.FireMan:
-                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0xD82800));
-                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xF0BC3C));
+            case WeaponTypes.FireStorm:
+                colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0xD82800));
+                colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xF0BC3C));
                 if (UIEnergyBars.Instance)
                 {
                     UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.FireStorm);
@@ -450,9 +498,9 @@ public class PlayerController : MonoBehaviour
                     UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 }
                 break;
-            case PlayerWeapons.GutsMan:
-                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0xC84C0C));
-                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xFCFCFC));
+            case WeaponTypes.SuperArm:
+                colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0xC84C0C));
+                colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
                 if (UIEnergyBars.Instance)
                 {
                     UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.SuperArm);
@@ -460,9 +508,9 @@ public class PlayerController : MonoBehaviour
                     UIEnergyBars.Instance.SetVisibility(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, true);
                 }
                 break;
-            case PlayerWeapons.IceMan:
-                colorSwap.SetPrimaryColor(ColorSwap.ColorFromInt(0x2038EC));
-                colorSwap.SetSecondaryColor(ColorSwap.ColorFromInt(0xFCFCFC));
+            case WeaponTypes.IceSlasher:
+                colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x2038EC));
+                colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
                 if (UIEnergyBars.Instance)
                 {
                     UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.PlayerWeaponEnergy, UIEnergyBars.EnergyBarTypes.IceSlasher);
@@ -471,9 +519,117 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
-
-        // colorSwap.ApplyColor();
     }
+
+    public void SwitchWeapon(WeaponTypes weaponType)
+    {
+        // we can call this function to switch the player to the chosen weapon
+        // change color scheme, do the teleport animation, and enable weapon usage
+        SetWeapon(weaponType);
+        Teleport(true);
+        CanUseWeaponAgain();
+
+        // update any in scene bonus item color palettes
+        GameManager.Instance.SetBonusItemsColorPalette();
+    }
+
+        void FireWeapon()
+    {
+        // each weapon has its own function for firing
+        switch (currentWeapon)
+        {
+            case WeaponTypes.MegaBuster:
+                MegaBuster();
+                break;
+            case WeaponTypes.MagnetBeam:
+                break;
+            case WeaponTypes.HyperBomb:
+                HyperBomb();
+                break;
+            case WeaponTypes.RollingCutter:
+                break;
+            case WeaponTypes.ThunderBeam:
+                break;
+            case WeaponTypes.FireStorm:
+                break;
+            case WeaponTypes.SuperArm:
+                break;
+            case WeaponTypes.IceSlasher:
+                break;
+        }
+    }
+
+    void MegaBuster()
+    {
+        shootTimeLength = 0;
+        keyShootReleaseTimeLength = 0;
+
+        // shoot key is being pressed and key release flag true
+        if (keyShoot && keyShootRelease)
+        {
+            isShooting = true;
+            keyShootRelease = false;
+            shootTime = Time.time;
+            // Shoot Bullet
+            Invoke("Shoot", 0.1f);
+        }
+        // shoot key isn't being pressed and key release flag is false
+        if (!keyShoot && !keyShootRelease)
+        {
+            keyShootReleaseTimeLength = Time.time - shootTime;
+            keyShootRelease = true;
+        }
+        // while shooting limit its duration
+        if (isShooting)
+        {
+            shootTimeLength = Time.time - shootTime;
+            if (shootTimeLength >= 0.25f || keyShootReleaseTimeLength >= 0.15f)
+            {
+                isShooting = false;
+            }
+        }
+    }
+
+    void HyperBomb()
+    {
+        shootTimeLength = 0;
+        keyShootReleaseTimeLength = 0;
+
+        // shoot key is being pressed and key release flag true
+        if (keyShoot && keyShootRelease && canUseWeapon)
+        {
+            // only be able to throw a hyper bomb if there is energy to do so
+            // placing the check here so isThrowing can't become true and activate the arm throw animation
+            if (weaponsData[(int)WeaponTypes.HyperBomb].currentEnergy > 0)
+            {
+                isThrowing = true;
+                canUseWeapon = false;
+                keyShootRelease = false;
+                shootTime = Time.time;
+                // Throw Bomb
+                Invoke("ThrowBomb", 0.1f);
+                // spend weapon energy and refresh energy bar
+                SpendWeaponEnergy(WeaponTypes.HyperBomb);
+                RefreshWeaponEnergyBar(WeaponTypes.HyperBomb);
+            }
+        }
+        // shoot key isn't being pressed and key release flag is false
+        if (!keyShoot && !keyShootRelease)
+        {
+            keyShootReleaseTimeLength = Time.time - shootTime;
+            keyShootRelease = true;
+        }
+        // while shooting limit its duration
+        if (isThrowing)
+        {
+            shootTimeLength = Time.time - shootTime;
+            if (shootTimeLength >= 0.25f)
+            {
+                isThrowing = false;
+            }
+        }
+    }
+
 
     public void ApplyLifeEnergy(int energy)
     {
@@ -499,49 +655,81 @@ public class PlayerController : MonoBehaviour
         SoundManager.Instance.Stop();
     }
 
-    public void ApplyWeaponEnergy(int energy)
+ public void ApplyWeaponEnergy(int amount)
     {
-        // Implement weapon energy logic here
-    }
-
-    public void FillWeaponEnergies()
-    {
-        // Initialize weapon stats
-        for (int i = 0; i < weaponStats.Length; i++)
+        // only apply weapon energy if we need it
+        int wt = (int)currentWeapon;
+        if (weaponsData[wt].currentEnergy < weaponsData[wt].maxEnergy)
         {
-            weaponStats[i].currentEnergy = weaponStats[i].maxEnergy;
+            int energyDiff = weaponsData[wt].maxEnergy - weaponsData[wt].currentEnergy;
+            if (energyDiff > amount) energyDiff = amount;
+            // animate adding energy bars via coroutine
+            StartCoroutine(AddWeaponEnergy(energyDiff));
         }
     }
 
-    public void ApplyWeaponPart(ItemsController.WeaponPartEnemies weaponPartEnemy)
+    private IEnumerator AddWeaponEnergy(int amount)
+    {
+        int wt = (int)currentWeapon;
+        // loop the energy fill audio clip
+        SoundManager.Instance.Play(energyFillSound, true);
+        // increment the energy bars with a small delay
+        for (int i = 0; i < amount; i++)
+        {
+            weaponsData[wt].currentEnergy++;
+            weaponsData[wt].currentEnergy = Mathf.Clamp(weaponsData[wt].currentEnergy, 0, weaponsData[wt].maxEnergy);
+            UIEnergyBars.Instance.SetValue(
+                UIEnergyBars.EnergyBars.PlayerWeaponEnergy,
+                weaponsData[wt].currentEnergy / (float)weaponsData[wt].maxEnergy);
+            yield return new WaitForSeconds(0.05f);
+        }
+        // done playing energy fill clip
+        SoundManager.Instance.Stop();
+    }
+    public void FillWeaponEnergies()
+    {
+        // Initialize weapon stats
+        for (int i = 0; i < weaponsData.Length; i++)
+        {
+            weaponsData[i].currentEnergy = weaponsData[i].maxEnergy;
+        }
+    }
+
+    public void EnableMagnetBeam(bool enable)
+    {
+        // enable/disable the magnet beam
+        weaponsData[(int)WeaponTypes.MagnetBeam].enabled = enable;
+    }
+
+    public void EnableWeaponPart(ItemsController.WeaponPartEnemies weaponPartEnemy)
     {
         // this will enable the collected weapon part in our weapon struct
         switch (weaponPartEnemy)
         {
             case ItemsController.WeaponPartEnemies.BombMan:
-                weaponStats[(int)PlayerWeapons.BombMan].enabled = true;
+                weaponsData[(int)WeaponTypes.HyperBomb].enabled = true;
                 break;
             case ItemsController.WeaponPartEnemies.CutMan:
-                weaponStats[(int)PlayerWeapons.CutMan].enabled = true;
+                weaponsData[(int)WeaponTypes.RollingCutter].enabled = true;
                 break;
             case ItemsController.WeaponPartEnemies.ElecMan:
-                weaponStats[(int)PlayerWeapons.ElecMan].enabled = true;
+                weaponsData[(int)WeaponTypes.ThunderBeam].enabled = true;
                 break;
             case ItemsController.WeaponPartEnemies.FireMan:
-                weaponStats[(int)PlayerWeapons.FireMan].enabled = true;
+                weaponsData[(int)WeaponTypes.FireStorm].enabled = true;
                 break;
             case ItemsController.WeaponPartEnemies.GutsMan:
-                weaponStats[(int)PlayerWeapons.GutsMan].enabled = true;
+                weaponsData[(int)WeaponTypes.SuperArm].enabled = true;
                 break;
             case ItemsController.WeaponPartEnemies.IceMan:
-                weaponStats[(int)PlayerWeapons.IceMan].enabled = true;
+                weaponsData[(int)WeaponTypes.IceSlasher].enabled = true;
                 break;
         }
     }
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, bulletShootPos.position, Quaternion.identity);
         bullet.name = bulletPrefab.name;
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         bulletScript.SetDamage(shootDamage);
@@ -550,6 +738,48 @@ public class PlayerController : MonoBehaviour
         bulletScript.SetDestroyDelay(5f);
         bulletScript.Shoot();
         SoundManager.Instance.Play(shootSound);
+    }
+
+    void ThrowBomb()
+    {
+        // create bomb from prefab gameobject
+        GameObject bomb = Instantiate(weaponsData[(int)WeaponTypes.HyperBomb].weaponPrefab);
+        bomb.name = weaponsData[(int)WeaponTypes.HyperBomb].weaponPrefab.name + "(" + gameObject.name + ")";
+        bomb.transform.position = bulletShootPos.position;
+        // set the bomb properties and throw it
+        bomb.GetComponent<BombScript>().SetContactDamageValue(0);
+        bomb.GetComponent<BombScript>().SetExplosionDamageValue(weaponsData[(int)WeaponTypes.HyperBomb].weaponDamage);
+        bomb.GetComponent<BombScript>().SetExplosionDelay(3f);
+        bomb.GetComponent<BombScript>().SetCollideWithTags("Enemy");
+        bomb.GetComponent<BombScript>().SetDirection(isFacingRight ? Vector2.right : Vector2.left);
+        bomb.GetComponent<BombScript>().SetVelocity(new Vector2(2f, 1.5f));
+        bomb.GetComponent<BombScript>().Bounces(true);
+        bomb.GetComponent<BombScript>().ExplosionEvent.AddListener(CanUseWeaponAgain);
+        bomb.GetComponent<BombScript>().Launch(false);
+    }
+
+    void SpendWeaponEnergy(WeaponTypes weaponType)
+    {
+        // deplete the weapon energy and make sure the value is within bounds
+        int wt = (int)weaponType;
+        weaponsData[wt].currentEnergy -= weaponsData[wt].energyCost;
+        weaponsData[wt].currentEnergy = Mathf.Clamp(weaponsData[wt].currentEnergy, 0, weaponsData[wt].maxEnergy);
+    }
+
+    void RefreshWeaponEnergyBar(WeaponTypes weaponType)
+    {
+        // refresh the weapon energy bar (should be called after SpendWeaponEnergy)
+        int wt = (int)weaponType;
+        UIEnergyBars.Instance?.SetValue(
+                UIEnergyBars.EnergyBars.PlayerWeaponEnergy,
+                weaponsData[wt].currentEnergy / (float)weaponsData[wt].maxEnergy);
+    }
+
+    void CanUseWeaponAgain()
+    {
+        // many (almost all) of our weapons require they play out their animation or be destroyed
+        // before another copy can be used so this function resets the flag to be able to fire again
+        canUseWeapon = true;
     }
 
     public void HitSide(bool hitRight)
@@ -566,18 +796,21 @@ public class PlayerController : MonoBehaviour
     {
         if (!isInvincible)
         {
-            currentHealth -= damage;
-            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-            if (UIEnergyBars.Instance)
+            if (damage > 0)
             {
-                UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerHealth, currentHealth / (float)maxHealth);
-            }
-            if (currentHealth <= 0)
-            {
-                Die();
-            } else
-            {
-                StartDamageAnimation();
+                currentHealth -= damage;
+                currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+                if (UIEnergyBars.Instance)
+                {
+                    UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.PlayerHealth, currentHealth / (float)maxHealth);
+                }
+                if (currentHealth <= 0)
+                {
+                    Die();
+                } else
+                {
+                    StartDamageAnimation();
+                }
             }
         }
     }
@@ -588,10 +821,9 @@ public class PlayerController : MonoBehaviour
         {
             isTakingDamage = true;
             Invincible(true);
-            // FreezeInput(true);
+            FreezeInput(true);
             float hitForceX = 0.5f;
             float hitForceY = 1.5f;
-
             if (hitSideRight) hitForceX = -hitForceX;
             rb.linearVelocity = Vector2.zero;
             rb.AddForce(new Vector2(hitForceX, hitForceY), ForceMode2D.Impulse);
@@ -611,7 +843,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator FlashAfterDamage()
     {
         float flashDelay = 0.0833f;
-        Material material = sprite.material;
+        // Material material = sprite.material;
         for (int i = 0; i < 10; i++)
         {
             sprite.color = Color.clear;

@@ -214,7 +214,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1739255769493679154, guid: 332daaa86eda842b0b12ef65be3d124e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -244,7 +244,7 @@ MonoBehaviour:
   contactDamage: 0
   explosionDamage: 4
   explosionClip: {fileID: 8300000, guid: ada6b5246f27f4d889fa5aa8c94f76c2, type: 3}
-  explodeDelay: 3
+  explodeDelay: 2
   collideWithTags: []
   gravity: 0
   height: 1

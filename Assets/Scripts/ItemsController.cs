@@ -13,6 +13,12 @@ public class ItemsController: MonoBehaviour
     private BoxCollider2D boxCollider2D;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
+    ColorSwap colorSwap;
+    private enum SwapIndex
+    {
+        Primary = 64,
+        Secondary = 128
+    };
 
     public enum ItemType
     {
@@ -86,6 +92,9 @@ public class ItemsController: MonoBehaviour
 
     void Start()
     {
+        colorSwap = GetComponent<ColorSwap>();
+        SetColorPalette();
+
         Animate(animate);
 
         SetDestroyDelay(destroyDelay);
@@ -196,6 +205,61 @@ public class ItemsController: MonoBehaviour
         }
     }
 
+        public void SetColorPalette()
+    {
+        // not all bonus items have the ColorSwap component
+        // only the Extra Life, Magnet Beam and Weapon Energies
+        if (colorSwap != null)
+        {
+            colorSwap.SetMainSprite(sprite.sprite);
+            
+            // default to megabuster / magnetbeam colors
+            // dark blue, light blue
+            colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x0073F7));
+            colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0x00FFFF));
+
+            // find the player's controller to access the weapon type
+            PlayerController player = FindAnyObjectByType<PlayerController>();
+            if (player != null)
+            {
+                // apply new selected color scheme with ColorSwap
+                switch (player.currentWeapon)
+                {
+                    case PlayerController.WeaponTypes.HyperBomb:
+                        // green, light gray
+                        colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x009400));
+                        colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                        break;
+                    case PlayerController.WeaponTypes.RollingCutter:
+                        // dark gray, light gray
+                        colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x747474));
+                        colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                        break;
+                    case PlayerController.WeaponTypes.ThunderBeam:
+                        // dark gray, light yellow
+                        colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x747474));
+                        colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCE4A0));
+                        break;
+                    case PlayerController.WeaponTypes.FireStorm:
+                        // dark orange, yellow gold
+                        colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0xD82800));
+                        colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xF0BC3C));
+                        break;
+                    case PlayerController.WeaponTypes.SuperArm:
+                        // orange red, light gray
+                        colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0xC84C0C));
+                        colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                        break;
+                    case PlayerController.WeaponTypes.IceSlasher:
+                        // dark blue, light gray
+                        colorSwap.SetPrimaryColor((int)SwapIndex.Primary, ColorSwap.ColorFromInt(0x2038EC));
+                        colorSwap.SetSecondaryColor((int)SwapIndex.Secondary, ColorSwap.ColorFromInt(0xFCFCFC));
+                        break;
+                }
+            }
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -217,9 +281,14 @@ public class ItemsController: MonoBehaviour
                 GameManager.Instance.AddBonusPoints(bonusPointsValue);
             }
 
+            if (itemType == ItemType.MagnetBeam)
+            {
+                player.EnableMagnetBeam(true);
+            }
+
             if (itemType == ItemType.WeaponPart)
             {
-                player.ApplyWeaponPart(weaponPartEnemy);
+                player.EnableWeaponPart(weaponPartEnemy);
             }
 
             if (itemClip)

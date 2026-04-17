@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2888411026488582649}
   - component: {fileID: 2092046392238385195}
   - component: {fileID: 722171123548697055}
+  - component: {fileID: -8649093794621790918}
   m_Layer: 11
   m_Name: ExtraLife
   m_TagString: Untagged
@@ -157,7 +158,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 6cbe0c1a625874797a04de0cae6288a5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -219,3 +220,24 @@ MonoBehaviour:
   racWeaponPartRed: {fileID: 0}
   racWeaponPartOrange: {fileID: 0}
   weaponPartColor: 1
+  weaponPartEnemy: 0
+  BonusItemEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-8649093794621790918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204963141335753856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4030eae37506e42a7980aec83906b748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorSwap
+  primaryColorRef: _PrimaryColor
+  secondaryColorRef: _SecondaryColor
+  newPrimaryColorRef: _NewPrimaryColor
+  newSecondaryColorRef: _NewSecondaryColor
+  mainTexRef: _MainTex

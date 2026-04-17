@@ -22,7 +22,7 @@ public class BombScript : MonoBehaviour
     [SerializeField] AudioClip explosionClip;
 
     [Header("Timers & Collision")]
-    [SerializeField] float explodeDelay = 3f;
+    [SerializeField] float explodeDelay = 2f;
     [SerializeField] string[] collideWithTags;
 
     [Header("Position & Physics")]
@@ -46,12 +46,13 @@ public class BombScript : MonoBehaviour
         circle2d = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+
+        circle2d.isTrigger = true;
+        rb.bodyType = RigidbodyType2D.Kinematic;      
     }
 
     void Start()
     {
-        circle2d.isTrigger = true;
-        rb.bodyType = RigidbodyType2D.Kinematic;        
     }
 
     // Update is called once per frame
@@ -97,6 +98,10 @@ public class BombScript : MonoBehaviour
     {
         // if no target is set then this direction is used in conjunction with the velocity
         bombDirection = direction;
+        if (direction.x > 0)
+        {
+            transform.Rotate(0, 180, 0);
+        }
     }
 
     public void SetHeight(float height)
@@ -141,13 +146,13 @@ public class BombScript : MonoBehaviour
     // this case is for BombMan however could be used by other characters
     // 2nd case - target position is null so use straight velocity and direction to launch the bomb
     // this case is for MegaMan however could be used by other characters
-    public void Launch()
+    public void Launch(bool calculateLaunch = true)
     {
         // make the bomb solid and have a dynamic rigidbody
         circle2d.isTrigger = false;
         rb.bodyType = RigidbodyType2D.Dynamic;
 
-        if (targetPosition != null)
+        if (calculateLaunch)
         {
             // launch bomb to target and apply offset if any
             if (gravity == 0) gravity = Physics2D.gravity.y;

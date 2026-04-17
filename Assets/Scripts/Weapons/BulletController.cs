@@ -74,6 +74,10 @@ public class Bullet:MonoBehaviour
     public void SetDirection(Vector2 direction)
     {
         this.direction = direction;
+        if (direction.x > 0)
+        {
+            transform.Rotate(0, 180, 0);
+        }
     }
 
     public void SetDamage(int damage)
@@ -93,7 +97,6 @@ public class Bullet:MonoBehaviour
 
     public void Shoot()
     {
-        sprite.flipX = direction.x < 0;
         rb.linearVelocity = direction * speed;
         destroyTime = destroyDelay;
     }

@@ -119,6 +119,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &15547131
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6032588185974530896, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.39366
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032588185974530896, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.502
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032588185974530896, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032588185974530896, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032588185974530896, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032588185974530896, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032588185974530896, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032588185974530896, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032588185974530896, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032588185974530896, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061806607824942007, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
+      propertyPath: m_Name
+      value: MagnetBeam
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
 --- !u!1 &50872269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,7 +1644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4440228203584282506, guid: 41755308e5e9a428ea6ae735a2c41ce8, type: 3}
       propertyPath: bonusItemType
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4440228203584282506, guid: 41755308e5e9a428ea6ae735a2c41ce8, type: 3}
       propertyPath: bonusBallColor
@@ -3466,7 +3523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4440228203584282506, guid: 41755308e5e9a428ea6ae735a2c41ce8, type: 3}
       propertyPath: bonusItemType
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4440228203584282506, guid: 41755308e5e9a428ea6ae735a2c41ce8, type: 3}
       propertyPath: bonusBallColor
@@ -5230,6 +5287,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 6cbe0c1a625874797a04de0cae6288a5, type: 2}
+    - target: {fileID: 6781173550414071556, guid: 0f31b895cdf97420a827b96fd431f6a4, type: 3}
+      propertyPath: texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 502f64e69f8d3478795b07f0c063aaaa, type: 3}
+    - target: {fileID: 6781173550414071556, guid: 0f31b895cdf97420a827b96fd431f6a4, type: 3}
+      propertyPath: weaponsData.Array.data[1].weaponType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9018690852454535764, guid: 0f31b895cdf97420a827b96fd431f6a4, type: 3}
       propertyPath: m_Icon
       value: 
@@ -5332,3 +5397,4 @@ SceneRoots:
   - {fileID: 7460240177302290746}
   - {fileID: 1371522603}
   - {fileID: 589256065}
+  - {fileID: 15547131}
