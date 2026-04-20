@@ -34,6 +34,7 @@ public class CameraTransition : MonoBehaviour
     [Header("Events")]
     public UnityEvent preTransitionEvent;
     public UnityEvent postTransitionEvent;
+    public UnityEvent onlyMoveCameraEvent;
 
     CameraFollow cam;
     GameObject player;
@@ -118,6 +119,7 @@ public class CameraTransition : MonoBehaviour
             {
                 cam.boundsMin = cameraMinPosition;
                 cam.boundsMax = cameraMaxPosition;
+                onlyMoveCameraEvent.Invoke();
                 return;
             }
 

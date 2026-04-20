@@ -43,11 +43,13 @@
     <UnityVersion>6000.4.0f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="/Users/eduardopereyrayraola/.vscode/extensions/visualstudiotoolsforunity.vstuc-1.2.1/Analyzers/Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/Resources/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll" />
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/Resources/BuildPipeline/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.4.0f1/Unity.app/Contents/Resources/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/Scripts/Enemies/KamadomaController.cs" />
     <Compile Include="Assets/Scripts/Enemies/KillerBombController.cs" />
     <Compile Include="Assets/Scripts/ExplosionController.cs" />
     <Compile Include="Assets/Scripts/Weapons/BulletController.cs" />
@@ -67,8 +69,10 @@
     <Compile Include="Assets/Scripts/ColorSwap.cs" />
     <Compile Include="Assets/Scripts/ItemsController.cs" />
     <Compile Include="Assets/Scripts/Enemies/Bosses/BombManController.cs" />
+    <Compile Include="Assets/Scripts/Enemies/MetallController.cs" />
     <Compile Include="Assets/Scripts/SoundManager.cs" />
     <Compile Include="Assets/Scripts/Enemies/PepeController.cs" />
+    <Compile Include="Assets/Scripts/Weapons/MagnetBeamScript.cs" />
     <Compile Include="Assets/Scripts/Enemies/MambuController.cs" />
     <Compile Include="Assets/Scripts/GameManager.cs" />
     <Compile Include="Assets/Scripts/CameraFollow.cs" />

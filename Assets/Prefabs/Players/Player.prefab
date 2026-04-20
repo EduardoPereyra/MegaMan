@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 9018690852454535764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1231, z: 0}
+  m_LocalPosition: {x: 0.12, y: 0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -243,20 +243,23 @@ MonoBehaviour:
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 1
+    weaponClip: {fileID: 8300000, guid: 50e5810b5a4ae498787fb498979365bf, type: 3}
     weaponPrefab: {fileID: 1289239060136040960, guid: 0518b3d52922e47a39486b90ce932bde, type: 3}
-  - weaponType: 0
+  - weaponType: 1
     enabled: 0
     currentEnergy: 0
     maxEnergy: 28
-    energyCost: 0
+    energyCost: 2
     weaponDamage: 0
-    weaponPrefab: {fileID: 0}
+    weaponClip: {fileID: 8300000, guid: da49a4956e1884a998e819eeae16e308, type: 3}
+    weaponPrefab: {fileID: 6368214049039471112, guid: 7c3ebd7de87b14ab8badc3d2544638fe, type: 3}
   - weaponType: 2
     enabled: 0
     currentEnergy: 0
     maxEnergy: 28
     energyCost: 2
     weaponDamage: 4
+    weaponClip: {fileID: 0}
     weaponPrefab: {fileID: 3440074353480861832, guid: 5b761752630104d318568cd5aee02282, type: 3}
   - weaponType: 3
     enabled: 0
@@ -264,6 +267,7 @@ MonoBehaviour:
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
+    weaponClip: {fileID: 0}
     weaponPrefab: {fileID: 0}
   - weaponType: 4
     enabled: 0
@@ -271,6 +275,7 @@ MonoBehaviour:
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
+    weaponClip: {fileID: 0}
     weaponPrefab: {fileID: 0}
   - weaponType: 5
     enabled: 0
@@ -278,6 +283,7 @@ MonoBehaviour:
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
+    weaponClip: {fileID: 0}
     weaponPrefab: {fileID: 0}
   - weaponType: 6
     enabled: 0
@@ -285,6 +291,7 @@ MonoBehaviour:
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
+    weaponClip: {fileID: 0}
     weaponPrefab: {fileID: 0}
   - weaponType: 7
     enabled: 0
@@ -292,6 +299,7 @@ MonoBehaviour:
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
+    weaponClip: {fileID: 0}
     weaponPrefab: {fileID: 0}
   currentHealth: 0
   maxHealth: 28

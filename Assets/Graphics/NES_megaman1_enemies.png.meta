@@ -1289,15 +1289,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_36
+      name: Metall_Closed
       rect:
         serializedVersion: 2
-        x: 356
-        y: 148
-        width: 20
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 357
+        y: 149
+        width: 18
+        height: 11
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1311,15 +1311,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_37
+      name: Metall_Open
       rect:
         serializedVersion: 2
-        x: 376
-        y: 148
-        width: 20
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 377
+        y: 149
+        width: 18
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1575,15 +1575,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_49
+      name: Kamadoma_GroundedBlue
       rect:
         serializedVersion: 2
-        x: 108
-        y: 126
-        width: 16
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 109
+        y: 127
+        width: 14
+        height: 10
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1597,15 +1597,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_50
+      name: Kamadoma_JumpingBlue
       rect:
         serializedVersion: 2
-        x: 124
-        y: 126
-        width: 16
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 125
+        y: 127
+        width: 14
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1641,15 +1641,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_52
+      name: Kamadoma_GroundedRed
       rect:
         serializedVersion: 2
-        x: 140
-        y: 126
-        width: 16
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 141
+        y: 127
+        width: 14
+        height: 10
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1685,15 +1685,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_54
+      name: Kamadoma_JumpingRed
       rect:
         serializedVersion: 2
-        x: 156
-        y: 126
-        width: 16
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 157
+        y: 127
+        width: 14
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3375,11 +3375,17 @@ TextureImporter:
       Explode2: -5755390323242736845
       Explode3: 8425831868980322597
       Explode4: 3748546901667554805
+      Kamadoma_GroundedBlue: -5228916718348426351
+      Kamadoma_GroundedRed: -4935111038899205285
+      Kamadoma_JumpingBlue: -1051702327257760667
+      Kamadoma_JumpingRed: 1418021841656747700
       KillerBomb_Blue: 1150858502
       KillerBomb_Orange: -2397381858070289706
       KillerBomb_Red: 3860221161215186930
       Mambu_Closed: 5406468619579045293
       Mambu_Open: 9091603267833065874
+      Metall_Closed: -2301269577096837344
+      Metall_Open: 4718597139135059482
       NES_megaman1_enemies_0: -3608776466342028422
       NES_megaman1_enemies_1: 5852019012255676814
       NES_megaman1_enemies_10: -6491441291470000421
@@ -3427,8 +3433,6 @@ TextureImporter:
       NES_megaman1_enemies_33: 3226561829421874399
       NES_megaman1_enemies_34: -1045334502016864900
       NES_megaman1_enemies_35: 3030877781325569280
-      NES_megaman1_enemies_36: -2301269577096837344
-      NES_megaman1_enemies_37: 4718597139135059482
       NES_megaman1_enemies_4: 6783053686347506023
       NES_megaman1_enemies_40: -3099072773121256887
       NES_megaman1_enemies_41: -6147997279171176761
@@ -3436,11 +3440,7 @@ TextureImporter:
       NES_megaman1_enemies_45: -2129079362322956492
       NES_megaman1_enemies_47: 8165333002277163974
       NES_megaman1_enemies_48: -2216156311161561887
-      NES_megaman1_enemies_49: -5228916718348426351
       NES_megaman1_enemies_5: 8521763619538590367
-      NES_megaman1_enemies_50: -1051702327257760667
-      NES_megaman1_enemies_52: -4935111038899205285
-      NES_megaman1_enemies_54: 1418021841656747700
       NES_megaman1_enemies_58: 4147537097490079022
       NES_megaman1_enemies_6: 24516260657374521
       NES_megaman1_enemies_67: -5864392795534387455

@@ -306,6 +306,15 @@ public class MainScene : MonoBehaviour
         }
     }
 
+    public void Highway0Reached()
+    {
+        GameObject kamadoma = GameObject.Find("Kamadoma2");
+        if (kamadoma)
+        {
+            kamadoma.GetComponent<KamadomaController>().EnableAI(true);
+        }
+    }
+
     public void CheckpointReached()
     {
         StartCoroutine(CoCheckpointReached());

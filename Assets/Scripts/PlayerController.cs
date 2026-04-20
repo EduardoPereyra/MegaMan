@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         public int maxEnergy;
         public int energyCost;
         public int weaponDamage;
+        public AudioClip weaponClip;
         public GameObject weaponPrefab;
     }
     public WeaponsStruct[] weaponsData;
@@ -129,7 +130,7 @@ public class PlayerController : MonoBehaviour
         Color raycastColor;
         RaycastHit2D raycastHit;
         float raycastDistance = 0.05f;
-        int layerMask = 1 << LayerMask.NameToLayer("Ground");
+        int layerMask = 1 << LayerMask.NameToLayer("Ground") | 1 << LayerMask.NameToLayer("MagnetBeam");
         Vector3 boxOrigin = boxCollider.bounds.center;
         boxOrigin.y = boxCollider.bounds.min.y + (boxCollider.bounds.extents.y / 4f);
         Vector3 boxSize = boxCollider.bounds.size;
@@ -542,6 +543,7 @@ public class PlayerController : MonoBehaviour
                 MegaBuster();
                 break;
             case WeaponTypes.MagnetBeam:
+                MagnetBeam();
                 break;
             case WeaponTypes.HyperBomb:
                 HyperBomb();
@@ -627,6 +629,47 @@ public class PlayerController : MonoBehaviour
             {
                 isThrowing = false;
             }
+        }
+    }
+
+    void MagnetBeam()
+    {
+        shootTimeLength = 0;
+        keyShootReleaseTimeLength = 0;
+
+        // shoot key is being pressed and key release flag true
+        if (keyShoot && keyShootRelease && canUseWeapon)
+        {
+            // only be able to use the magnet beam if there is energy to do so
+            // and haven't hit the maxinum number of beams on screen at a single time (3)
+            if (weaponsData[(int)WeaponTypes.MagnetBeam].currentEnergy > 0 &&
+                GameObject.FindGameObjectsWithTag("PlatformBeam").Length < 3)
+            {
+                isShooting = true;
+                canUseWeapon = false;
+                keyShootRelease = false;
+                shootTime = Time.time;
+                // Shoot Magnet Beam
+                ShootMagnetBeam();
+                // spend weapon energy and refresh energy bar
+                SpendWeaponEnergy(WeaponTypes.MagnetBeam);
+                RefreshWeaponEnergyBar(WeaponTypes.MagnetBeam);
+            }
+        }
+        // shoot key isn't being pressed and key release flag is false
+        if (!keyShoot && !keyShootRelease)
+        {
+            shootTimeLength = Time.time - shootTime;
+            keyShootReleaseTimeLength = Time.time - shootTime;
+            keyShootRelease = true;
+        }
+        // shoot key released while shooting
+        if (isShooting && !keyShoot)
+        {
+            isShooting = false;
+            GameObject beam = bulletShootPos.transform.Find("PlatformBeam").gameObject;
+            // lock beam into place
+            beam?.GetComponent<MagnetBeamScript>().LockBeam();
         }
     }
 
@@ -758,6 +801,21 @@ public class PlayerController : MonoBehaviour
         bomb.GetComponent<BombScript>().Launch(false);
     }
 
+    void ShootMagnetBeam()
+    {
+        // create magnet beam platform from prefab gameobject
+        GameObject beam = Instantiate(weaponsData[(int)WeaponTypes.MagnetBeam].weaponPrefab);
+        beam.name = weaponsData[(int)WeaponTypes.MagnetBeam].weaponPrefab.name;
+        beam.transform.position = bulletShootPos.position;
+        beam.transform.parent = bulletShootPos.transform;
+        // set the platform beam properties and play the audio clip
+        beam.GetComponent<MagnetBeamScript>().SetDestroyDelay(3f);
+        beam.GetComponent<MagnetBeamScript>().SetDirection(isFacingRight ? Vector2.right : Vector2.left);
+        beam.GetComponent<MagnetBeamScript>().SetMaxSegments(30);
+        beam.GetComponent<MagnetBeamScript>().LockedEvent.AddListener(CanUseWeaponAgain);
+        SoundManager.Instance.Play(weaponsData[(int)WeaponTypes.MagnetBeam].weaponClip);
+    }
+
     void SpendWeaponEnergy(WeaponTypes weaponType)
     {
         // deplete the weapon energy and make sure the value is within bounds
@@ -780,6 +838,8 @@ public class PlayerController : MonoBehaviour
         // many (almost all) of our weapons require they play out their animation or be destroyed
         // before another copy can be used so this function resets the flag to be able to fire again
         canUseWeapon = true;
+        isShooting = false;
+        isThrowing = false;
     }
 
     public void HitSide(bool hitRight)

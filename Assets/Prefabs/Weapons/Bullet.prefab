@@ -180,7 +180,7 @@ MonoBehaviour:
   bulletData:
   - sprite: {fileID: -2346302928887187388, guid: 8387b092cab6a499fa795f3dca7fa799, type: 3}
     radius: 0.035
-    scale: {x: 1, y: 1, z: 0}
+    scale: {x: 1.5, y: 1.2, z: 0}
   - sprite: {fileID: -5401397452797526471, guid: 7a45b3017c5804cf59599b9febb8f41d, type: 3}
     radius: 0.025
     scale: {x: 1.5, y: 1.5, z: 0}

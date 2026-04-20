@@ -209,7 +209,7 @@ MonoBehaviour:
   lifeEnergyValue: 0
   weaponEnergyValue: 0
   bonusPointsValue: 0
-  itemClip: {fileID: 0}
+  itemClip: {fileID: 8300000, guid: e1577d2ac4296450d84203071b2ddf4a, type: 3}
   racBonusBallBlue: {fileID: 0}
   racBonusBallGray: {fileID: 0}
   racBonusBallGreen: {fileID: 0}
