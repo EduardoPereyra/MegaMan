@@ -71,6 +71,7 @@
     <Compile Include="Assets/Scripts/Enemies/Bosses/BombManController.cs" />
     <Compile Include="Assets/Scripts/Enemies/MetallController.cs" />
     <Compile Include="Assets/Scripts/SoundManager.cs" />
+    <Compile Include="Assets/Scripts/InstantDeathScript.cs" />
     <Compile Include="Assets/Scripts/Enemies/PepeController.cs" />
     <Compile Include="Assets/Scripts/Weapons/MagnetBeamScript.cs" />
     <Compile Include="Assets/Scripts/Enemies/MambuController.cs" />

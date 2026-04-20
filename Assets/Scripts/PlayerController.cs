@@ -916,13 +916,20 @@ public class PlayerController : MonoBehaviour
         Invincible(false);
     }
 
-    void StartDeathAnimation()
+    private IEnumerator StartDeathAnimation(bool explode)
     {
+
+        yield return new WaitForSeconds(0.5f);
+
         FreezeInput(true);
         FreezePlayer(true);
-        GameObject explosion = Instantiate(explosionPrefab);
-        explosion.name = explosionPrefab.name;
-        explosion.transform.position = sprite.bounds.center;
+
+        if (explode)
+        {
+            GameObject explosion = Instantiate(explosionPrefab);
+            explosion.name = explosionPrefab.name;
+            explosion.transform.position = sprite.bounds.center;
+        }
         SoundManager.Instance.Play(deathSound);
         Destroy(gameObject);
     }
@@ -938,10 +945,11 @@ public class PlayerController : MonoBehaviour
         isInvincible = invincible;
     }
 
-    void Die()
+    public void Die(bool explode = true)
     {
         GameManager.Instance.GameOver();
-        Invoke("StartDeathAnimation", 0.5f);
+        // Invoke("StartDeathAnimation", 0.5f);
+        StartCoroutine(StartDeathAnimation(explode));
     }
 
     public void FreezeInput(bool freeze)
