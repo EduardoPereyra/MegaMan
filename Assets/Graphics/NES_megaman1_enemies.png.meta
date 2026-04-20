@@ -2147,13 +2147,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_76
+      name: BombombBomb_Blue
       rect:
         serializedVersion: 2
-        x: 421
-        y: 126
-        width: 18
-        height: 14
+        x: 422
+        y: 127
+        width: 16
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2169,13 +2169,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_77
+      name: BombombShrapnel_Blue
       rect:
         serializedVersion: 2
-        x: 439
-        y: 126
-        width: 10
-        height: 8
+        x: 440
+        y: 127
+        width: 8
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2191,13 +2191,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_78
+      name: BombombBomb_Red
       rect:
         serializedVersion: 2
-        x: 449
-        y: 126
-        width: 18
-        height: 14
+        x: 450
+        y: 127
+        width: 16
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2213,13 +2213,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_79
+      name: BombombShrapnel_Red
       rect:
         serializedVersion: 2
-        x: 467
-        y: 126
-        width: 10
-        height: 8
+        x: 468
+        y: 127
+        width: 8
+        height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3366,6 +3366,10 @@ TextureImporter:
       Blaster4_Blue: 1858479254397673200
       Blaster4_Orange: -1335936248729203070
       Blaster4_Red: -7995931141193687455
+      BombombBomb_Blue: 310754106573642496
+      BombombBomb_Red: 2890224239125029497
+      BombombShrapnel_Blue: 2383074450919207147
+      BombombShrapnel_Red: -1332395438377109804
       Bullet_Blue: -5401397452797526471
       Bullet_Green: -4828031899713449294
       Bullet_Orange: -7546013581096668113
@@ -3446,10 +3450,6 @@ TextureImporter:
       NES_megaman1_enemies_67: -5864392795534387455
       NES_megaman1_enemies_69: 2453816055096435802
       NES_megaman1_enemies_7: 5526297054552531677
-      NES_megaman1_enemies_76: 310754106573642496
-      NES_megaman1_enemies_77: 2383074450919207147
-      NES_megaman1_enemies_78: 2890224239125029497
-      NES_megaman1_enemies_79: -1332395438377109804
       NES_megaman1_enemies_8: 4057960441014977838
       NES_megaman1_enemies_84: 1053981822668135033
       NES_megaman1_enemies_85: 72210753871198836

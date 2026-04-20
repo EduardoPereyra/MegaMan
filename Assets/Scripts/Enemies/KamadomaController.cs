@@ -110,7 +110,7 @@ public class KamadomaController : MonoBehaviour
     public void EnableAI(bool enable)
     {
         // enable enemy ai logic
-        this.enableAI = enable;
+        enableAI = enable;
     }
 
     public void SetColor(KamadomaColors color)

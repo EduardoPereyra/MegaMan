@@ -313,6 +313,22 @@ public class MainScene : MonoBehaviour
         {
             kamadoma.GetComponent<KamadomaController>().EnableAI(true);
         }
+
+        GameObject bombombLauncher = GameObject.Find("BombombLauncher");
+        if (bombombLauncher)
+        {
+            bombombLauncher.GetComponent<BombombController>().EnableAI(false);
+        }
+    }
+
+    public void Highway2Reached()
+    {
+        GameObject bigEye = GameObject.Find("BigEye");
+        Debug.Log(bigEye);
+        if (bigEye)
+        {
+            bigEye.GetComponent<BigEyeController>().EnableAI(true);
+        }
     }
 
     public void CheckpointReached()

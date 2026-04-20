@@ -42,6 +42,9 @@ public class BigEyeController: MonoBehaviour
     [SerializeField] RuntimeAnimatorController racBigEyeOrange;
     [SerializeField] RuntimeAnimatorController racBigEyeRed;
 
+
+    [SerializeField] bool enableAI;
+
     public enum MoveDirections 
     {
         Left,
@@ -103,55 +106,65 @@ public class BigEyeController: MonoBehaviour
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Debug.DrawLine(transform.position, player.transform.position, Color.blue);
-        if (isGrounded)
-        {
-            animator.Play("BigEye_Grounded");
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-            jumpTimer -= Time.deltaTime;
-            if (jumpTimer < 0)
+        if (enableAI)
+        {            
+            if (isGrounded)
             {
-                if (jumpPattern == null)
+                animator.Play("BigEye_Grounded");
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+                jumpTimer -= Time.deltaTime;
+                if (jumpTimer < 0)
                 {
-                    jumpPatternIndex = 0;
-                    jumpPattern = jumpPatterns[Random.Range(0, jumpPatterns.Length)];
-                }
-                jumpVelocityIndex = jumpPattern[jumpPatternIndex];
-                jumpVelocity = jumpVelocities[jumpVelocityIndex];
-                if(player.transform.position.x <= transform.position.x)
-                {
-                    jumpVelocity.x *= -1;
-                }
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVelocity.y);
-                jumpTimer = jumpDelay;
-                if(++jumpPatternIndex > jumpPattern.Length - 1)
-                {
-                    jumpPattern = null;
-                }
-            }
-        }
-        else
-        {
-            animator.Play("BigEye_Jumping");
-            rb.linearVelocity = new Vector2(jumpVelocity.x, rb.linearVelocity.y);
-            isJumping = true;
-            if (jumpVelocity.x < 0)
-            {
-                if (isFacingRight)
-                {
-                    isFacingRight = !isFacingRight;
-                    enemyController.Flip();
+                    if (jumpPattern == null)
+                    {
+                        jumpPatternIndex = 0;
+                        jumpPattern = jumpPatterns[Random.Range(0, jumpPatterns.Length)];
+                    }
+                    jumpVelocityIndex = jumpPattern[jumpPatternIndex];
+                    jumpVelocity = jumpVelocities[jumpVelocityIndex];
+                    if(player.transform.position.x <= transform.position.x)
+                    {
+                        jumpVelocity.x *= -1;
+                    }
+                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpVelocity.y);
+                    jumpTimer = jumpDelay;
+                    if(++jumpPatternIndex > jumpPattern.Length - 1)
+                    {
+                        jumpPattern = null;
+                    }
                 }
             }
             else
             {
-                if (!isFacingRight)
+                animator.Play("BigEye_Jumping");
+                rb.linearVelocity = new Vector2(jumpVelocity.x, rb.linearVelocity.y);
+                isJumping = true;
+                if (jumpVelocity.x < 0)
                 {
-                    isFacingRight = !isFacingRight;
-                    enemyController.Flip();
+                    if (isFacingRight)
+                    {
+                        isFacingRight = !isFacingRight;
+                        enemyController.Flip();
+                    }
+                }
+                else
+                {
+                    if (!isFacingRight)
+                    {
+                        isFacingRight = !isFacingRight;
+                        enemyController.Flip();
+                    }
                 }
             }
         }
     }
+
+    public void EnableAI(bool enable)
+    {
+        // enable enemy ai logic
+        enableAI = enable;
+    }
+
 
     public void SetColor(BigEyeColors color)
     {
