@@ -5672,11 +5672,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4020703203935951878, guid: ebfd8110197f64b5da6c1f6dcf305905, type: 3}
       propertyPath: m_Name
-      value: BombomLauncher
+      value: BombombLauncher
       objectReference: {fileID: 0}
     - target: {fileID: 4020703203935951878, guid: ebfd8110197f64b5da6c1f6dcf305905, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6331318690807315373, guid: ebfd8110197f64b5da6c1f6dcf305905, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6243,6 +6243,10 @@ PrefabInstance:
     - target: {fileID: 1728809653868050399, guid: 211884f9787114c0a8d68bfc3173ba1c, type: 3}
       propertyPath: enableAI
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728809653868050399, guid: 211884f9787114c0a8d68bfc3173ba1c, type: 3}
+      propertyPath: playerRange
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6668100227869125090, guid: 211884f9787114c0a8d68bfc3173ba1c, type: 3}
       propertyPath: m_LocalPosition.x

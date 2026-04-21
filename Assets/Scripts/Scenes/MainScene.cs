@@ -321,11 +321,11 @@ public class MainScene : MonoBehaviour
 
     public void Highway0Reached()
     {
-        GameObject kamadoma = GameObject.Find("Kamadoma2");
-        if (kamadoma)
-        {
-            kamadoma.GetComponent<KamadomaController>().EnableAI(true);
-        }
+        // GameObject kamadoma = GameObject.Find("Kamadoma2");
+        // if (kamadoma)
+        // {
+        //     kamadoma.GetComponent<KamadomaController>().EnableAI(true);
+        // }
 
         GameObject bombombLauncher = GameObject.Find("BombombLauncher");
         if (bombombLauncher)
