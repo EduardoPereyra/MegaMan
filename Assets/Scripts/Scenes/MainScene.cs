@@ -16,6 +16,8 @@ public class MainScene : MonoBehaviour
     TextMeshProUGUI tmpDialogueText;
     TextMeshProUGUI screenMessageText;
 
+    bool sniperJoeEnabled;
+
     [SerializeField] bool showRunTime;
 
     public AudioClip musicClip;
@@ -28,6 +30,7 @@ public class MainScene : MonoBehaviour
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject weaponPart;
 
+    [SerializeField] float startSniperJoePoint = -14.1f;
     [SerializeField] float startSeqBeginPoint1 = 5.6f;
     [SerializeField] float startSeqEndPoint1 = 7.0f;
 
@@ -93,6 +96,16 @@ public class MainScene : MonoBehaviour
             case LevelStates.Exploration:
                 if (player)
                 {
+                    if (player.transform.position.x >= startSniperJoePoint && !sniperJoeEnabled)
+                    {
+                        GameObject sniperJoe = GameObject.Find("SniperJoe");
+                        if (sniperJoe)
+                        {
+                            sniperJoeEnabled = true;
+                            sniperJoe.GetComponent<SniperJoeController>().EnableAI(true);
+                        }
+                    }
+
                     if (player.transform.position.x >= startSeqBeginPoint1)
                     {
                         startTime = Time.time;

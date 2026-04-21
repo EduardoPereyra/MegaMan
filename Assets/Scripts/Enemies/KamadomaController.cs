@@ -18,6 +18,8 @@ public class KamadomaController : MonoBehaviour
         new Vector2(2.5f, 3f)
     };
 
+    public float playerRange = 4f;
+
     // flag to enable enemy ai logic
     [SerializeField] bool enableAI;
 
@@ -59,7 +61,7 @@ public class KamadomaController : MonoBehaviour
         }
 
         // draw debug lines
-        raycastColor = (isGrounded) ? Color.green : Color.red;
+        raycastColor = isGrounded ? Color.green : Color.red;
         Debug.DrawRay(box_origin + new Vector3(box2d.bounds.extents.x, 0), Vector2.down * (box2d.bounds.extents.y / 4f + raycastDistance), raycastColor);
         Debug.DrawRay(box_origin - new Vector3(box2d.bounds.extents.x, 0), Vector2.down * (box2d.bounds.extents.y / 4f + raycastDistance), raycastColor);
         Debug.DrawRay(box_origin - new Vector3(box2d.bounds.extents.x, box2d.bounds.extents.y / 4f + raycastDistance), Vector2.right * (box2d.bounds.extents.x * 2), raycastColor);
@@ -76,9 +78,11 @@ public class KamadomaController : MonoBehaviour
 
         // get player object - used for jumping direction
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
 
         // do kamadoma ai logic if it's enabled
-        if (enableAI)
+        if (enableAI && distanceToPlayer <= playerRange)
         {
             if (isGrounded)
             {

@@ -827,15 +827,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_15
+      name: SniperJoe_Block
       rect:
         serializedVersion: 2
-        x: 363
-        y: 178
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 364
+        y: 179
+        width: 26
+        height: 24
+      alignment: 9
+      pivot: {x: 0.58, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -849,15 +849,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_16
+      name: SniperJoe_Shoot1
       rect:
         serializedVersion: 2
-        x: 391
-        y: 178
-        width: 24
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 392
+        y: 179
+        width: 22
+        height: 24
+      alignment: 9
+      pivot: {x: 0.51, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -871,15 +871,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_17
+      name: SniperJoe_Shoot2
       rect:
         serializedVersion: 2
-        x: 415
-        y: 178
-        width: 24
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 416
+        y: 179
+        width: 22
+        height: 24
+      alignment: 9
+      pivot: {x: 0.51, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -893,15 +893,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_18
+      name: SniperJoe_Jump
       rect:
         serializedVersion: 2
-        x: 439
-        y: 178
-        width: 30
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 440
+        y: 179
+        width: 28
+        height: 31
+      alignment: 9
+      pivot: {x: 0.63, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3414,10 +3414,6 @@ TextureImporter:
       NES_megaman1_enemies_12: 3330567928590290545
       NES_megaman1_enemies_13: -7132066521865446883
       NES_megaman1_enemies_14: -1824010462025688999
-      NES_megaman1_enemies_15: -3304025290838259727
-      NES_megaman1_enemies_16: -4229112140190598136
-      NES_megaman1_enemies_17: -5584428566670574038
-      NES_megaman1_enemies_18: -3374581645662753266
       NES_megaman1_enemies_19: 1704042556262821158
       NES_megaman1_enemies_2: -8904810368616773360
       NES_megaman1_enemies_20: -3965539687778496418
@@ -3477,6 +3473,10 @@ TextureImporter:
       ScrewDriver4_Orange: -4699558761115824528
       ScrewDriver5_Blue: 5609420993104994698
       ScrewDriver5_Orange: 8160184738429315913
+      SniperJoe_Block: -3304025290838259727
+      SniperJoe_Jump: -3374581645662753266
+      SniperJoe_Shoot1: -4229112140190598136
+      SniperJoe_Shoot2: -5584428566670574038
       https:www.youtube.comwatch?v=-2f6Qg-CFcs: 1150858502
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
