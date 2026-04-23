@@ -18,6 +18,8 @@ public class EnemyController: MonoBehaviour
 
     GameObject explodeEffect;
 
+    Color enemyColor;
+    Vector2 freezeVelocity;
     RigidbodyConstraints2D originalConstraints;
     public bool freezeEnemy;
 
@@ -112,7 +114,7 @@ public class EnemyController: MonoBehaviour
         explodeEffect.name = explosionPrefab.name;
         explodeEffect.transform.position = sprite.bounds.center;
         explodeEffect.GetComponent<ExplosionController>().SetDamage(explosionDamage);
-        Destroy(explodeEffect, explodeEffectDestroyDelay);
+        explodeEffect.GetComponent<ExplosionController>().SetDestroyDelay(explodeEffectDestroyDelay);
 
         GameObject bonusItemsPrefab = GameManager.Instance.GetBonusItem(bonusItemType);
         if (bonusItemsPrefab)
@@ -153,13 +155,28 @@ public class EnemyController: MonoBehaviour
             originalConstraints = rb.constraints;
             animator.speed = 0;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            freezeVelocity = rb.linearVelocity;
         }
         else
         {
             rb.constraints = originalConstraints;
             animator.speed = 1;
+            rb.linearVelocity = freezeVelocity;
         }
         freezeEnemy = freeze;
+    }
+
+    public void HideEnemy(bool hide)
+    {
+        if (hide)
+        {
+            enemyColor = sprite.color;
+            sprite.color = Color.clear;
+        }
+        else
+        {
+            sprite.color = enemyColor;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

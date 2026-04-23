@@ -120,7 +120,7 @@ public class BombombController : MonoBehaviour
                         explodeEffect.transform.position = sprite.bounds.center;
                         explodeEffect.GetComponent<ExplosionController>().SetCollideWithTags(collideWithTags);
                         explodeEffect.GetComponent<ExplosionController>().SetDamage(enemyController.explosionDamage);
-                        Destroy(explodeEffect, enemyController.explodeEffectDestroyDelay);
+                        explodeEffect.GetComponent<ExplosionController>().SetDestroyDelay(enemyController.explodeEffectDestroyDelay);
 
                         // launch the shrapnel
                         GameObject[] shrapnel = new GameObject[4];

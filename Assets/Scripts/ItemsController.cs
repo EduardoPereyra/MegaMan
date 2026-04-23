@@ -14,6 +14,15 @@ public class ItemsController: MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
     ColorSwap colorSwap;
+
+    float destroyTimer;
+
+    Color itemColor;
+    bool freezeItem;
+    bool animateItem;
+    Vector2 freezeVelocity;
+    RigidbodyConstraints2D rb2dConstraints;
+
     private enum SwapIndex
     {
         Primary = 64,
@@ -112,6 +121,22 @@ public class ItemsController: MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        // if the bous item is frozen then don't allow it to destroy
+        if (freezeItem) return;
+
+        // countdown to destroy
+        if (destroyDelay > 0)
+        {
+            destroyTimer -= Time.deltaTime;
+            if (destroyTimer <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
     public void Animate(bool animate)
     {
         if (animate)
@@ -128,11 +153,7 @@ public class ItemsController: MonoBehaviour
 
     public void SetDestroyDelay(float delay)
     {
-        destroyDelay = delay;
-        if (delay > 0)
-        {
-            Destroy(gameObject, delay);
-        }
+        destroyTimer = delay;
     }
 
     public void SetBonusBallColor(BonusBallColor color)
@@ -260,6 +281,41 @@ public class ItemsController: MonoBehaviour
         }
     }
 
+    public void FreezeItem(bool freeze)
+    {
+        // freeze/unfreeze the bonus item on screen
+        // NOTE: this will be called from the GameManager but could be used in other scripts
+        if (freeze)
+        {
+            freezeItem = true;
+            animateItem = animate;
+            if (animateItem) Animate(false);
+            rb2dConstraints = rb.constraints;
+            freezeVelocity = rb.linearVelocity;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            freezeItem = false;
+            if (animateItem) Animate(true);
+            rb.constraints = rb2dConstraints;
+            rb.linearVelocity = freezeVelocity;
+        }
+    }
+
+    public void HideItem(bool hide)
+    {
+        if (hide)
+        {
+            itemColor = sprite.color;
+            sprite.color = Color.clear;
+        }
+        else
+        {
+            sprite.color = itemColor;
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -279,6 +335,11 @@ public class ItemsController: MonoBehaviour
             if (bonusPointsValue > 0)
             {
                 GameManager.Instance.AddBonusPoints(bonusPointsValue);
+            }
+
+            if (itemType == ItemType.ExtraLife)
+            {
+                GameManager.Instance.AddPlayerLives(1);
             }
 
             if (itemType == ItemType.MagnetBeam)

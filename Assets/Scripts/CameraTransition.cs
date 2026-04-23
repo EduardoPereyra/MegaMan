@@ -105,6 +105,9 @@ public class CameraTransition : MonoBehaviour
                         transition = false;
                         player.GetComponent<PlayerController>().FreezeInput(false);
                         player.GetComponent<PlayerController>().FreezePlayer(false);
+                        GameManager.Instance.FreezeEverything(false);
+                        GameManager.Instance.SetInCameraTransition(false);
+                        GameManager.Instance.AllowGamePause(true);
                     }
                     break;
             }
@@ -173,6 +176,9 @@ public class CameraTransition : MonoBehaviour
                 player.GetComponent<Animator>().speed = 0;
                 player.GetComponent<PlayerController>().FreezeInput(true);
                 player.GetComponent<PlayerController>().FreezePlayer(true);
+                GameManager.Instance.FreezeEverything(true);
+                GameManager.Instance.SetInCameraTransition(true);
+                GameManager.Instance.AllowGamePause(false);
             }
         }
     }

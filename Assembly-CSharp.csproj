@@ -55,6 +55,7 @@
     <Compile Include="Assets/Scripts/Weapons/BulletController.cs" />
     <Compile Include="Assets/Scripts/UIEnergyBars.cs" />
     <Compile Include="Assets/Scripts/Enemies/BlasterController.cs" />
+    <Compile Include="Assets/Scripts/Menus/WeaponsMenu.cs" />
     <Compile Include="Assets/Scripts/PlayerController.cs" />
     <Compile Include="Assets/Scripts/Enemies/EnemyController.cs" />
     <Compile Include="Assets/Scripts/PlayerDeathController.cs" />

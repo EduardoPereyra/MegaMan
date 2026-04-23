@@ -30,6 +30,8 @@ public class AssetPalette: MonoBehaviour
 
     public ItemList itemList;
 
+    public AudioClip pauseMenuClip;
+
         // point tally audio
     [SerializeField] AudioClip pointTallyClip;
     public AudioClip pointTallyLoopClip;

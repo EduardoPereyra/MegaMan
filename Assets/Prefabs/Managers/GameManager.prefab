@@ -77,6 +77,7 @@ MonoBehaviour:
   - {fileID: 4145301397049316363, guid: 97bf7ce6cd76645399771c84d806fdaa, type: 3}
   - {fileID: 9022611836583971601, guid: e2ced66f05454498297b9f7b7d0031b0, type: 3}
   itemList: 0
+  pauseMenuClip: {fileID: 8300000, guid: 0b7e334b5596140f09b413d6943987cd, type: 3}
   pointTallyClip: {fileID: 8300000, guid: b2faad17f466342e0850296ffb45f2ef, type: 3}
   pointTallyLoopClip: {fileID: 0}
   pointTallyEndClip: {fileID: 0}

@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     bool freezeInput;
     bool freezePlayer;
-    bool freezeBullets;
+    bool freezeEverything;
 
     float shootTime;
     float shootTimeLength;
@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     bool canUseWeapon;
 
     RigidbodyConstraints2D originalConstraints;
+    Color playerColor;
 
     private enum SwapIndex
     {
@@ -43,14 +44,14 @@ public class PlayerController : MonoBehaviour
     };
     public enum WeaponTypes
     {
-        MegaBuster,
-        MagnetBeam,
         HyperBomb,
-        RollingCutter,
         ThunderBeam,
-        FireStorm,
         SuperArm,
-        IceSlasher
+        IceSlasher,
+        RollingCutter,
+        FireStorm,
+        MagnetBeam,
+        MegaBuster,
     };
     public WeaponTypes currentWeapon = WeaponTypes.MegaBuster;
 
@@ -180,10 +181,16 @@ public class PlayerController : MonoBehaviour
             animator.Play("Player_Hit");
             return;
         }
-        PlayerDebugInput();
-        PlayerDirectionInput();
-        PlayerJumpInput();
-        PlayerShootInput();
+
+        if (!GameManager.Instance.IsGamePaused() &&
+            !GameManager.Instance.InCameraTransition())
+        {
+            PlayerDebugInput();
+            PlayerDirectionInput();
+            PlayerJumpInput();
+            PlayerShootInput();
+        }
+
         PlayerMovementInput();
 
         FireWeapon();
@@ -191,24 +198,6 @@ public class PlayerController : MonoBehaviour
 
     void PlayerDebugInput()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
-            if (bullets.Length > 0)
-            {
-                freezeBullets = !freezeBullets;
-                foreach (GameObject bullet in bullets)                {
-                    bullet.GetComponent<Bullet>().Freeze(freezeBullets);
-                }
-            }
-            Debug.Log("Bullet freeze toggled. Now frozen: " + freezeBullets);
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            TakeDamage(1);
-            Debug.Log("Player took damage. Current health: " + currentHealth);
-        }
         if (Input.GetKeyDown(KeyCode.E))
         {
             Die();
@@ -219,38 +208,27 @@ public class PlayerController : MonoBehaviour
             Invincible(!isInvincible);
             Debug.Log("Player invincibility toggled. Now invincible: " + isInvincible);
         }
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            FreezeInput(!freezeInput);
-            Debug.Log("Input freeze toggled. Now frozen: " + freezeInput);
-        }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            FreezePlayer(!freezePlayer);
-            Debug.Log("Player freeze toggled. Now frozen: " + freezePlayer);
-        }
-
         // S for Switch Weapon
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            int nextWeapon = (int)currentWeapon;
-            int maxWeapons = weaponsData.Length;
-            while (true)
-            {
-                // cycle to next weapon index
-                if (++nextWeapon > maxWeapons - 1)
-                {
-                    nextWeapon = 0;
-                }
-                // if weapon is enabled then use it
-                if (weaponsData[nextWeapon].enabled)
-                {
-                    SwitchWeapon((WeaponTypes)nextWeapon);
-                    break;
-                }
-            }
-            Debug.Log("SwitchWeapon()");
-        }
+        // if (Input.GetKeyDown(KeyCode.S))
+        // {
+        //     int nextWeapon = (int)currentWeapon;
+        //     int maxWeapons = weaponsData.Length;
+        //     while (true)
+        //     {
+        //         // cycle to next weapon index
+        //         if (++nextWeapon > maxWeapons - 1)
+        //         {
+        //             nextWeapon = 0;
+        //         }
+        //         // if weapon is enabled then use it
+        //         if (weaponsData[nextWeapon].enabled)
+        //         {
+        //             SwitchWeapon((WeaponTypes)nextWeapon);
+        //             break;
+        //         }
+        //     }
+        //     Debug.Log("SwitchWeapon()");
+        // }
 
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -264,12 +242,14 @@ public class PlayerController : MonoBehaviour
             ApplyLifeEnergy(10);
             Debug.Log("Applied life energy. Current health: " + currentHealth);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            UIEnergyBars.Instance.SetImage(UIEnergyBars.EnergyBars.EnemyHealth, (UIEnergyBars.EnergyBarTypes)UnityEngine.Random.Range(0, 
-                Enum.GetValues(typeof(UIEnergyBars.EnergyBarTypes)).Length));
-            Debug.Log("Set enemy health bar to random type.");
+            freezeEverything = !freezeEverything;
+            GameManager.Instance.FreezeEverything(freezeEverything);
+            Debug.Log("Paused: " + freezeEverything);
         }
+
     }
 
     void PlayerDirectionInput()
@@ -527,7 +507,7 @@ public class PlayerController : MonoBehaviour
         // we can call this function to switch the player to the chosen weapon
         // change color scheme, do the teleport animation, and enable weapon usage
         SetWeapon(weaponType);
-        Teleport(true);
+        Teleport(true, false);
         CanUseWeaponAgain();
 
         // update any in scene bonus item color palettes
@@ -929,6 +909,7 @@ public class PlayerController : MonoBehaviour
             GameObject explosion = Instantiate(explosionPrefab);
             explosion.name = explosionPrefab.name;
             explosion.transform.position = sprite.bounds.center;
+            explosion.GetComponent<ExplosionController>().SetDestroyDelay(5f);
         }
         SoundManager.Instance.Play(deathSound);
         Destroy(gameObject);
@@ -963,16 +944,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Teleport(bool teleport)
+    // public void HidePlayer(bool hide)
+    // {
+    //     if (hide)
+    //     {
+    //         Debug.Log("Hide Player");
+    //         sprite.color = Color.clear;
+    //     }
+    //     else
+    //     {
+    //         sprite.color = playerColor;
+    //     }
+    // }
+
+    public void Teleport(bool teleport, bool descend = true)
     {
         if(teleport)
         {
             isTeleporting = true;
             FreezeInput(true);
             animator.Play("Player_Teleport");
-            animator.speed = 0;
-            teleportState = TeleportState.Descending;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, teleportSpeed);
+            teleportState = TeleportState.Landed;
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+
+            if (descend)
+            {
+                animator.speed = 0;
+                teleportState = TeleportState.Descending;
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, teleportSpeed);
+            }
         } 
         else
         {

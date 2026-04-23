@@ -9,8 +9,12 @@ public class MagnetBeamScript : MonoBehaviour
     BoxCollider2D box2d;
     SpriteRenderer sprite;
 
+    Color beamColor;
+    bool freezeBeam;
+
     float startTime;
     float beamTime;
+    float destroyTimer;
     float maxBeamTime = 3f;
 
     bool isSolid;
@@ -90,6 +94,15 @@ public class MagnetBeamScript : MonoBehaviour
                     }
                 }
             }
+
+            if (destroyDelay > 0 && !freezeBeam)
+            {
+                destroyTimer -= Time.deltaTime;
+                if (destroyTimer <= 0)
+                {
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 
@@ -117,14 +130,39 @@ public class MagnetBeamScript : MonoBehaviour
 
     public void LockBeam()
     {
-        // detach beam from player, destroy at delay, and invoke event
         isLocked = true;
         gameObject.transform.parent = null;
-        if (destroyDelay > 0)
-        {
-            Destroy(gameObject, destroyDelay);
-        }
+        destroyTimer = destroyDelay;
         LockedEvent.Invoke();
+    }
+
+    public void FreezeBeam(bool freeze)
+    {
+        // freeze/unfreeze the beams on screen
+        // NOTE: this will be called from the GameManager but could be used in other scripts
+        if (freeze)
+        {
+            freezeBeam = true;
+            animator.speed = 0;
+        }
+        else
+        {
+            freezeBeam = false;
+            animator.speed = 1;
+        }
+    }
+
+    public void HideBeam(bool hide)
+    {
+        if (hide)
+        {
+            beamColor = sprite.color;
+            sprite.color = Color.clear;
+        }
+        else
+        {
+            sprite.color = beamColor;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

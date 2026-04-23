@@ -110,10 +110,12 @@ public class MainScene : MonoBehaviour
                     {
                         startTime = Time.time;
 
+                        player.GetComponent<PlayerController>().SetInvincible(true);
                         player.GetComponent<PlayerController>().FreezeInput(true);
                         Vector2 playerVelocity = player.GetComponent<Rigidbody2D>().linearVelocity;
                         player.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, playerVelocity.y);
-                        
+                        GameManager.Instance.FreezeEverything(true);
+                        GameManager.Instance.AllowGamePause(false);
                         levelState = LevelStates.Hologram;
                     }
                     // warp ahead to skip the intro to speed along development
@@ -173,7 +175,10 @@ public class MainScene : MonoBehaviour
                 }
                 if (UtilityFunctions.InTime(runTime, 28.0f))
                 {
+                    player.GetComponent<PlayerController>().SetInvincible(false);
                     player.GetComponent<PlayerController>().FreezeInput(false);
+                    GameManager.Instance.FreezeEverything(false);
+                    GameManager.Instance.AllowGamePause(true);
                     levelState = LevelStates.KeepLooking;
                 }
 
@@ -193,6 +198,7 @@ public class MainScene : MonoBehaviour
                         player.GetComponent<PlayerController>().FreezeInput(true);
                         Vector2 playerVelocity = player.GetComponent<Rigidbody2D>().linearVelocity;
                         player.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, playerVelocity.y);
+                        GameManager.Instance.AllowGamePause(false);
                         // go to the boss fight intro state
                         levelState = LevelStates.BossFightIntro;
                     }
@@ -262,6 +268,7 @@ public class MainScene : MonoBehaviour
                 {
                     enemy.GetComponent<BombManController>().EnableAI(true);
                     player.GetComponent<PlayerController>().FreezeInput(false);
+                    GameManager.Instance.AllowGamePause(true);
                     // move on to BossFight state
                     levelState = LevelStates.BossFight;
                 }
@@ -444,6 +451,7 @@ public class MainScene : MonoBehaviour
         SoundManager.Instance.PlayMusic(victoryThemeClip, false);
         // freeze the player and input
         GameManager.Instance.FreezePlayer(true);
+        GameManager.Instance.AllowGamePause(false);
         // switch state the player victory
         levelState = LevelStates.PlayerVictory;
     }

@@ -14,6 +14,11 @@ public class BombScript : MonoBehaviour
     bool startTimer;
     float explodeTimer;
 
+    Color bombColor;
+    bool freezeBomb;
+    Vector2 freezeVelocity;
+    RigidbodyConstraints2D rb2dConstraints;
+
     [Header("Bomb Damage")]
     [SerializeField] int contactDamage = 0;
     [SerializeField] int explosionDamage = 4;
@@ -58,6 +63,8 @@ public class BombScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (freezeBomb) return;
+
         if (startTimer)
         {
             explodeTimer -= Time.deltaTime;
@@ -179,7 +186,7 @@ public class BombScript : MonoBehaviour
         explodeEffect.transform.position = sprite.bounds.center;
         explodeEffect.GetComponent<ExplosionController>().SetCollideWithTags(collideWithTags);
         explodeEffect.GetComponent<ExplosionController>().SetDamage(explosionDamage);
-        Destroy(explodeEffect, 2f);
+        explodeEffect.GetComponent<ExplosionController>().SetDestroyDelay(2f);
 
         // for the audio clip to play we need the gameobject to stick around
         // so we're going to set the sprite to transparent and destroy it after 
@@ -193,6 +200,37 @@ public class BombScript : MonoBehaviour
         // invoke explosion event
         ExplosionEvent.Invoke();
     }
+
+    public void FreezeBomb(bool freeze)
+    {
+        if (freeze)
+        {
+            freezeBomb = true;
+            rb2dConstraints = rb.constraints;
+            freezeVelocity = rb.linearVelocity;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            freezeBomb = false;
+            rb.constraints = rb2dConstraints;
+            rb.linearVelocity = freezeVelocity;
+        }
+    }
+
+    public void HideBomb(bool hide)
+    {
+        if (hide)
+        {
+            bombColor = sprite.color;
+            sprite.color = Color.clear;
+        }
+        else
+        {
+            sprite.color = bombColor;
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D other)
     {

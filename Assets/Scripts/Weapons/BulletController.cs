@@ -7,8 +7,9 @@ public class Bullet:MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sprite;
 
-    float destroyTime;
+    float destroyTimer;
 
+    Color bulletColor;
     bool freezeBullet = false;
     RigidbodyConstraints2D originalConstraints;
 
@@ -52,11 +53,15 @@ public class Bullet:MonoBehaviour
     {
         if (freezeBullet) return;
 
-        destroyTime -= Time.deltaTime;
-        if (destroyTime < 0f)
+        if (destroyDelay > 0)
         {
-            Destroy(gameObject);
+            destroyTimer -= Time.deltaTime;
+            if (destroyTimer < 0f)
+            {
+                Destroy(gameObject);
+            }
         }
+
     }
 
     public void SetBulletType(BulletType type)
@@ -98,7 +103,7 @@ public class Bullet:MonoBehaviour
     public void Shoot()
     {
         rb.linearVelocity = direction * speed;
-        destroyTime = destroyDelay;
+        destroyTimer = destroyDelay;
     }
 
     public void Freeze(bool freeze)
@@ -116,6 +121,19 @@ public class Bullet:MonoBehaviour
             rb.linearVelocity = direction * speed;
         }
         freezeBullet = freeze;
+    }
+
+    public void HideBullet(bool hide)
+    {
+        if (hide)
+        {
+            bulletColor = sprite.color;
+            sprite.color = Color.clear;
+        }
+        else
+        {
+            sprite.color = bulletColor;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

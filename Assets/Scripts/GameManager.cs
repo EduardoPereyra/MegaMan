@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance = null;
 
     bool startNextScene;
+
+    GameObject HUDCanvas;
+    GameObject WeaponsMenu;
+
+
+    GameObject player;
 
     AssetPalette assetPalette;
     int enemyPrefabCount;
@@ -27,7 +34,18 @@ public class GameManager : MonoBehaviour
     bool playerReady;
     bool initReadyScreen;
 
+    // for pausing the game
+    bool isGamePaused;
+    bool pauseMusic;
+    bool canPauseGame;
+
+    bool inWeaponsMenu;
+    bool inCameraTransition;
+
+    float timeScale;
+
     int levelPoints;
+    int playerLives;
     int playerScore;
     List<int> bonusScore = new List<int>();
 
@@ -37,6 +55,7 @@ public class GameManager : MonoBehaviour
     public float gameRestartDelay = 5f;
     public float gamePlayerReadyDelay = 3f;
 
+    PlayerController.WeaponTypes playerWeaponType;
     PlayerController.WeaponsStruct[] playerWeapons;
 
     public enum GameStates
@@ -82,6 +101,8 @@ public class GameManager : MonoBehaviour
             assetPalette = GetComponent<AssetPalette>();
             enemyPrefabCount = Enum.GetNames(typeof(AssetPalette.EnemyList)).Length;
         }
+
+        playerLives = 3;
     }
 
         // called first
@@ -99,6 +120,20 @@ public class GameManager : MonoBehaviour
     // called second
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // get HUD Canvas and Weapons Menu
+        HUDCanvas = GameObject.Find("HUDCanvas");
+        WeaponsMenu = GameObject.Find("WeaponsMenu");
+
+        if (WeaponsMenu != null)
+        {
+            // once the weapons menu is found, add on menu event listeners
+            WeaponsMenu.GetComponent<WeaponsMenu>().ShowMenuEvent.AddListener(OnWeaponsMenuEnter);
+            WeaponsMenu.GetComponent<WeaponsMenu>().ExitMenuEvent.AddListener(OnWeaponsMenuExit);
+
+            // it's setup now hide the weapons menu on the screen
+            WeaponsMenu.SetActive(false);
+        }
+
         switch (gameState)
         {
             case GameStates.TitleScreen:
@@ -133,6 +168,16 @@ public class GameManager : MonoBehaviour
                 MainSceneLoop();
                 break;
         }
+
+        //game pause
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PauseGame();
+        }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            ShowWeaponsMenu();
+        }
     }
 
     public void StartNextScene()
@@ -142,7 +187,7 @@ public class GameManager : MonoBehaviour
 
     private void StartTitleScreen()
     {
-        
+        AllowGamePause(false);
     }
 
     private void TitleScreenLoop()
@@ -157,7 +202,7 @@ public class GameManager : MonoBehaviour
 
     private void StartIntroScene()
     {
-
+        AllowGamePause(false);
     }
     private void IntroSceneLoop()
     {
@@ -175,7 +220,9 @@ public class GameManager : MonoBehaviour
         playerReady = true;
         initReadyScreen = true;
         firstMessage = true;
+        AllowGamePause(false);
         gamePlayerReadyTime = gamePlayerReadyDelay;
+        player = GameObject.FindGameObjectWithTag("Player");
         RestorePlayerWeapons();
         playerScoreText = GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>();
         screenMessageText = GameObject.Find("ScreenMessage").GetComponent<TextMeshProUGUI>();
@@ -209,6 +256,7 @@ public class GameManager : MonoBehaviour
                 TeleportPlayer(true);
                 screenMessageText.text = "";
                 playerReady = false;
+                AllowGamePause(true);
             }
             return;
         }
@@ -255,6 +303,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    // the extra life (1UP) being collected should add to the player's life count
+    public void AddPlayerLives(int lives)
+    {
+        playerLives += lives;
+    }
+
     // objects that offer score points should call this method upon their defeat to add to the player's score
     public void AddScorePoints(int points)
     {
@@ -276,13 +330,140 @@ public class GameManager : MonoBehaviour
     public void FreezePlayer(bool freeze)
     {
         // freeze player and input
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             player.GetComponent<PlayerController>().FreezeInput(freeze);
             player.GetComponent<PlayerController>().FreezePlayer(freeze);
         }
     }
+
+    public bool IsGamePaused()
+    {
+        return isGamePaused;
+    }
+
+    public void AllowGamePause(bool pause)
+    {
+        canPauseGame = pause;
+    }
+
+    public void PauseGame(bool pauseMusic = true)
+    {
+        if (canPauseGame && !isGamePaused)
+        {
+            isGamePaused = true;
+            timeScale = Time.timeScale;
+            Time.timeScale = 0;
+            if(pauseMusic) SoundManager.Instance.MusicSource.Pause();
+            SoundManager.Instance.Play(assetPalette.pauseMenuClip);
+
+            if (player != null) playerWeaponType = player.GetComponent<PlayerController>().currentWeapon;
+            // this is optional if you want to display an on-screen message
+            //  save previous message if any
+            messageText = screenMessageText.text;
+            screenMessageText.text = "PAUSED";
+        }
+        else if (isGamePaused && !inWeaponsMenu)
+        {
+            // if the game is paused then unpause it
+            isGamePaused = false;
+            Time.timeScale = timeScale;
+            if(pauseMusic) SoundManager.Instance.MusicSource.Play();
+            TeleportPlayer(true, false);
+            if (player != null) player.GetComponent<PlayerController>().SwitchWeapon(playerWeaponType);
+            // this is optional if you did display an on-screen message
+            //   restore previous message if any
+            screenMessageText.text = messageText;
+        }
+    }
+
+    public bool InWeaponsMenu()
+    {
+        // return in the weapons menu
+        return inWeaponsMenu;
+    }
+
+    public void ShowWeaponsMenu()
+    {
+        // can only show the weapons menu if pausing is allowed
+        if (!canPauseGame) return;
+
+        if (!inWeaponsMenu)
+        {
+            // OnWeaponsMenuEnter() is called by WeaponsMenu ShowMenuEvent
+            if (WeaponsMenu != null && player != null)
+            {
+                WeaponsMenu.GetComponent<WeaponsMenu>().SetMenuData(playerLives, 
+                    player.GetComponent<PlayerController>().currentWeapon, 
+                    player.GetComponent<PlayerController>().weaponsData);
+                WeaponsMenu.GetComponent<WeaponsMenu>().ShowMenu();
+            }
+        }
+        else
+        {
+            // OnWeaponsMenuExit() is called by WeaponsMenu ExitMenuEvent
+            if (WeaponsMenu != null) WeaponsMenu.GetComponent<WeaponsMenu>().ExitMenu();
+        }
+    }
+
+    public void OnWeaponsMenuEnter()
+    {
+        // if the game isn't paused then do it (plays the clip)
+        //   otherwise play the sound clip again for the weapons menu
+        if (!isGamePaused)
+        {
+            // pause the game
+            pauseMusic = false;
+            PauseGame(pauseMusic);
+        }
+        else
+        {
+            // music keeps playing
+            pauseMusic = true;
+            // play the pause menu clip
+            SoundManager.Instance.Play(assetPalette.pauseMenuClip);
+        }
+
+        // hide the HUD Canvas, Player, and everything else
+        if (HUDCanvas != null) HUDCanvas.SetActive(false);
+        // if (player != null) player.GetComponent<PlayerController>().HidePlayer(true);
+        if (player != null) player.SetActive(false);
+        HideEverything(true);
+
+        // in the weapons menu
+        inWeaponsMenu = true;
+    }
+
+    public void OnWeaponsMenuExit()
+    {
+        // show the HUD Canvas, Player, and everything else
+        if (HUDCanvas != null) HUDCanvas.SetActive(true);
+        // if (player != null) player.GetComponent<PlayerController>().HidePlayer(false);
+        if (player != null) player.SetActive(true);
+        HideEverything(false);
+
+        // get the player's selected weapon (overrides existing and sets in PauseGame)
+        playerWeaponType = WeaponsMenu.GetComponent<WeaponsMenu>().GetWeaponSelection();
+
+        // not in the weapons menu anymore
+        inWeaponsMenu = false;
+
+        // unpause the game
+        PauseGame(pauseMusic);
+    }
+
+    public bool InCameraTransition()
+    {
+        // return camera is doing a transition
+        return inCameraTransition;
+    }
+
+    public void SetInCameraTransition(bool transition)
+    {
+        // flag that the camera is in a transition state
+        inCameraTransition = transition;
+    }
+
 
     public void FreezeEnemies(bool freeze)
     {
@@ -294,8 +475,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void FreezeBullets(bool freeze)
+    public void FreezeExplosions(bool freeze)
     {
+        // freeze all explosions
+        GameObject[] explosions = GameObject.FindGameObjectsWithTag("Explosion");
+        foreach (GameObject explosion in explosions)
+        {
+            explosion.GetComponent<ExplosionController>().FreezeExplosion(freeze);
+        }
+    }
+
+    public void FreezeItems(bool freeze)
+    {
+        // find all objects with the item script and freeze them
+        ItemsController[] itemScripts = FindObjectsByType<ItemsController>();
+        foreach (ItemsController itemScript in itemScripts)
+        {
+            itemScript.FreezeItem(freeze);
+        }
+    }
+
+    public void FreezeWeapons(bool freeze)
+    {
+        // freeze all platform beams
+        GameObject[] beams = GameObject.FindGameObjectsWithTag("PlatformBeam");
+        foreach (GameObject beam in beams)
+        {
+            beam.GetComponent<MagnetBeamScript>().FreezeBeam(freeze);
+        }
+        // freeze all bombs
+        GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
+        foreach (GameObject bomb in bombs)
+        {
+            bomb.GetComponent<BombScript>().FreezeBomb(freeze);
+        }
         // freeze all bullets
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
         foreach (GameObject bullet in bullets)
@@ -304,17 +517,89 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void TeleportPlayer(bool teleport)
+    public void FreezeEverything(bool freeze)
+    {
+        // one method to freeze everything except the player if needed
+        FreezeEnemies(freeze);
+        FreezeExplosions(freeze);
+        FreezeItems(freeze);
+        FreezeWeapons(freeze);
+    }
+
+    public void HideEnemies(bool hide)
+    {
+        // hide all enemies
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<EnemyController>().HideEnemy(hide);
+        }
+    }
+
+    public void HideExplosions(bool hide)
+    {
+        // hide all explosions
+        GameObject[] explosions = GameObject.FindGameObjectsWithTag("Explosion");
+        foreach (GameObject explosion in explosions)
+        {
+            explosion.GetComponent<ExplosionController>().HideExplosion(hide);
+        }
+    }
+
+    public void HideItems(bool hide)
+    {
+        // find all objects with the item script and hide them
+        ItemsController[] itemScripts = FindObjectsByType<ItemsController>(FindObjectsInactive.Include);
+        foreach (ItemsController itemScript in itemScripts)
+        {
+            // itemScript.HideItem(hide);
+            itemScript.gameObject.SetActive(!hide);
+        }
+    }
+
+    public void HideWeapons(bool hide)
+    {
+        // hide all platform beams
+        GameObject[] beams = GameObject.FindGameObjectsWithTag("PlatformBeam");
+        foreach (GameObject beam in beams)
+        {
+            beam.GetComponent<MagnetBeamScript>().HideBeam(hide);
+        }
+        // hide all bombs
+        GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
+        foreach (GameObject bomb in bombs)
+        {
+            bomb.GetComponent<BombScript>().HideBomb(hide);
+        }
+        // hide all bullets
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+        foreach (GameObject bullet in bullets)
+        {
+            bullet.GetComponent<Bullet>().HideBullet(hide);
+        }
+    }
+
+    public void HideEverything(bool hide)
+    {
+        // one method to hide everything except the player if needed
+        HideEnemies(hide);
+        HideExplosions(hide);
+        HideItems(hide);
+        HideWeapons(hide);
+    }
+
+    private void TeleportPlayer(bool teleport, bool descend = true)
     {
         // teleport player - happens after READY screen
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player?.GetComponent<PlayerController>().Teleport(teleport);
+        if (player)
+        {
+            player.GetComponent<PlayerController>().Teleport(teleport, descend);
+        }
     }
 
     public void SavePlayerWeapons()
     {
         // save player weapon stats to carry over to next level
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             playerWeapons = player.GetComponent<PlayerController>().weaponsData;
@@ -336,6 +621,7 @@ public class GameManager : MonoBehaviour
         // game over :(
         isGameOver = true;
         gameRestartTime = gameRestartDelay;
+        AllowGamePause(false);
         // stop all sounds
         SoundManager.Instance.Stop();
         SoundManager.Instance.StopMusic();
@@ -500,6 +786,9 @@ public class GameManager : MonoBehaviour
 
     public void DestroyWeapons()
     {
+        // remove all bullets
+        GameObject[] beams = GameObject.FindGameObjectsWithTag("PlatformBeam");
+        foreach (GameObject beam in beams) Destroy(beam);
         // remove all bullets
         GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
         foreach (GameObject bullet in bullets) Destroy(bullet);
