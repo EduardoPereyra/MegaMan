@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
         {
             startNextScene = false;
             gameState = GameStates.IntroScene;
-            SceneManager.LoadScene("Intro Scene");
+            SceneManager.LoadScene("IntroScene");
         }
     }
 
@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
         {
             startNextScene = false;
             gameState = GameStates.MainScene;
-            SceneManager.LoadScene("Main Scene");
+            SceneManager.LoadScene("MainScene");
         }
     }
 
@@ -283,7 +283,7 @@ public class GameManager : MonoBehaviour
                 startNextScene = false;
                 // load the next scene - unfortunately since there is only one main scene, we will just reload the same scene but reset everything to start the next level
                 gameState = GameStates.MainScene;
-                SceneManager.LoadScene("Main Scene");
+                SceneManager.LoadScene("MainScene");
             }
         }
         else
@@ -553,7 +553,10 @@ public class GameManager : MonoBehaviour
         foreach (ItemsController itemScript in itemScripts)
         {
             // itemScript.HideItem(hide);
-            itemScript.gameObject.SetActive(!hide);
+            if (itemScript.gameObject.name != "WeaponPart")
+            {
+                itemScript.gameObject.SetActive(!hide);
+            }
         }
     }
 

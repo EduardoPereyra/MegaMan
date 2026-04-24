@@ -77,8 +77,13 @@ public class KamadomaController : MonoBehaviour
         }
 
         // get player object - used for jumping direction
+        float distanceToPlayer = playerRange + 1; 
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        if (player)
+        {
+            distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        }
 
 
         // do kamadoma ai logic if it's enabled

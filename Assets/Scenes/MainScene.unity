@@ -1895,7 +1895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2437039432103306811, guid: f675ede89a2084aaf920939600af9bb8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.86
+      value: -17.01
       objectReference: {fileID: 0}
     - target: {fileID: 2437039432103306811, guid: f675ede89a2084aaf920939600af9bb8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3444,7 +3444,7 @@ Transform:
   m_GameObject: {fileID: 1051132566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4, y: -1.14, z: 0}
+  m_LocalPosition: {x: 2.192, y: -1.14, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3498,17 +3498,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.08}
+  m_Offset: {x: 0, y: 0.07}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.8, y: 0.16}
+    newSize: {x: 0.65, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.16}
+  m_Size: {x: 0.62, y: 0.14}
   m_EdgeRadius: 0
 --- !u!212 &1051132570
 SpriteRenderer:
@@ -3564,7 +3564,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 0.8, y: 0.16}
+  m_Size: {x: 0.65, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4269,7 +4269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448936670450732350, guid: 41755308e5e9a428ea6ae735a2c41ce8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4780,7 +4780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1211844090857066505, guid: 4b8eb976321ff483382eba8384ec4135, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3974251634916684159, guid: 4b8eb976321ff483382eba8384ec4135, type: 3}
       propertyPath: bigEyeColor
@@ -4865,7 +4865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5313128788771032553, guid: 809fdab6d65984949a743a0c7faf0136, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5704101058483171749, guid: 809fdab6d65984949a743a0c7faf0136, type: 3}
       propertyPath: blasterOrientation
@@ -4948,7 +4948,7 @@ Transform:
   m_GameObject: {fileID: 1732363150}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: -1.12, y: 0.04, z: 0}
+  m_LocalPosition: {x: -1.03, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5427,7 +5427,7 @@ GameObject:
   - component: {fileID: 1950156532}
   - component: {fileID: 1950156533}
   m_Layer: 0
-  m_Name: Main Scene
+  m_Name: MainScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5897,7 +5897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1199291730450644266, guid: 98e083ded5509462e8cff07d5daaba45, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1780087046910862516, guid: 98e083ded5509462e8cff07d5daaba45, type: 3}
       propertyPath: enableAI
@@ -5966,7 +5966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4020703203935951878, guid: ebfd8110197f64b5da6c1f6dcf305905, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6331318690807315373, guid: ebfd8110197f64b5da6c1f6dcf305905, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6522,7 +6522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8673351568619130092, guid: da90c3859248b48729ba929726ac214e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6604,7 +6604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1178307714608775636, guid: 211884f9787114c0a8d68bfc3173ba1c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1728809653868050399, guid: 211884f9787114c0a8d68bfc3173ba1c, type: 3}
       propertyPath: enableAI

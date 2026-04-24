@@ -68,8 +68,13 @@ public class MetallController : MonoBehaviour
         }
 
         // get player distance
+        float playerDistance = viewDistance;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        float playerDistance = Vector2.Distance(player.transform.position, transform.position);
+        if (player)
+        {
+            playerDistance = Vector2.Distance(player.transform.position, transform.position);
+        }
+         
 
         // do Metall ai logic if it's enabled
         if (enableAI)

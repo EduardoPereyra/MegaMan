@@ -105,7 +105,10 @@ public class BigEyeController: MonoBehaviour
         }
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Debug.DrawLine(transform.position, player.transform.position, Color.blue);
+        if (player)
+        {
+            Debug.DrawLine(transform.position, player.transform.position, Color.blue);
+        }
         if (enableAI)
         {            
             if (isGrounded)

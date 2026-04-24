@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 628024668}
   - component: {fileID: 628024669}
   m_Layer: 0
-  m_Name: Intro Scene
+  m_Name: IntroScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1632,8 +1632,8 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1397981345}
   - {fileID: 628024668}
+  - {fileID: 1397981345}
   - {fileID: 317071343}
   - {fileID: 1297402614}
   - {fileID: 2027694928}
