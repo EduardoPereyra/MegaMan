@@ -87,7 +87,7 @@ public class MetallController : MonoBehaviour
                     // because direction can change in the middle of shooting bullets
                     // and it looks like they're coming from the back of the hat instead of its front
                     bool currentFace = isFacingRight;
-                    isFacingRight = player.transform.position.x > transform.position.x;
+                    isFacingRight = player?.transform.position.x > transform.position.x;
                     if (currentFace != isFacingRight)
                     {
                         enemyController.Flip();

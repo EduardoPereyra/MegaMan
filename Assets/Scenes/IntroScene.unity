@@ -247,6 +247,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5752952454568724910, guid: f91508d3e2636453bb43d37bb2e70ada, type: 3}
+      propertyPath: gameScene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752952454568724910, guid: f91508d3e2636453bb43d37bb2e70ada, type: 3}
       propertyPath: gameState
       value: 1
       objectReference: {fileID: 0}
@@ -1546,6 +1550,10 @@ PrefabInstance:
     - target: {fileID: 3242254147642549853, guid: 0f31b895cdf97420a827b96fd431f6a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781173550414071556, guid: 0f31b895cdf97420a827b96fd431f6a4, type: 3}
+      propertyPath: currentWeapon
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6781173550414071556, guid: 0f31b895cdf97420a827b96fd431f6a4, type: 3}
       propertyPath: jumpLandedSound

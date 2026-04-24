@@ -84,6 +84,8 @@ public class MainScene : MonoBehaviour
 
         // we use this method if the weapon part is just a game object in the scene
         weaponPart.GetComponent<ItemsController>().BonusItemEvent.AddListener(WeaponPartCollected);
+        SoundManager.Instance.MusicSource.volume = 0.75f;
+        SoundManager.Instance.PlayMusic(musicClip);
     }
 
     void Update()
@@ -309,7 +311,7 @@ public class MainScene : MonoBehaviour
                 // reset the points collected and go to next scene state
                 if (UtilityFunctions.InTime(runTime, 15.0f))
                 {
-                    GameManager.Instance.ResetPointsCollected();
+                    GameManager.Instance.ResetPointsCollected(true, false);
                     // switch to the next scene state
                     levelState = LevelStates.NextScene;
 
@@ -319,7 +321,7 @@ public class MainScene : MonoBehaviour
                 // tell GameManager to trigger the next scene
                 if (!calledNextScene)
                 {
-                    GameManager.Instance.StartNextScene();
+                    GameManager.Instance.StartNextScene(GameManager.GameScenes.MainScene);
                     calledNextScene = true;
                 }
                 break;

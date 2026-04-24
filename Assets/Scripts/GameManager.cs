@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance = null;
 
     bool startNextScene;
+    string nextSceneName;
+    string lastSceneName;
 
     GameObject HUDCanvas;
     GameObject WeaponsMenu;
@@ -54,17 +56,20 @@ public class GameManager : MonoBehaviour
 
     public float gameRestartDelay = 5f;
     public float gamePlayerReadyDelay = 3f;
+    public int gamePlayerStartLives = 3;
 
     PlayerController.WeaponTypes playerWeaponType;
     PlayerController.WeaponsStruct[] playerWeapons;
 
-    public enum GameStates
+    public enum GameScenes
     {
         TitleScreen,
         IntroScene,
-        MainScene
+        MainScene,
+        GameOver,
+        StageSelect
     };
-    public GameStates gameState = GameStates.TitleScreen;
+    public GameScenes gameScene = GameScenes.TitleScreen;
 
     public struct WorldViewCoordinates
     {
@@ -102,10 +107,11 @@ public class GameManager : MonoBehaviour
             enemyPrefabCount = Enum.GetNames(typeof(AssetPalette.EnemyList)).Length;
         }
 
-        playerLives = 3;
+        ResetPlayerLives();
+        ResetPointsCollected();
     }
 
-        // called first
+    // called first
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -134,15 +140,18 @@ public class GameManager : MonoBehaviour
             WeaponsMenu.SetActive(false);
         }
 
-        switch (gameState)
+        switch (gameScene)
         {
-            case GameStates.TitleScreen:
+            case GameScenes.TitleScreen:
                 StartTitleScreen();
                 break;
-            case GameStates.IntroScene:
+            case GameScenes.IntroScene:
                 StartIntroScene();
                 break;
-            case GameStates.MainScene:
+            case GameScenes.GameOver:
+                StartGameOverScreen();
+                break;
+            case GameScenes.MainScene:
                 StartMainScene();
                 break;
         }
@@ -156,15 +165,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        switch (gameState)
+        switch (gameScene)
         {
-            case GameStates.TitleScreen:
+            case GameScenes.TitleScreen:
                 TitleScreenLoop();
                 break;
-            case GameStates.IntroScene:
+            case GameScenes.IntroScene:
                 IntroSceneLoop();
                 break;
-            case GameStates.MainScene:
+            case GameScenes.GameOver:
+                GameOverScreenLoop();
+                break;
+            case GameScenes.MainScene:
                 MainSceneLoop();
                 break;
         }
@@ -180,10 +192,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public string GetScene(GameScenes scene)
+    {
+        return scene.ToString();
+    }
+
+    public GameScenes GetScene(string scene)
+    {
+        // convert the scene name string to the type
+        return (GameScenes)Enum.Parse(typeof(GameScenes), scene);
+    }
+
     public void StartNextScene()
     {
         startNextScene = true;
+        nextSceneName = lastSceneName;
     }
+
+    public void StartNextScene(GameScenes scene)
+    {
+        startNextScene = true;
+        nextSceneName = GetScene(scene);
+    }
+
 
     private void StartTitleScreen()
     {
@@ -195,8 +226,8 @@ public class GameManager : MonoBehaviour
         if (startNextScene)
         {
             startNextScene = false;
-            gameState = GameStates.IntroScene;
-            SceneManager.LoadScene("IntroScene");
+            gameScene = GetScene(nextSceneName);
+            SceneManager.LoadScene(nextSceneName);
         }
     }
 
@@ -209,8 +240,26 @@ public class GameManager : MonoBehaviour
         if (startNextScene)
         {
             startNextScene = false;
-            gameState = GameStates.MainScene;
-            SceneManager.LoadScene("MainScene");
+            gameScene = GetScene(nextSceneName);
+            SceneManager.LoadScene(nextSceneName);
+        }
+    }
+
+    private void StartGameOverScreen()
+    {
+        // add any init code here for intro scene
+        AllowGamePause(false);
+    }
+
+    private void GameOverScreenLoop()
+    {
+        // scene change triggered by StartNextScene()
+        if (startNextScene)
+        {
+            // game over screen set the next scene
+            startNextScene = false;
+            gameScene = GetScene(nextSceneName);
+            SceneManager.LoadScene(nextSceneName);
         }
     }
 
@@ -223,11 +272,12 @@ public class GameManager : MonoBehaviour
         AllowGamePause(false);
         gamePlayerReadyTime = gamePlayerReadyDelay;
         player = GameObject.FindGameObjectWithTag("Player");
-        RestorePlayerWeapons();
+        FreezePlayer(true);
+        //RestorePlayerWeapons();
         playerScoreText = GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>();
         screenMessageText = GameObject.Find("ScreenMessage").GetComponent<TextMeshProUGUI>();
-        SoundManager.Instance.MusicSource.volume = 0.75f;
-        SoundManager.Instance.PlayMusic(GameObject.Find("Main Scene").GetComponent<MainScene>().musicClip);
+        // SoundManager.Instance.MusicSource.volume = 0.75f;
+        // SoundManager.Instance.PlayMusic(GameObject.Find("Main Scene").GetComponent<MainScene>().musicClip);
     }
 
     private void MainSceneLoop()
@@ -238,7 +288,7 @@ public class GameManager : MonoBehaviour
             // initialize objects and set READY text
             if (initReadyScreen)
             {
-                FreezePlayer(true);
+                // FreezePlayer(true);
                 FreezeEnemies(true);
                 screenMessageText.alignment = TextAlignmentOptions.Center;
                 screenMessageText.alignment = TextAlignmentOptions.Top;
@@ -282,8 +332,8 @@ public class GameManager : MonoBehaviour
                 SavePlayerWeapons();
                 startNextScene = false;
                 // load the next scene - unfortunately since there is only one main scene, we will just reload the same scene but reset everything to start the next level
-                gameState = GameStates.MainScene;
-                SceneManager.LoadScene("MainScene");
+                gameScene = GameScenes.StageSelect;
+                SceneManager.LoadScene(GetScene(gameScene));
             }
         }
         else
@@ -292,7 +342,19 @@ public class GameManager : MonoBehaviour
             gameRestartTime -= Time.deltaTime;
             if (gameRestartTime < 0)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                // check player lives
+                if (playerLives > 0)
+                {
+                    // play same scene
+                    lastSceneName = SceneManager.GetActiveScene().name;
+                    SceneManager.LoadScene(lastSceneName);
+                }
+                else
+                {
+                    // out of lives, game over screen
+                    gameScene = GameScenes.GameOver;
+                    SceneManager.LoadScene(GetScene(gameScene));
+                }
             }
         }
     }
@@ -313,6 +375,11 @@ public class GameManager : MonoBehaviour
     public void AddScorePoints(int points)
     {
         playerScore += points;
+    }
+
+    public int GetScorePoints()
+    {
+        return playerScore;
     }
 
     // keep track of how many bonus balls are collected and add up the points
@@ -619,12 +686,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void FillWeaponEnergies()
+    {
+        if (playerWeapons != null)
+        {
+            for (int i = 0; i < playerWeapons.Length; i++)
+            {
+                playerWeapons[i].currentEnergy = playerWeapons[i].maxEnergy;
+            }
+        }
+    }
+
     public void GameOver()
     {
         // game over :(
         isGameOver = true;
         gameRestartTime = gameRestartDelay;
         AllowGamePause(false);
+        playerLives--;
         // stop all sounds
         SoundManager.Instance.Stop();
         SoundManager.Instance.StopMusic();
@@ -896,12 +975,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResetPointsCollected(bool resetPlayerScore = false)
+    public void ResetPlayerLives()
+    {
+        playerLives = gamePlayerStartLives;
+    }
+
+    public void ResetPointsCollected(bool resetLevelPoints = true, bool resetPlayerScore = false)
     {
         // reset points collected and should be called at the end of each level
         // pass true to clear the player score (should reset when death and no more lives to continue)
-        levelPoints = 0;
         bonusScore.Clear();
+        if (resetLevelPoints)
+        {
+            levelPoints = 0;
+        }
+
         if (resetPlayerScore)
         {
             playerScore = 0;

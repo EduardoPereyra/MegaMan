@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
         SetWeapon(currentWeapon);
 
         FillWeaponEnergies();
+        GameManager.Instance.RestorePlayerWeapons();
     }
 
     void FixedUpdate()
@@ -874,7 +875,6 @@ public class PlayerController : MonoBehaviour
     void StopDamageAnimation()
     {
         isTakingDamage = false;
-        Invincible(false);
         FreezeInput(false);
         animator.Play("Player_Hit", -1, 0f);
         StartCoroutine(FlashAfterDamage());

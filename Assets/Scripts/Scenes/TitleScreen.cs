@@ -52,7 +52,7 @@ public class TitleScreen : MonoBehaviour
             case TitleScreenStates.NextScene:
                 if (!calledNextScene)
                 {
-                    GameManager.Instance.StartNextScene();
+                    GameManager.Instance.StartNextScene(GameManager.GameScenes.IntroScene);
                     calledNextScene = true;
                 }
                 break;

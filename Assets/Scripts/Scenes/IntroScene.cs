@@ -193,7 +193,7 @@ public class IntroScene : MonoBehaviour
             case IntroSceneStates.NextScene:
                 if (!calledNextScene)
                 {
-                    GameManager.Instance.StartNextScene();
+                    GameManager.Instance.StartNextScene(GameManager.GameScenes.MainScene);
                     calledNextScene = true;
                 }
                 break;
