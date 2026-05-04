@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
 
     GameObject player;
+    CameraFollow cameraFollow;
 
     int enemyPrefabCount;
 
@@ -261,12 +262,16 @@ public class GameManager : MonoBehaviour
     {
         startNextScene = true;
         nextSceneName = lastSceneName;
+
+        if(Checkpoint.Instance != null) Checkpoint.Instance.ResetManager();
     }
 
     public void StartNextScene(GameScenes scene)
     {
         startNextScene = true;
         nextSceneName = GetScene(scene);
+
+        if(Checkpoint.Instance != null) Checkpoint.Instance.ResetManager();
     }
 
 
@@ -326,6 +331,9 @@ public class GameManager : MonoBehaviour
         AllowGamePause(false);
         gamePlayerReadyTime = gamePlayerReadyDelay;
         player = GameObject.FindGameObjectWithTag("Player");
+        cameraFollow = Camera.main.GetComponent<CameraFollow>();
+        if(Checkpoint.Instance != null) Checkpoint.Instance.UpdateScene();
+
         FreezePlayer(true);
         //RestorePlayerWeapons();
         playerScoreText = GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>();
@@ -350,6 +358,8 @@ public class GameManager : MonoBehaviour
                 screenMessageText.fontSize = 24;
                 screenMessageText.text = "\n\n\n\nREADY";
                 initReadyScreen = false;
+
+                if(cameraFollow != null) cameraFollow.player = null;
             }
             // countdown READY screen pause
             gamePlayerReadyTime -= Time.deltaTime;
@@ -725,6 +735,17 @@ public class GameManager : MonoBehaviour
         if (player)
         {
             player.GetComponent<PlayerController>().Teleport(teleport, descend);
+        }
+    }
+
+    public void TeleportFinished()
+    {
+        if (player != null && cameraFollow != null)
+        {
+            if (cameraFollow.player == null)
+            {
+                cameraFollow.player = player.transform;
+            }
         }
     }
 

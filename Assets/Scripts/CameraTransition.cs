@@ -1,6 +1,25 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+public class CameraTransitionSettings
+{
+    public string name;
+    public bool getCamPrevious;
+    public bool onlyMoveCamera;
+    public int entry;
+    public int state;
+    public int direction;
+    public int eventCallPreDelay;
+    public int eventCallPostDelay;
+    public float transitionDelay;
+    public float preTransitionDelay;
+    public float postTransitionDelay;
+    public Vector2 cameraMinPosition;
+    public Vector2 cameraMaxPosition;
+    public Vector2 playerChange;
+}
+
+
 public class CameraTransition : MonoBehaviour
 {
     public enum TransitionEntry { Enter, Exit };
@@ -287,5 +306,42 @@ public class CameraTransition : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void GetSettings(ref CameraTransitionSettings settings)
+    {
+        // copy the camera transition settings to the referenced parameter
+        settings.name = name;
+        settings.getCamPrevious = getCamPrevious;
+        settings.onlyMoveCamera = onlyMoveCamera;
+        settings.entry = (int)entry;
+        settings.state = (int)state;
+        settings.direction = (int)direction;
+        settings.eventCallPreDelay = (int)eventCallPreDelay;
+        settings.eventCallPostDelay = (int)eventCallPostDelay;
+        settings.transitionDelay = transitionDelay;
+        settings.preTransitionDelay = preTransitionDelay;
+        settings.postTransitionDelay = postTransitionDelay;
+        settings.cameraMinPosition = cameraMinPosition;
+        settings.cameraMaxPosition = cameraMaxPosition;
+        settings.playerChange = playerChange;
+    }
+
+    public void PutSettings(CameraTransitionSettings settings)
+    {
+        // restore/put settings into this camera transition
+        getCamPrevious = settings.getCamPrevious;
+        onlyMoveCamera = settings.onlyMoveCamera;
+        entry = (TransitionEntry)settings.entry;
+        state = (TransitionState)settings.state;
+        direction = (TransitionDirection)settings.direction;
+        eventCallPreDelay = (TransitionEventCall)settings.eventCallPreDelay;
+        eventCallPostDelay = (TransitionEventCall)settings.eventCallPostDelay;
+        transitionDelay = settings.transitionDelay;
+        preTransitionDelay = settings.preTransitionDelay;
+        postTransitionDelay = settings.postTransitionDelay;
+        cameraMinPosition = settings.cameraMinPosition;
+        cameraMaxPosition = settings.cameraMaxPosition;
+        playerChange = settings.playerChange;
     }
 }

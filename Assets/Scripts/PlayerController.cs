@@ -171,6 +171,7 @@ public class PlayerController : MonoBehaviour
                     break;
                 case TeleportState.Idle:
                     Teleport(false);
+                    GameManager.Instance.TeleportFinished();
                     break;
             }
 

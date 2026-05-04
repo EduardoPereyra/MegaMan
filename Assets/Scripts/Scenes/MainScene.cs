@@ -17,6 +17,7 @@ public class MainScene : MonoBehaviour
     TextMeshProUGUI screenMessageText;
 
     bool sniperJoeEnabled;
+    bool skipDrLightDialogue;
 
     [SerializeField] bool showRunTime;
 
@@ -145,6 +146,27 @@ public class MainScene : MonoBehaviour
                         player.GetComponent<PlayerController>().SimulateMoveStop();
                     }
                 }
+
+                // allow the dr. light storyline to be skipped by pressing any key
+                // start at the 5 second mark so megaman can run into position
+                // advance ahead to 24 seconds where the dialogue is removed
+                // and dr. light's hologram will flicker out
+                if (UtilityFunctions.InTime(runTime, 5.0f, 24.0f))
+                {
+                    if (Input.anyKey)
+                    {
+                        // only allow this one time
+                        if (!skipDrLightDialogue)
+                        {
+                            skipDrLightDialogue = true;
+                            // advance the runtime marker
+                            // and adjust the start time
+                            runTime = 24.0f;
+                            startTime = Time.time - runTime;
+                        }
+                    }
+                }
+
                 if (UtilityFunctions.InTime(runTime, 5.0f))
                 {
                     dialogueBox.SetActive(true);
@@ -360,7 +382,7 @@ public class MainScene : MonoBehaviour
         Vector3 wallLeftPos = wallLeft.transform.position;
         wallLeftPos.x = wallLeftXPos1;
         wallLeft.transform.position = wallLeftPos;
-        checkpointTrigger.SetActive(false);
+        // checkpointTrigger.SetActive(false);
     }
 
     private IEnumerator CoCheckpointReached()
