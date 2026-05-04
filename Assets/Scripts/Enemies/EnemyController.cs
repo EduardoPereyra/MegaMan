@@ -18,6 +18,7 @@ public class EnemyController: MonoBehaviour
 
     GameObject explodeEffect;
 
+    float animatorSpeed;
     Color enemyColor;
     Vector2 freezeVelocity;
     RigidbodyConstraints2D originalConstraints;
@@ -153,6 +154,7 @@ public class EnemyController: MonoBehaviour
         if (freeze)
         {
             originalConstraints = rb.constraints;
+            animatorSpeed = animator.speed;
             animator.speed = 0;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             freezeVelocity = rb.linearVelocity;
@@ -160,7 +162,7 @@ public class EnemyController: MonoBehaviour
         else
         {
             rb.constraints = originalConstraints;
-            animator.speed = 1;
+            animator.speed = animatorSpeed;
             rb.linearVelocity = freezeVelocity;
         }
         freezeEnemy = freeze;

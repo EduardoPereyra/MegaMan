@@ -10,6 +10,7 @@ public class ExplosionController: MonoBehaviour
     float destroyDelay = 2f;
 
     // freeze explosion on screen
+    float animatorSpeed;
     Color explosionColor;
     bool freezeExplosion;
 
@@ -69,12 +70,13 @@ public class ExplosionController: MonoBehaviour
         if (freeze)
         {
             freezeExplosion = true;
+            animatorSpeed = animator.speed;
             animator.speed = 0;
         }
         else
         {
             freezeExplosion = false;
-            animator.speed = 1;
+            animator.speed = animatorSpeed;
         }
     }
 

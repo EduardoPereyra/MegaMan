@@ -83,6 +83,7 @@
     <Compile Include="Assets/Scripts/CameraFollow.cs" />
     <Compile Include="Assets/Scripts/UtiliyFunctions.cs" />
     <Compile Include="Assets/Scripts/Enemies/SniperJoeController.cs" />
+    <Compile Include="Assets/Scripts/Enemies/AdheringSuzyController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

@@ -9,6 +9,7 @@ public class Bullet:MonoBehaviour
 
     float destroyTimer;
 
+    float animatorSpeed;
     Color bulletColor;
     bool freezeBullet = false;
     RigidbodyConstraints2D originalConstraints;
@@ -111,12 +112,13 @@ public class Bullet:MonoBehaviour
         if (freeze)
         {
             originalConstraints = rb.constraints;
+            animatorSpeed = animator.speed;
             animator.speed = 0;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             rb.linearVelocity = Vector2.zero;
         } else
         {
-            animator.speed = 1;
+            animator.speed = animatorSpeed;
             rb.constraints = originalConstraints;
             rb.linearVelocity = direction * speed;
         }
