@@ -886,10 +886,12 @@ public class PlayerController : MonoBehaviour
         // Material material = sprite.material;
         for (int i = 0; i < 10; i++)
         {
-            sprite.color = Color.clear;
+            // sprite.color = Color.clear;
+            sprite.material.SetFloat("_Transparency", 0f);
             // sprite.material = null;
             yield return new WaitForSeconds(flashDelay);
-            sprite.color = Color.white;
+            // sprite.color = Color.white;
+            sprite.material.SetFloat("_Transparency", 1f);
             // sprite.material = material;
             yield return new WaitForSeconds(flashDelay);
         }
@@ -944,18 +946,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // public void HidePlayer(bool hide)
-    // {
-    //     if (hide)
-    //     {
-    //         Debug.Log("Hide Player");
-    //         sprite.color = Color.clear;
-    //     }
-    //     else
-    //     {
-    //         sprite.color = playerColor;
-    //     }
-    // }
+    public void HidePlayer(bool hide)
+    {
+        if (hide)
+        {
+            Debug.Log("Hide Player");            
+            sprite.material.SetFloat("_Transparency", 0f);
+        }
+        else
+        {
+            sprite.material.SetFloat("_Transparency", 1f);
+        }
+    }
 
     public void Teleport(bool teleport, bool descend = true)
     {

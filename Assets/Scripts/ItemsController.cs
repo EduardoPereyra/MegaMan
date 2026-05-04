@@ -18,6 +18,7 @@ public class ItemsController: MonoBehaviour
     float destroyTimer;
 
     Color itemColor;
+    float itemAlpha;
     bool freezeItem;
     bool animateItem;
     Vector2 freezeVelocity;
@@ -305,14 +306,32 @@ public class ItemsController: MonoBehaviour
 
     public void HideItem(bool hide)
     {
+        // hide/show the bonus item on the screen
+        // get the current material alpha then set to zero (transparent)
+        // restore the material alpha to its previous value
         if (hide)
         {
-            itemColor = sprite.color;
-            sprite.color = Color.clear;
+            if (colorSwap != null)
+            {
+                itemAlpha = sprite.material.GetFloat("_Transparency");
+                sprite.material.SetFloat("_Transparency", 0f);
+            }
+            else
+            {
+                itemColor = sprite.color;
+                sprite.color = Color.clear;
+            }
         }
         else
         {
-            sprite.color = itemColor;
+            if (colorSwap != null)
+            {
+                sprite.material.SetFloat("_Transparency", itemAlpha);
+            }
+            else
+            {
+                sprite.color = itemColor;
+            }
         }
     }
 

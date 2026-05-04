@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Assets/Scripts/Enemies/KamadomaController.cs" />
     <Compile Include="Assets/Scripts/Enemies/KillerBombController.cs" />
+    <Compile Include="Assets/Scripts/Scenes/StageSelect.cs" />
     <Compile Include="Assets/Scripts/ExplosionController.cs" />
     <Compile Include="Assets/Scripts/Weapons/BulletController.cs" />
     <Compile Include="Assets/Scripts/UIEnergyBars.cs" />

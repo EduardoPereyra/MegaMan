@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
 
     GameObject player;
 
-    AssetPalette assetPalette;
     int enemyPrefabCount;
 
     bool showMessage;
@@ -58,6 +57,8 @@ public class GameManager : MonoBehaviour
     public float gamePlayerReadyDelay = 3f;
     public int gamePlayerStartLives = 3;
 
+    public AssetPalette assetPalette;
+
     PlayerController.WeaponTypes playerWeaponType;
     PlayerController.WeaponsStruct[] playerWeapons;
 
@@ -67,9 +68,42 @@ public class GameManager : MonoBehaviour
         IntroScene,
         MainScene,
         GameOver,
-        StageSelect
+        StageSelect,
+        CutManStage,
+        GutsManStage,
+        IceManStage,
+        BombManStage,
+        FireManStage,
+        ElecManStage,
+        DrWilyStage1,
+        DrWilyStage2,
+        DrWilyStage3,
+        DrWilyStage4,
+
     };
     public GameScenes gameScene = GameScenes.TitleScreen;
+
+    public enum StagesList
+    {
+        CutMan,
+        GutsMan,
+        IceMan,
+        BombMan,
+        FireMan,
+        ElecMan,
+        DrWily1,
+        DrWily2,
+        DrWily3,
+        DrWily4,
+    }
+
+    [Serializable]
+    public struct StagesStruct
+    {
+        public GameScenes GameScene;
+        public bool Completed;
+    }
+    public StagesStruct[] GameStages;
 
     public struct WorldViewCoordinates
     {
@@ -151,8 +185,18 @@ public class GameManager : MonoBehaviour
             case GameScenes.GameOver:
                 StartGameOverScreen();
                 break;
-            case GameScenes.MainScene:
-                StartMainScene();
+            case GameScenes.MainScene:            
+            case GameScenes.CutManStage:
+            case GameScenes.GutsManStage:
+            case GameScenes.IceManStage:
+            case GameScenes.BombManStage:
+            case GameScenes.FireManStage:
+            case GameScenes.ElecManStage:
+            case GameScenes.DrWilyStage1:
+            case GameScenes.DrWilyStage2:
+            case GameScenes.DrWilyStage3:
+            case GameScenes.DrWilyStage4:
+                StartPlayerLevelScene();
                 break;
         }
     }
@@ -177,7 +221,17 @@ public class GameManager : MonoBehaviour
                 GameOverScreenLoop();
                 break;
             case GameScenes.MainScene:
-                MainSceneLoop();
+            case GameScenes.CutManStage:
+            case GameScenes.GutsManStage:
+            case GameScenes.IceManStage:
+            case GameScenes.BombManStage:
+            case GameScenes.FireManStage:
+            case GameScenes.ElecManStage:
+            case GameScenes.DrWilyStage1:
+            case GameScenes.DrWilyStage2:
+            case GameScenes.DrWilyStage3:
+            case GameScenes.DrWilyStage4:
+                MainPlayerLevelLoop();
                 break;
         }
 
@@ -263,7 +317,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void StartMainScene()
+    private void StartPlayerLevelScene()
     {
         isGameOver = false;
         playerReady = true;
@@ -280,7 +334,7 @@ public class GameManager : MonoBehaviour
         // SoundManager.Instance.PlayMusic(GameObject.Find("Main Scene").GetComponent<MainScene>().musicClip);
     }
 
-    private void MainSceneLoop()
+    private void MainPlayerLevelLoop()
     {
                 // player ready screen - wait the delay time and show READY on screen
         if (playerReady)
@@ -394,6 +448,11 @@ public class GameManager : MonoBehaviour
         levelPoints = points;
     }
 
+    public void SetLevelCompleted(StagesList stage)
+    {
+        GameStages[(int)stage].Completed = true;
+    }
+
     public void FreezePlayer(bool freeze)
     {
         // freeze player and input
@@ -493,8 +552,8 @@ public class GameManager : MonoBehaviour
 
         // hide the HUD Canvas, Player, and everything else
         if (HUDCanvas != null) HUDCanvas.SetActive(false);
-        // if (player != null) player.GetComponent<PlayerController>().HidePlayer(true);
-        if (player != null) player.SetActive(false);
+        if (player != null) player.GetComponent<PlayerController>().HidePlayer(true);
+        // if (player != null) player.SetActive(false);
         HideEverything(true);
 
         // in the weapons menu
@@ -505,8 +564,8 @@ public class GameManager : MonoBehaviour
     {
         // show the HUD Canvas, Player, and everything else
         if (HUDCanvas != null) HUDCanvas.SetActive(true);
-        // if (player != null) player.GetComponent<PlayerController>().HidePlayer(false);
-        if (player != null) player.SetActive(true);
+        if (player != null) player.GetComponent<PlayerController>().HidePlayer(false);
+        // if (player != null) player.SetActive(true);
         HideEverything(false);
 
         // get the player's selected weapon (overrides existing and sets in PauseGame)
@@ -616,14 +675,16 @@ public class GameManager : MonoBehaviour
     public void HideItems(bool hide)
     {
         // find all objects with the item script and hide them
-        ItemsController[] itemScripts = FindObjectsByType<ItemsController>(FindObjectsInactive.Include);
+        // ItemsController[] itemScripts = FindObjectsByType<ItemsController>(FindObjectsInactive.Include);
+        ItemsController[] itemScripts = FindObjectsByType<ItemsController>();
         foreach (ItemsController itemScript in itemScripts)
         {
             // itemScript.HideItem(hide);
-            if (itemScript.gameObject.name != "WeaponPart")
-            {
-                itemScript.gameObject.SetActive(!hide);
-            }
+            itemScript.HideItem(hide);
+            // if (itemScript.gameObject.name != "WeaponPart")
+            // {
+            //     itemScript.gameObject.SetActive(!hide);
+            // }
         }
     }
 

@@ -47,7 +47,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gameRestartDelay: 5
   gamePlayerReadyDelay: 3
-  gameState: 0
+  gamePlayerStartLives: 3
+  assetPalette: {fileID: 0}
+  gameScene: 0
+  GameStages:
+  - GameScenes: 4
+    Completed: 0
+  - GameScenes: 5
+    Completed: 0
+  - GameScenes: 6
+    Completed: 0
+  - GameScenes: 7
+    Completed: 0
+  - GameScenes: 8
+    Completed: 0
+  - GameScenes: 9
+    Completed: 0
+  - GameScenes: 10
+    Completed: 0
+  - GameScenes: 11
+    Completed: 0
+  - GameScenes: 12
+    Completed: 0
+  - GameScenes: 13
+    Completed: 0
 --- !u!114 &8395335135549125831
 MonoBehaviour:
   m_ObjectHideFlags: 0
