@@ -60,8 +60,8 @@
     <Compile Include="Assets/Scripts/Checkpoint.cs" />
     <Compile Include="Assets/Scripts/Menus/WeaponsMenu.cs" />
     <Compile Include="Assets/Scripts/PlayerController.cs" />
+    <Compile Include="Assets/Scripts/CameraViewport.cs" />
     <Compile Include="Assets/Scripts/Enemies/EnemyController.cs" />
-    <Compile Include="Assets/Scripts/PlayerDeathController.cs" />
     <Compile Include="Assets/Scripts/AssetPalette.cs" />
     <Compile Include="Assets/Scripts/CameraTransition.cs" />
     <Compile Include="Assets/Scripts/Scenes/TitleScreen.cs" />
@@ -72,17 +72,21 @@
     <Compile Include="Assets/Scripts/Enemies/BigEyeController.cs" />
     <Compile Include="Assets/Scripts/ColorSwap.cs" />
     <Compile Include="Assets/Scripts/ItemsController.cs" />
+    <Compile Include="Assets/Scripts/ExplodeEffect3.cs" />
     <Compile Include="Assets/Scripts/Enemies/Bosses/BombManController.cs" />
     <Compile Include="Assets/Scripts/Enemies/MetallController.cs" />
     <Compile Include="Assets/Scripts/SoundManager.cs" />
     <Compile Include="Assets/Scripts/Enemies/BombombController.cs" />
     <Compile Include="Assets/Scripts/InstantDeathScript.cs" />
     <Compile Include="Assets/Scripts/Enemies/PepeController.cs" />
+    <Compile Include="Assets/Scripts/LadderScript.cs" />
     <Compile Include="Assets/Scripts/Weapons/MagnetBeamScript.cs" />
+    <Compile Include="Assets/Scripts/Scenes/Stages/BombManStage.cs" />
     <Compile Include="Assets/Scripts/Enemies/MambuController.cs" />
     <Compile Include="Assets/Scripts/GameManager.cs" />
     <Compile Include="Assets/Scripts/CameraFollow.cs" />
     <Compile Include="Assets/Scripts/UtiliyFunctions.cs" />
+    <Compile Include="Assets/Scripts/Enemies/GabyoallController.cs" />
     <Compile Include="Assets/Scripts/Enemies/SniperJoeController.cs" />
     <Compile Include="Assets/Scripts/Enemies/AdheringSuzyController.cs" />
   </ItemGroup>

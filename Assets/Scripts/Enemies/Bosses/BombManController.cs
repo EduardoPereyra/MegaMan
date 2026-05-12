@@ -31,12 +31,11 @@ public class BombManController : MonoBehaviour
     // i.e. upward, forward, backward
     string jumpAnimation;
 
-    // distance between the player and bombman
-    float playerDistance;
-
     // handles to the bomb and player objects
     GameObject bomb;
     GameObject player;
+
+    Vector3 playerPosition;
 
     // flag to enable enemy ai logic
     [SerializeField] bool enableAI;
@@ -47,6 +46,28 @@ public class BombManController : MonoBehaviour
     [SerializeField] Transform handPos;
     [SerializeField] GameObject bombPrefab;
     [SerializeField] SpriteRenderer damageSprite;
+
+    // distance from player to attack (throw bombs)
+    [SerializeField] float attackDistance = 1f;
+
+    // bomb launch height
+    [SerializeField] float bombHeight = 1f;
+
+    // target offset for where the bomb will land
+
+    // we don't want the bomb to land exactly in the player's position
+    [SerializeField] float targetOffset = 0.25f;
+
+    // posing bomb toss velocity
+    [SerializeField] Vector2 tossVelocity = new Vector2(0, 3f);
+
+    // we use some fixed jump velocities
+    [SerializeField]
+    Vector2[] jumpVelocities = {
+        new Vector2(1f, 4f),
+        new Vector2(2f, 4.5f),
+        new Vector2(3f, 5f)
+    };
 
     public enum MoveDirections { Left, Right };
     [SerializeField] MoveDirections moveDirection = MoveDirections.Left;
@@ -90,7 +111,7 @@ public class BombManController : MonoBehaviour
         isGrounded = false;
         Color raycastColor;
         RaycastHit2D raycastHit;
-        float raycastDistance = 0.05f;
+        float raycastDistance = 0.025f;
         int layerMask = 1 << LayerMask.NameToLayer("Ground");
         // ground check
         Vector3 box_origin = box2d.bounds.center;
@@ -130,8 +151,10 @@ public class BombManController : MonoBehaviour
             return;
         }
 
+        if (player != null) playerPosition = player.transform.position;
+
         // change facing direction depending where player is
-        if (player.transform.position.x < transform.position.x)
+        if (playerPosition.x < transform.position.x)
         {
             if (isFacingRight)
             {
@@ -149,14 +172,14 @@ public class BombManController : MonoBehaviour
         }
 
         // distance between bombman and the player
-        playerDistance = Vector2.Distance(player.transform.position, transform.position);
+        float playerDistance = Vector2.Distance(playerPosition, transform.position);
 
         // do bombman ai logic if it's enabled
         if (enableAI)
         {
             if (isGrounded)
             {
-                if (playerDistance >= 1f)
+                if (playerDistance >= attackDistance)
                 {
                     // throw bombs when distant from player
                     if (bombThrowCount > 0)
@@ -189,17 +212,15 @@ public class BombManController : MonoBehaviour
 
         // just to see our cool bomb toss and catch pose
         // it'll be removed when we do the boss fight animation intro
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Pose();
-        }
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     Pose();
+        // }
     }
 
     void Launch()
     {
-        // we don't want the bomb to land exactly in the player's position
-        float offset = 0.25f;
-        if (player.transform.position.x > transform.position.x) offset *= -1f;
+        if (player.transform.position.x > transform.position.x) targetOffset *= -1f;
         // set up the bomb properties and launch it
         bomb.GetComponent<BombScript>().SetContactDamageValue(4);
         bomb.GetComponent<BombScript>().SetExplosionDamageValue(4);
@@ -207,8 +228,8 @@ public class BombManController : MonoBehaviour
         bomb.GetComponent<BombScript>().SetCollideWithTags("Player");
         bomb.GetComponent<BombScript>().SetSourcePosition(handPos.position);
         bomb.GetComponent<BombScript>().SetTargetPosition(player.transform.position);
-        bomb.GetComponent<BombScript>().SetTargetOffset(offset);
-        bomb.GetComponent<BombScript>().SetHeight(1f);
+        bomb.GetComponent<BombScript>().SetTargetOffset(targetOffset);
+        bomb.GetComponent<BombScript>().SetHeight(bombHeight);
         bomb.GetComponent<BombScript>().Bounces(false);
         bomb.GetComponent<BombScript>().Launch();
         /* 
@@ -241,7 +262,7 @@ public class BombManController : MonoBehaviour
         bomb.GetComponent<CircleCollider2D>().isTrigger = false;
         bomb.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         // give the bomb some vertical push to leave his hand
-        bomb.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, 3f);
+        bomb.GetComponent<Rigidbody2D>().linearVelocity = tossVelocity;
         // detach the bomb from the hand position
         bomb.transform.parent = null;
         // start the coroutine to catch the bomb
@@ -363,12 +384,6 @@ public class BombManController : MonoBehaviour
         // only jump if we are allowed to
         if (canJump)
         {
-            // we use some fixed jump velocities
-            Vector2[] jumpVelocities = {
-                new Vector2(1f, 4f),
-                new Vector2(2f, 4.5f),
-                new Vector2(3f, 5f)
-            };
             // randomly pick a jump velocity
             int jumpIndex = Random.Range(0, jumpVelocities.Length);
             Vector2 jumpVelocity = jumpVelocities[jumpIndex];
@@ -417,6 +432,38 @@ public class BombManController : MonoBehaviour
         enableAI = enable;
     }
 
+    public void SetAttackDistance(float distance)
+    {
+        // distance from player to start throwing bombs
+        // closer than this distance cause bombman to jump away
+        attackDistance = distance;
+    }
+
+    public void SetBombHeight(float height)
+    {
+        // set the bomb height when thrown
+        bombHeight = height;
+    }
+
+    public void SetTargetOffset(float offset)
+    {
+        // set bomb target offset
+        targetOffset = offset;
+    }
+
+    public void SetTossVelocity(Vector2 velocity)
+    {
+        // set velocity for posing bomb toss
+        tossVelocity = velocity;
+    }
+
+    public void SetJumpVectors(Vector2 v0, Vector2 v1, Vector2 v2)
+    {
+        // set jump velocity vectors
+        jumpVelocities[0] = v0;
+        jumpVelocities[1] = v1;
+        jumpVelocities[2] = v2;
+    }
     public void TakeDamage()
     {
         // event is called from enemy controller

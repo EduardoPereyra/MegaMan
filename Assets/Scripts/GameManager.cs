@@ -5,7 +5,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +21,9 @@ public class GameManager : MonoBehaviour
 
     GameObject player;
     CameraFollow cameraFollow;
+
+    GameObject[] enemyPrefabs;
+    GameObject[] itemPrefabs;
 
     int enemyPrefabCount;
 
@@ -50,6 +52,13 @@ public class GameManager : MonoBehaviour
     int playerLives;
     int playerScore;
     List<int> bonusScore = new List<int>();
+
+    public enum ResolutionScales
+    {
+        Scale16x9,
+        Scale4x3
+    }
+    public ResolutionScales resolutionScale = ResolutionScales.Scale16x9;
 
     float gameRestartTime;
     float gamePlayerReadyTime;
@@ -247,6 +256,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetResolutionScale(ResolutionScales scale)
+    {
+        resolutionScale = scale;
+    }
+
     public string GetScene(GameScenes scene)
     {
         return scene.ToString();
@@ -351,7 +365,8 @@ public class GameManager : MonoBehaviour
             if (initReadyScreen)
             {
                 // FreezePlayer(true);
-                FreezeEnemies(true);
+                // FreezeEnemies(true);
+                FreezeEverything(true);
                 screenMessageText.alignment = TextAlignmentOptions.Center;
                 screenMessageText.alignment = TextAlignmentOptions.Top;
                 screenMessageText.fontStyle = FontStyles.UpperCase;
@@ -366,7 +381,8 @@ public class GameManager : MonoBehaviour
             if (gamePlayerReadyTime < 0)
             {
                 FreezePlayer(false);
-                FreezeEnemies(false);
+                // FreezeEnemies(false);
+                FreezeEverything(false);
                 TeleportPlayer(true);
                 screenMessageText.text = "";
                 playerReady = false;
@@ -523,6 +539,15 @@ public class GameManager : MonoBehaviour
     {
         // can only show the weapons menu if pausing is allowed
         if (!canPauseGame) return;
+
+        if (ArePlayerWeaponsInScene())
+        {
+            if (isGamePaused)
+            {
+                PauseGame(true);
+            }
+            return;
+        }
 
         if (!inWeaponsMenu)
         {
@@ -844,7 +869,7 @@ public class GameManager : MonoBehaviour
             messageTimer -= Time.deltaTime;
             if (messageTimer < 0)
             {
-                screenMessageText.text = "";
+                if(screenMessageText != null) screenMessageText.text = "";
                 firstMessage = false;
                 showMessage = false;
             }
@@ -865,6 +890,18 @@ public class GameManager : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
+
+            // use prefabs per resolutions scale setting
+            switch (resolutionScale)
+            {
+                case ResolutionScales.Scale16x9:
+                    enemyPrefabs = assetPalette.enemyPrefabs_16x9;
+                    break;
+                case ResolutionScales.Scale4x3:
+                    enemyPrefabs = assetPalette.enemyPrefabs_4x3;
+                    break;
+            }
+
             // 5 enemies at most on screen at one time
             int randomEnemyCount = UnityEngine.Random.Range(1, 6);
             GameObject[] randomEnemies = new GameObject[randomEnemyCount];
@@ -872,8 +909,8 @@ public class GameManager : MonoBehaviour
             {
                 // pick a random enemy and position it
                 int enemyIndex = UnityEngine.Random.Range(0, enemyPrefabCount);
-                randomEnemies[i] = Instantiate(assetPalette.enemyPrefabs[enemyIndex]);
-                randomEnemies[i].name = assetPalette.enemyPrefabs[enemyIndex].name;
+                randomEnemies[i] = Instantiate(enemyPrefabs[enemyIndex]);
+                randomEnemies[i].name = enemyPrefabs[enemyIndex].name;
                 randomEnemies[i].transform.position = new Vector3(worldViewCoords.Right + UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(-1f, 1f), 0);
                 // for enemies with colors, randomize them
                 switch (randomEnemies[i].name)
@@ -928,6 +965,13 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool ArePlayerWeaponsInScene()
+    {
+        return GameObject.Find("Bullet(Player)") != null ||
+            GameObject.Find("Bomb(Player)") != null ||
+            GameObject.Find("PlatformBeam") != null;
     }
 
     private void DestroyStrayBullets()
@@ -1171,6 +1215,17 @@ public class GameManager : MonoBehaviour
             itemType = PickRandomBonusItem();
         }
 
+        switch (resolutionScale)
+        {
+            case ResolutionScales.Scale16x9:
+                itemPrefabs = assetPalette.itemPrefabs_16x9;
+                break;
+            case ResolutionScales.Scale4x3:
+                itemPrefabs = assetPalette.itemPrefabs_4x3;
+                break;
+        }
+
+
         // get bonus item prefab from type
         switch (itemType)
         {
@@ -1178,31 +1233,31 @@ public class GameManager : MonoBehaviour
                 bonusItem = null;
                 break;
             case ItemsController.ItemType.BonusBall:
-                bonusItem = assetPalette.itemsPrefabs[(int)AssetPalette.ItemList.BonusBall];
+                bonusItem = itemPrefabs[(int)AssetPalette.ItemList.BonusBall];
                 break;
             case ItemsController.ItemType.ExtraLife:
-                bonusItem = assetPalette.itemsPrefabs[(int)AssetPalette.ItemList.ExtraLife];
+                bonusItem = itemPrefabs[(int)AssetPalette.ItemList.ExtraLife];
                 break;
             case ItemsController.ItemType.LifeEnergyBig:
-                bonusItem = assetPalette.itemsPrefabs[(int)AssetPalette.ItemList.LifeEnergyBig];
+                bonusItem = itemPrefabs[(int)AssetPalette.ItemList.LifeEnergyBig];
                 break;
             case ItemsController.ItemType.LifeEnergySmall:
-                bonusItem = assetPalette.itemsPrefabs[(int)AssetPalette.ItemList.LifeEnergySmall];
+                bonusItem = itemPrefabs[(int)AssetPalette.ItemList.LifeEnergySmall];
                 break;
             case ItemsController.ItemType.WeaponEnergyBig:
-                bonusItem = assetPalette.itemsPrefabs[(int)AssetPalette.ItemList.WeaponEnergyBig];
+                bonusItem = itemPrefabs[(int)AssetPalette.ItemList.WeaponEnergyBig];
                 break;
             case ItemsController.ItemType.WeaponEnergySmall:
-                bonusItem = assetPalette.itemsPrefabs[(int)AssetPalette.ItemList.WeaponEnergySmall];
+                bonusItem = itemPrefabs[(int)AssetPalette.ItemList.WeaponEnergySmall];
                 break;
             case ItemsController.ItemType.MagnetBeam:
-                bonusItem = assetPalette.itemsPrefabs[(int)AssetPalette.ItemList.MagnetBeam];
+                bonusItem = itemPrefabs[(int)AssetPalette.ItemList.MagnetBeam];
                 break;
             case ItemsController.ItemType.WeaponPart:
-                bonusItem = assetPalette.itemsPrefabs[(int)AssetPalette.ItemList.WeaponPart];
+                bonusItem = itemPrefabs[(int)AssetPalette.ItemList.WeaponPart];
                 break;
             case ItemsController.ItemType.Yashichi:
-                bonusItem = assetPalette.itemsPrefabs[(int)AssetPalette.ItemList.Yashichi];
+                bonusItem = itemPrefabs[(int)AssetPalette.ItemList.Yashichi];
                 break;
         }
 

@@ -149,7 +149,7 @@ public class Bullet:MonoBehaviour
                         EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
                         if (enemy)
                         {
-                            enemy.TakeDamage(damage);
+                            enemy.TakeDamage(damage, "Bullet");
                         }
                         break;
                     case "Player":

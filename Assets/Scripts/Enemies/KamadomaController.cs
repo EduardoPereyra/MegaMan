@@ -7,18 +7,19 @@ public class KamadomaController : MonoBehaviour
     Rigidbody2D rb2d;
     EnemyController enemyController;
 
+    GameObject player;
+    Vector3 playerPosition;
+
     bool isGrounded;
 
     float jumpTimer;
-    float jumpDelay = 0.5f;
+    public float jumpDelay = 0.5f;
 
     Vector2 jumpVector;
-    Vector2[] jumpVectors = {
+    public Vector2[] jumpVectors = {
         new Vector2(1f, 4f),
         new Vector2(2.5f, 3f)
     };
-
-    public float playerRange = 4f;
 
     // flag to enable enemy ai logic
     [SerializeField] bool enableAI;
@@ -39,6 +40,8 @@ public class KamadomaController : MonoBehaviour
 
         // set kamadoma color of choice
         SetColor(kamadomaColor);
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void FixedUpdate()
@@ -46,7 +49,7 @@ public class KamadomaController : MonoBehaviour
         isGrounded = false;
         Color raycastColor;
         RaycastHit2D raycastHit;
-        float raycastDistance = 0.05f;
+        float raycastDistance = 0.025f;
         int layerMask = 1 << LayerMask.NameToLayer("Ground");
         // ground check
         Vector3 box_origin = box2d.bounds.center;
@@ -76,19 +79,11 @@ public class KamadomaController : MonoBehaviour
             return;
         }
 
-        // get player object - used for jumping direction
-        float distanceToPlayer = playerRange + 1; 
-
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player)
-        {
-            distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        }
-
-
         // do kamadoma ai logic if it's enabled
-        if (enableAI && distanceToPlayer <= playerRange)
+        if (enableAI)
         {
+            if (player != null) playerPosition = player.transform.position;
+
             if (isGrounded)
             {
                 animator.Play("Kamadoma_Grounded");
@@ -98,7 +93,7 @@ public class KamadomaController : MonoBehaviour
                 {
                     // randomly choose between the two jump vectors
                     jumpVector = jumpVectors[Random.Range(0, 2)];
-                    if (player.transform.position.x <= transform.position.x)
+                    if (playerPosition.x <= transform.position.x)
                     {
                         // player is to the left of the enemy
                         jumpVector.x *= -1;

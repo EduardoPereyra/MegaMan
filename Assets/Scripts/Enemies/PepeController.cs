@@ -25,6 +25,7 @@ public class PepeController: MonoBehaviour
         Right
     }
     [SerializeField] MoveDirection moveDirection = MoveDirection.Left;
+    [SerializeField] bool enableAI;
 
     void Start() {
         enemyController = GetComponent<EnemyController>();
@@ -47,25 +48,28 @@ public class PepeController: MonoBehaviour
             return;
         }
 
-        animator.Play("Pepe_Flying");
+        if (enableAI)
+        {
+            animator.Play("Pepe_Flying");
 
-        if (!isFollowingPath)
-        {
-            float distance = isFacingRight ? bezierDistance : -bezierDistance;
-            pathStartPoint = rb.transform.position;
-            pathEndPoint = new Vector3(pathStartPoint.x + distance, pathStartPoint.y, pathStartPoint.z);
-            pathMidPoint = pathStartPoint + ((pathEndPoint - pathStartPoint) / 2) + bezierHeight;
-            pathTimeStart = Time.time;
-            isFollowingPath = true;
-        }
-        else
-        {
-            float percentage = (Time.time - pathTimeStart) / bezierTime;
-            rb.transform.position = UtilityFunctions.CalculateQuadraticBezierPoint(pathStartPoint, pathMidPoint, pathEndPoint, percentage);
-            if (percentage >= 1f)
+            if (!isFollowingPath)
             {
-                bezierHeight *= -1;
-                isFollowingPath = false;
+                float distance = isFacingRight ? bezierDistance : -bezierDistance;
+                pathStartPoint = rb.transform.position;
+                pathEndPoint = new Vector3(pathStartPoint.x + distance, pathStartPoint.y, pathStartPoint.z);
+                pathMidPoint = pathStartPoint + ((pathEndPoint - pathStartPoint) / 2) + bezierHeight;
+                pathTimeStart = Time.time;
+                isFollowingPath = true;
+            }
+            else
+            {
+                float percentage = (Time.time - pathTimeStart) / bezierTime;
+                rb.transform.position = UtilityFunctions.CalculateQuadraticBezierPoint(pathStartPoint, pathMidPoint, pathEndPoint, percentage);
+                if (percentage >= 1f)
+                {
+                    bezierHeight *= -1;
+                    isFollowingPath = false;
+                }
             }
         }
     }
@@ -78,6 +82,12 @@ public class PepeController: MonoBehaviour
             isFacingRight = !isFacingRight;
             enemyController.Flip();
         }
+    }
+
+    public void EnableAI(bool enable)
+    {
+        // enable enemy ai logic
+        enableAI = enable;
     }
 
     public void ResetFollowingPath()

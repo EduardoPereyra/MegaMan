@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 9018690852454535764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0.13, z: 0}
+  m_LocalPosition: {x: 0.12, y: 0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -184,7 +184,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.009863585, y: 0.12}
+  m_Offset: {x: 0, y: 0.105}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -194,7 +194,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.16027284, y: 0.2}
+  m_Size: {x: 0.11, y: 0.19}
   m_EdgeRadius: 0
 --- !u!50 &8651312477957225215
 Rigidbody2D:
@@ -235,38 +235,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18706a2224ade48c0b6741924f1bfae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  currentWeapon: 0
+  currentWeapon: 7
   weaponsData:
   - weaponType: 0
-    enabled: 1
+    enabled: 0
     currentEnergy: 0
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 1
-    weaponClip: {fileID: 8300000, guid: 50e5810b5a4ae498787fb498979365bf, type: 3}
-    weaponPrefab: {fileID: 1289239060136040960, guid: 0518b3d52922e47a39486b90ce932bde, type: 3}
+    weaponVelocity: {x: 2, y: 1.5}
+    weaponClip: {fileID: 0}
+    weaponPrefab: {fileID: 3440074353480861832, guid: 5b761752630104d318568cd5aee02282, type: 3}
   - weaponType: 1
     enabled: 0
     currentEnergy: 0
     maxEnergy: 28
     energyCost: 2
     weaponDamage: 0
-    weaponClip: {fileID: 8300000, guid: da49a4956e1884a998e819eeae16e308, type: 3}
-    weaponPrefab: {fileID: 6368214049039471112, guid: 7c3ebd7de87b14ab8badc3d2544638fe, type: 3}
+    weaponVelocity: {x: 0, y: 0}
+    weaponClip: {fileID: 0}
+    weaponPrefab: {fileID: 0}
   - weaponType: 2
     enabled: 0
     currentEnergy: 0
     maxEnergy: 28
     energyCost: 2
     weaponDamage: 4
+    weaponVelocity: {x: 0, y: 0}
     weaponClip: {fileID: 0}
-    weaponPrefab: {fileID: 3440074353480861832, guid: 5b761752630104d318568cd5aee02282, type: 3}
+    weaponPrefab: {fileID: 0}
   - weaponType: 3
     enabled: 0
     currentEnergy: 0
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
+    weaponVelocity: {x: 0, y: 0}
     weaponClip: {fileID: 0}
     weaponPrefab: {fileID: 0}
   - weaponType: 4
@@ -275,6 +279,7 @@ MonoBehaviour:
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
+    weaponVelocity: {x: 0, y: 0}
     weaponClip: {fileID: 0}
     weaponPrefab: {fileID: 0}
   - weaponType: 5
@@ -283,6 +288,7 @@ MonoBehaviour:
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
+    weaponVelocity: {x: 0, y: 0}
     weaponClip: {fileID: 0}
     weaponPrefab: {fileID: 0}
   - weaponType: 6
@@ -291,32 +297,34 @@ MonoBehaviour:
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
-    weaponClip: {fileID: 0}
-    weaponPrefab: {fileID: 0}
+    weaponVelocity: {x: 0, y: 0}
+    weaponClip: {fileID: 8300000, guid: da49a4956e1884a998e819eeae16e308, type: 3}
+    weaponPrefab: {fileID: 6368214049039471112, guid: 7c3ebd7de87b14ab8badc3d2544638fe, type: 3}
   - weaponType: 7
-    enabled: 0
+    enabled: 1
     currentEnergy: 0
     maxEnergy: 28
     energyCost: 0
     weaponDamage: 0
-    weaponClip: {fileID: 0}
-    weaponPrefab: {fileID: 0}
+    weaponVelocity: {x: 5, y: 0}
+    weaponClip: {fileID: 8300000, guid: 50e5810b5a4ae498787fb498979365bf, type: 3}
+    weaponPrefab: {fileID: 1289239060136040960, guid: 0518b3d52922e47a39486b90ce932bde, type: 3}
   currentHealth: 0
   maxHealth: 28
+  ladder: {fileID: 0}
   moveSpeed: 1.5
   jumpForce: 3.7
-  shootDamage: 1
-  shootSpeed: 5
+  climbSpeed: 0.525
   teleportSound: {fileID: 8300000, guid: 823383b5b2e314ee39c5dfd3f01cae15, type: 3}
   jumpLandedSound: {fileID: 8300000, guid: f1a03ff16ebd345ad8457e06f3b8f45b, type: 3}
-  shootSound: {fileID: 8300000, guid: 50e5810b5a4ae498787fb498979365bf, type: 3}
   hitSound: {fileID: 8300000, guid: 7bba765a7affd4b56a36243523bad0b6, type: 3}
   energyFillSound: {fileID: 8300000, guid: ad267ffa379f84865a7ee8016b56de0e, type: 3}
   deathSound: {fileID: 8300000, guid: 0b76802ca62c444b3858734d6402d505, type: 3}
   bulletShootPos: {fileID: 1516658697690703886}
-  bulletPrefab: {fileID: 1289239060136040960, guid: 0518b3d52922e47a39486b90ce932bde, type: 3}
   explosionPrefab: {fileID: 4363664761137772310, guid: fd35b559db3bf42d58e503f2a95a1107, type: 3}
+  climbSpriteHeight: 0.36
   teleportSpeed: -10
+  teleportLandingY: 0
   teleportState: 0
 --- !u!114 &8695277953009421842
 MonoBehaviour:
@@ -332,6 +340,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ColorSwap
   primaryColorRef: _PrimaryColor
   secondaryColorRef: _SecondaryColor
+  backgroundColorRef: _BackgroundColor
   newPrimaryColorRef: _NewPrimaryColor
   newSecondaryColorRef: _NewSecondaryColor
+  newBackgroundColorRef: _NewBackgroundColor
   mainTexRef: _MainTex

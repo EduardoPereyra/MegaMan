@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SniperJoeController : MonoBehaviour
@@ -7,11 +8,16 @@ public class SniperJoeController : MonoBehaviour
     Rigidbody2D rb2d;
     EnemyController enemyController;
 
+    GameObject player;
+    Vector3 playerPosition;
+
     bool isFacingRight;
     bool isGrounded;
     bool isBlocking;
     bool isJumping;
     bool isShooting;
+
+    bool jumpStarted;
 
     // flag to allow the next action
     bool doAction;
@@ -50,7 +56,10 @@ public class SniperJoeController : MonoBehaviour
         isFacingRight = false;
         enemyController.Flip();
 
-        Block();
+        doAction = true;
+        actionTimer = actionDelay;
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void FixedUpdate()
@@ -58,7 +67,7 @@ public class SniperJoeController : MonoBehaviour
         isGrounded = false;
         Color raycastColor;
         RaycastHit2D raycastHit;
-        float raycastDistance = 0.05f;
+        float raycastDistance = 0.025f;
         int layerMask = 1 << LayerMask.NameToLayer("Ground");
         // ground check
         Vector3 box_origin = box2d.bounds.center;
@@ -67,11 +76,11 @@ public class SniperJoeController : MonoBehaviour
         box_size.y = box2d.bounds.size.y / 4f;
         raycastHit = Physics2D.BoxCast(box_origin, box_size, 0f, Vector2.down, raycastDistance, layerMask);
         // sniper joe box colliding with ground layer
-        if (raycastHit.collider != null)
+        if (raycastHit.collider != null && !jumpStarted)
         {
             isGrounded = true;
             // just landed from jumping/falling
-            if (isJumping && rb2d.linearVelocity.y <= 0)
+            if (isJumping)
             {
                 isJumping = false;
                 doAction = true;
@@ -96,16 +105,16 @@ public class SniperJoeController : MonoBehaviour
             return;
         }
 
-        // get player object - used for jumping direction
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
         // do sniper joe's ai logic if it's enabled
         if (enableAI)
         {
-            if (isGrounded && !isJumping)
+
+            if (player != null) playerPosition = player.transform.position;
+
+            if (isGrounded)
             {
                 // player position check
-                if (player.transform.position.x <= transform.position.x)
+                if (playerPosition.x <= transform.position.x)
                 {
                     // player on the left, face that direction
                     if (isFacingRight)
@@ -126,6 +135,7 @@ public class SniperJoeController : MonoBehaviour
                             ChooseNextAction();
                         }
                     }
+                    rb2d.linearVelocity = new Vector2(0, rb2d.linearVelocity.y);
                 }
                 else
                 {
@@ -144,6 +154,7 @@ public class SniperJoeController : MonoBehaviour
             else
             {
                 // while not grounded
+                isJumping = true;
                 animator.Play("SniperJoe_Jump");
                 rb2d.linearVelocity = new Vector2(jumpVector.x, rb2d.linearVelocity.y);
             }
@@ -216,6 +227,14 @@ public class SniperJoeController : MonoBehaviour
         isJumping = true;
         doAction = false;
         rb2d.linearVelocity = jumpVector;
+        StartCoroutine(JumpCo());
+    }
+
+    private IEnumerator JumpCo()
+    {
+        jumpStarted = true;
+        yield return new WaitForSeconds(Time.fixedDeltaTime);
+        jumpStarted = false;
     }
 
     // shoot at the player

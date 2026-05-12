@@ -16,6 +16,9 @@ public class ExplosionController: MonoBehaviour
 
     string[] collideWithTags = {"Player"};
 
+    // override name from weapon creating explosion
+    string damageOverrideName = null;
+
     void Awake()
     {
         // get components
@@ -63,6 +66,12 @@ public class ExplosionController: MonoBehaviour
         collideWithTags = other;
     }
 
+    public void SetDamageOverrideName(string damageOverrideName)
+    {
+        this.damageOverrideName = damageOverrideName;
+    }
+
+
     public void FreezeExplosion(bool freeze)
     {
         // freeze/unfreeze the explosions on screen
@@ -107,7 +116,7 @@ public class ExplosionController: MonoBehaviour
                             EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
                             if (enemy)
                             {
-                                enemy.TakeDamage(damage);
+                                enemy.TakeDamage(damage, damageOverrideName);
                             }
                             break;
                         case "Player":

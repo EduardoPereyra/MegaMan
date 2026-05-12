@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.08, y: 0.08}
+  m_Size: {x: 0.08, y: 0.06}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -130,7 +130,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.035
+  m_Radius: 0.025
 --- !u!50 &6411143600878547413
 Rigidbody2D:
   serializedVersion: 5
@@ -179,8 +179,8 @@ MonoBehaviour:
   bulletType: 0
   bulletData:
   - sprite: {fileID: -2346302928887187388, guid: 8387b092cab6a499fa795f3dca7fa799, type: 3}
-    radius: 0.035
-    scale: {x: 1.5, y: 1.2, z: 0}
+    radius: 0.025
+    scale: {x: 1.5, y: 1.5, z: 0}
   - sprite: {fileID: -5401397452797526471, guid: 7a45b3017c5804cf59599b9febb8f41d, type: 3}
     radius: 0.025
     scale: {x: 1.5, y: 1.5, z: 0}

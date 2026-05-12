@@ -184,6 +184,7 @@ public class BombScript : MonoBehaviour
         GameObject explodeEffect = Instantiate(explodeEffectPrefab);
         explodeEffect.name = explodeEffectPrefab.name;
         explodeEffect.transform.position = sprite.bounds.center;
+        explodeEffect.GetComponent<ExplosionController>().SetDamageOverrideName("BombExplosion");
         explodeEffect.GetComponent<ExplosionController>().SetCollideWithTags(collideWithTags);
         explodeEffect.GetComponent<ExplosionController>().SetDamage(explosionDamage);
         explodeEffect.GetComponent<ExplosionController>().SetDestroyDelay(2f);
@@ -266,7 +267,7 @@ public class BombScript : MonoBehaviour
                         EnemyController enemy = other.gameObject.GetComponent<EnemyController>();
                         if (enemy)
                         {
-                            enemy.TakeDamage(contactDamage);
+                            enemy.TakeDamage(contactDamage, "BombContact");
                         }
                         break;
                     case "Player":

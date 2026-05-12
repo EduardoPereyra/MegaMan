@@ -12,6 +12,8 @@ public class MambuController: MonoBehaviour
     float closedTimer;
     float shootTimer;
 
+    [SerializeField] bool enableAI;
+
     public float moveSpeed = 1f;
     public float openDuration = 1f;
     public float closedDuration = 1f;
@@ -53,38 +55,42 @@ public class MambuController: MonoBehaviour
             return;
         }
 
-        switch (currentState)
+        if (enableAI)
         {
-            case MambuState.Closed:
-                animator.Play("Mambu_Closed");
-                rb.linearVelocity = new Vector2((isFacingRight ? 1 : -1) * moveSpeed, rb.linearVelocity.y);
-                closedTimer -= Time.deltaTime;
-                if (closedTimer < 0f)                
-                {
-                    currentState = MambuState.Open;
-                    openTimer = openDuration;
-                    shootTimer = shootDuration;
-                }
-                break;
-            case MambuState.Open:
-                animator.Play("Mambu_Open");
-                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-                shootTimer -= Time.deltaTime;
-                if (shootTimer < 0f && !isShooting)
-                {
-                    isShooting = true;
-                    Shoot();
-                }
-                openTimer -= Time.deltaTime;
-                if (openTimer < 0f)
-                {
-                    currentState = MambuState.Closed;
-                    closedTimer = closedDuration;
-                    isShooting = false;
-                }
-                break;
+            switch (currentState)
+            {
+                case MambuState.Closed:
+                    animator.Play("Mambu_Closed");
+                    rb.linearVelocity = new Vector2((isFacingRight ? 1 : -1) * moveSpeed, rb.linearVelocity.y);
+                    closedTimer -= Time.deltaTime;
+                    if (closedTimer < 0f)                
+                    {
+                        currentState = MambuState.Open;
+                        openTimer = openDuration;
+                        shootTimer = shootDuration;
+                    }
+                    break;
+                case MambuState.Open:
+                    animator.Play("Mambu_Open");
+                    rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+                    shootTimer -= Time.deltaTime;
+                    if (shootTimer < 0f && !isShooting)
+                    {
+                        isShooting = true;
+                        Shoot();
+                    }
+                    openTimer -= Time.deltaTime;
+                    if (openTimer < 0f)
+                    {
+                        currentState = MambuState.Closed;
+                        closedTimer = closedDuration;
+                        isShooting = false;
+                    }
+                    break;
 
+            }
         }
+
     }
 
     public void SetMoveDirection(MoveDirection direction)
@@ -96,6 +102,13 @@ public class MambuController: MonoBehaviour
             isFacingRight = !isFacingRight;
         }
     }
+
+    public void EnableAI(bool enable)
+    {
+        // enable enemy ai logic
+        enableAI = enable;
+    }
+
 
     private void Shoot()
     {

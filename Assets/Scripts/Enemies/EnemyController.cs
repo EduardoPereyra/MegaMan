@@ -58,6 +58,16 @@ public class EnemyController: MonoBehaviour
     [Header("Enemy Events")]
     public UnityEvent TakeDamageEvent;
     public UnityEvent DefeatEvent;
+
+    [System.Serializable]
+    public struct DamageOverridesStruct
+    {
+        public bool ignoreInvincibility;
+        public int damageAmount;
+        public string overrideName;
+        public UnityEvent overrideEvent;
+    }
+    public DamageOverridesStruct[] damageOverrides;
     
 
     void Start()
@@ -80,32 +90,92 @@ public class EnemyController: MonoBehaviour
         isInvincible = invincible;
     }
 
-    public void TakeDamage(int damage)
+    public void SetBonusItemType(ItemsController.ItemType itemType)
     {
-        if (!isInvincible)
+        // set bonus item type
+        bonusItemType = itemType;
+    }
+
+    public void SetBonusBallColor(ItemsController.BonusBallColor color)
+    {
+        // set bonus ball color
+        bonusBallColor = color;
+    }
+
+    public void SetWeaponPartColor(ItemsController.WeaponPartColor color)
+    {
+        // set weapon part color
+        weaponPartColor = color;
+    }
+
+    public void SetBonusDestroyDelay(float delay)
+    {
+        // set bonus item destroy delay
+        bonusDestroyDelay = delay;
+    }
+
+    public void SetBonusVelocity(Vector2 velocity)
+    {
+        // set bonus item velocity
+        bonusVelocity = velocity;
+    }
+
+    public void TakeDamage(int damage, string weaponName = null)
+    {
+        // apply damage overrides
+        bool ignoreInvincibility = false;
+        for (int i = 0; i < damageOverrides.Length; i++)
         {
+            // the override name matches
+            if (damageOverrides[i].overrideName == weaponName)
+            {
+                // override the damage amount and get ignore invincibility
+                damage = damageOverrides[i].damageAmount;
+                ignoreInvincibility = damageOverrides[i].ignoreInvincibility;
+                // check for override event and invoke if set
+                if (damageOverrides[i].overrideEvent != null)
+                {
+                    damageOverrides[i].overrideEvent.Invoke();
+                }
+                // override found, exit the loop early
+                break;
+            }
+        }
+
+        // take damage if not invincible
+        if (!isInvincible || ignoreInvincibility)
+        {
+            // take damage amount from health and call defeat if no health
             if (damage > 0)
             {
+                // invoke take damage event
                 TakeDamageEvent.Invoke();
+                // update health value and energy bar
                 currentHealth -= damage;
                 currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-                if(hasHealthBar && UIEnergyBars.Instance)
+                if (hasHealthBar && UIEnergyBars.Instance != null)
                 {
                     UIEnergyBars.Instance.SetValue(UIEnergyBars.EnergyBars.EnemyHealth, currentHealth / (float)maxHealth);
                 }
-                if (hitSound)
+                // play taking damage sound clip
+                if (hitSound != null)
                 {
                     SoundManager.Instance.Play(hitSound);
                 }
             }
+            // no more health means defeat
             if (currentHealth <= 0)
             {
                 Die();
             }
-        } 
+        }
         else
         {
-            SoundManager.Instance.Play(blockAttackSound);
+            // block attack sound - dink!
+            if (blockAttackSound != null)
+            {
+                SoundManager.Instance.Play(blockAttackSound);
+            }
         }
     }
 

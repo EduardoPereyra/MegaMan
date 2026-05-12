@@ -46,6 +46,7 @@ public class Checkpoint : MonoBehaviour
     public string lastCheckpointName;
     public ZoneCoordinates zoneCoordinates;
     public Vector3 playerPosition;
+    public float playerTeleportY;
     public Vector3 cameraPosition;
     public Vector2 cameraMinPosition;
     public Vector2 cameraMaxPosition;
@@ -140,6 +141,7 @@ public class Checkpoint : MonoBehaviour
             Instance.checkpointReached = true;
             Instance.lastCheckpointName = name;
             Instance.playerPosition = playerPosition;
+            Instance.playerTeleportY = playerTeleportY;
             Instance.cameraPosition = cameraPosition;
             Instance.cameraMinPosition = cameraMinPosition;
             Instance.cameraMaxPosition = cameraMaxPosition;
@@ -161,6 +163,7 @@ public class Checkpoint : MonoBehaviour
             if (player != null)
             {
                 player.transform.position = playerPosition;
+                player.GetComponent<PlayerController>().SetTeleportLanding(playerTeleportY);
             }
             // update the camera position and follow script's bounds
             if (cameraFollow != null)
@@ -188,6 +191,7 @@ public class Checkpoint : MonoBehaviour
             checkpointReached = false;
             lastCheckpointName = "";
             playerPosition = Vector3.zero;
+            playerTeleportY = 0f;
             cameraPosition = Vector3.zero;
             cameraMinPosition = Vector2.zero;
             cameraMaxPosition = Vector2.zero;

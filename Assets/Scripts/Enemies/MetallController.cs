@@ -7,6 +7,9 @@ public class MetallController : MonoBehaviour
     Rigidbody2D rb2d;
     EnemyController enemyController;
 
+    GameObject player;
+    Vector3 playerPosition;
+
     bool isFacingRight;
     bool doAttack;
     bool isShooting;
@@ -41,6 +44,8 @@ public class MetallController : MonoBehaviour
         animator = enemyController.GetComponent<Animator>();
         box2d = enemyController.GetComponent<BoxCollider2D>();
         rb2d = enemyController.GetComponent<Rigidbody2D>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Start is called before the first frame update
@@ -65,20 +70,15 @@ public class MetallController : MonoBehaviour
         {
             // add anything here to happen while frozen i.e. time compensations
             return;
-        }
-
-        // get player distance
-        float playerDistance = viewDistance;
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player)
-        {
-            playerDistance = Vector2.Distance(player.transform.position, transform.position);
-        }
-         
+        }        
 
         // do Metall ai logic if it's enabled
         if (enableAI)
         {
+            if (player != null) playerPosition = player.transform.position;
+
+            float playerDistance = Vector2.Distance(playerPosition, transform.position);
+
             // state machine
             switch (metallState)
             {
@@ -87,7 +87,7 @@ public class MetallController : MonoBehaviour
                     // because direction can change in the middle of shooting bullets
                     // and it looks like they're coming from the back of the hat instead of its front
                     bool currentFace = isFacingRight;
-                    isFacingRight = player?.transform.position.x > transform.position.x;
+                    isFacingRight = playerPosition.x > transform.position.x;
                     if (currentFace != isFacingRight)
                     {
                         enemyController.Flip();

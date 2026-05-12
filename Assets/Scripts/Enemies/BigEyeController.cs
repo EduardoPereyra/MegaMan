@@ -7,12 +7,15 @@ public class BigEyeController: MonoBehaviour
     Rigidbody2D rb;
     EnemyController enemyController;
 
+    GameObject player;
+    Vector3 playerPosition;
+
     bool isFacingRight;
     bool isGrounded;
     bool isJumping;
 
     float jumpTimer;
-    float jumpDelay = 0.25f;
+    public float jumpDelay = 0.25f;
 
     int jumpPatternIndex;
     int[] jumpPattern;
@@ -23,7 +26,7 @@ public class BigEyeController: MonoBehaviour
     };
     int jumpVelocityIndex;
     Vector2 jumpVelocity;
-    Vector2[] jumpVelocities =
+    public Vector2[] jumpVelocities =
     {
         new Vector2(1.0f, 3.0f), // Low jump
         new Vector2(0.75f, 4.0f), // High jump
@@ -52,13 +55,16 @@ public class BigEyeController: MonoBehaviour
     }
     [SerializeField] MoveDirections moveDirection = MoveDirections.Left;
 
-    void Start()
+    void Awake()
     {
         enemyController = GetComponent<EnemyController>();
         animator = enemyController.GetComponent<Animator>();
         boxCollider = enemyController.GetComponent<BoxCollider2D>();
         rb = enemyController.GetComponent<Rigidbody2D>();
+    }
 
+    void Start()
+    {
         isFacingRight = true;
         if (moveDirection == MoveDirections.Left)
         {
@@ -68,6 +74,8 @@ public class BigEyeController: MonoBehaviour
 
         SetColor(bigEyeColor);
         jumpPattern = null;
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void FixedUpdate()
@@ -75,7 +83,7 @@ public class BigEyeController: MonoBehaviour
         isGrounded = false;
         Color raycastColor;
         RaycastHit2D raycastHit;
-        float raycastDistance = 0.05f;
+        float raycastDistance = 0.025f;
         int layerMask = 1 << LayerMask.NameToLayer("Ground");
         Vector3 boxOrigin = boxCollider.bounds.center;
         boxOrigin.y = boxCollider.bounds.min.y + (boxCollider.bounds.extents.y / 4f);
@@ -104,11 +112,12 @@ public class BigEyeController: MonoBehaviour
             return;
         }
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player)
+        if (player != null)
         {
-            Debug.DrawLine(transform.position, player.transform.position, Color.blue);
+            playerPosition = player.transform.position;
+            Debug.DrawLine(transform.position, playerPosition, Color.blue);
         }
+
         if (enableAI)
         {            
             if (isGrounded)
@@ -125,7 +134,7 @@ public class BigEyeController: MonoBehaviour
                     }
                     jumpVelocityIndex = jumpPattern[jumpPatternIndex];
                     jumpVelocity = jumpVelocities[jumpVelocityIndex];
-                    if(player.transform.position.x <= transform.position.x)
+                    if(playerPosition.x <= transform.position.x)
                     {
                         jumpVelocity.x *= -1;
                     }

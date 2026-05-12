@@ -2323,15 +2323,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_84
+      name: Gabyoall_Orange1
       rect:
         serializedVersion: 2
-        x: 176
-        y: 108
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 177
+        y: 109
+        width: 16
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2345,15 +2345,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_85
+      name: Gabyoall_Orange2
       rect:
         serializedVersion: 2
-        x: 194
-        y: 108
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 195
+        y: 109
+        width: 16
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2389,15 +2389,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_87
+      name: Gabyoall_Blue1
       rect:
         serializedVersion: 2
-        x: 212
-        y: 108
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 213
+        y: 109
+        width: 16
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -2433,15 +2433,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_megaman1_enemies_89
+      name: Gabyoall_Blue2
       rect:
         serializedVersion: 2
-        x: 230
-        y: 108
-        width: 18
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 231
+        y: 109
+        width: 16
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -3385,6 +3385,11 @@ TextureImporter:
       Explode2: -5755390323242736845
       Explode3: 8425831868980322597
       Explode4: 3748546901667554805
+      Gabyoall_Blue1: -325277298393775354
+      Gabyoall_Blue2: 4221934024760951284
+      Gabyoall_Orange: -325277298393775354
+      Gabyoall_Orange1: 1053981822668135033
+      Gabyoall_Orange2: 72210753871198836
       Kamadoma_GroundedBlue: -5228916718348426351
       Kamadoma_GroundedRed: -4935111038899205285
       Kamadoma_JumpingBlue: -1051702327257760667
@@ -3447,12 +3452,8 @@ TextureImporter:
       NES_megaman1_enemies_69: 2453816055096435802
       NES_megaman1_enemies_7: 5526297054552531677
       NES_megaman1_enemies_8: 4057960441014977838
-      NES_megaman1_enemies_84: 1053981822668135033
-      NES_megaman1_enemies_85: 72210753871198836
       NES_megaman1_enemies_86: 6540192713657597858
-      NES_megaman1_enemies_87: -325277298393775354
       NES_megaman1_enemies_88: -8125162498011619636
-      NES_megaman1_enemies_89: 4221934024760951284
       NES_megaman1_enemies_9: 2044468052953663848
       NES_megaman1_enemies_90: -3582742242660765427
       NES_megaman1_enemies_91: -9143810901922419765

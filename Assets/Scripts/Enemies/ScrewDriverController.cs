@@ -7,6 +7,9 @@ public class ScrewDriverController: MonoBehaviour
     Rigidbody2D rb;
     EnemyController enemyController;
 
+    GameObject player;
+    Vector3 playerPosition;
+
     Bullet.BulletType bulletType;
 
     float openTimer;
@@ -26,6 +29,8 @@ public class ScrewDriverController: MonoBehaviour
 
     [SerializeField] RuntimeAnimatorController racScrewDriverBlue;
     [SerializeField] RuntimeAnimatorController racScrewDriverOrange;
+    
+    [SerializeField] bool enableAI;
 
     void Awake()
     {
@@ -39,6 +44,8 @@ public class ScrewDriverController: MonoBehaviour
     {
         SetColor(screwDriverColor);
         SetOrientation();
+        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -48,35 +55,45 @@ public class ScrewDriverController: MonoBehaviour
             return;
         }
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        switch (screwDriverState)
+        if (enableAI)
         {
-            case ScrewDriverStates.Closed:
-                animator.Play("ScrewDriver_Closed");
-                if (player && !doAttack)
-                {
-                    float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-                    if (distanceToPlayer <= playerRange)
+            if (player != null) playerPosition = player.transform.position;
+                
+            switch (screwDriverState)
+            {
+                case ScrewDriverStates.Closed:
+                    animator.Play("ScrewDriver_Closed");
+                    if (player && !doAttack)
                     {
-                        doAttack = true;
-                        openTimer = openDelay;
+                        float distanceToPlayer = Vector2.Distance(transform.position, playerPosition);
+                        if (distanceToPlayer <= playerRange)
+                        {
+                            doAttack = true;
+                            openTimer = openDelay;
+                        }
                     }
-                }
 
-                if (doAttack)
-                {
-                    openTimer -= Time.deltaTime;
-                    if (openTimer <= 0f)
+                    if (doAttack)
                     {
-                        screwDriverState = ScrewDriverStates.Open;
+                        openTimer -= Time.deltaTime;
+                        if (openTimer <= 0f)
+                        {
+                            screwDriverState = ScrewDriverStates.Open;
+                        }
                     }
-                }
-                break;
+                    break;
 
-            case ScrewDriverStates.Open:
-                animator.Play("ScrewDriver_Open");
-                break;
+                case ScrewDriverStates.Open:
+                    animator.Play("ScrewDriver_Open");
+                    break;
+            }
         }
+    }
+
+    public void EnableAI(bool enable)
+    {
+        // enable enemy ai logic
+        enableAI = enable;
     }
 
     public void SetColor(ScrewDriverColors newColor)

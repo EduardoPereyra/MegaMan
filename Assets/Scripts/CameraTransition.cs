@@ -74,6 +74,9 @@ public class CameraTransition : MonoBehaviour
     bool callPreTransitionEvent = true;
     bool callPostTransitionEvent = true;
 
+    Vector2 playerVelocity;
+    bool playerInvincibility;
+
 
     void Start()
     {
@@ -122,11 +125,14 @@ public class CameraTransition : MonoBehaviour
                         CallEventAfterPostDelay();
                         entry = (entry == TransitionEntry.Enter) ? TransitionEntry.Exit : TransitionEntry.Enter;
                         transition = false;
-                        player.GetComponent<PlayerController>().FreezeInput(false);
-                        player.GetComponent<PlayerController>().FreezePlayer(false);
                         GameManager.Instance.FreezeEverything(false);
                         GameManager.Instance.SetInCameraTransition(false);
                         GameManager.Instance.AllowGamePause(true);
+
+                        player.GetComponent<PlayerController>().FreezeInput(false);
+                        player.GetComponent<PlayerController>().FreezePlayer(false);
+                        player.GetComponent<Rigidbody2D>().linearVelocity = playerVelocity;
+                        player.GetComponent<PlayerController>().Invincible(playerInvincibility);
                     }
                     break;
             }
@@ -191,13 +197,16 @@ public class CameraTransition : MonoBehaviour
                     }
                     cameraMoveFinish = new Vector2(cam.transform.position.x, cameraMinPosY);
                 }
-
-                player.GetComponent<Animator>().speed = 0;
-                player.GetComponent<PlayerController>().FreezeInput(true);
-                player.GetComponent<PlayerController>().FreezePlayer(true);
                 GameManager.Instance.FreezeEverything(true);
                 GameManager.Instance.SetInCameraTransition(true);
                 GameManager.Instance.AllowGamePause(false);
+                player.GetComponent<Animator>().speed = 0;
+
+                player.GetComponent<PlayerController>().FreezeInput(true);
+                player.GetComponent<PlayerController>().FreezePlayer(true);
+                playerVelocity = player.GetComponent<Rigidbody2D>().linearVelocity;
+                playerInvincibility = player.GetComponent<PlayerController>().GetInvincible();
+                player.GetComponent<PlayerController>().Invincible(true);
             }
         }
     }

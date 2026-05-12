@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerExplosionController: MonoBehaviour
+public class ExplodeEffect3: MonoBehaviour
 {
     public float explosionSpeed = 0.75f;
     GameObject[] explosions = new GameObject[12];

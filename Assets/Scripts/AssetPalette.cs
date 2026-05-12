@@ -2,19 +2,33 @@ using UnityEngine;
 
 public class AssetPalette: MonoBehaviour
 {
-    public GameObject[] enemyPrefabs = new GameObject[4];
-
+    // enemy prefabs (resolution scales)
+    //   prefabs for 16:9, 4:3, ...
+    public GameObject[] enemyPrefabs_16x9 = new GameObject[13];
+    public GameObject[] enemyPrefabs_4x3 = new GameObject[13];
     public enum EnemyList
     {
+        AdheringSuzy,
         BigEye,
+        Blaster,
+        Bombomb,
+        Gabyoall,
+        Kamadoma,
         KillerBomb,
         Mambu,
-        Pepe
+        Metall,
+        Pepe,
+        ScrewDriver,
+        SniperJoe,
+        BombMan
     }
     public EnemyList enemyList;
 
 
-    public GameObject[] itemsPrefabs = new GameObject[9];
+    // item prefabs (resolution scales)
+    //   prefabs for 16:9, 4:3, ...
+    public GameObject[] itemPrefabs_16x9 = new GameObject[9];
+    public GameObject[] itemPrefabs_4x3 = new GameObject[9];
     public enum ItemList
     {
         BonusBall,

@@ -224,7 +224,7 @@ MonoBehaviour:
   energyFullSound: {fileID: 0}
   bulletShootPos: {fileID: 0}
   bulletPrefab: {fileID: 0}
-  explosionPrefab: {fileID: 9145198834329177098, guid: 4a7d68d88703143fa89859bdfd63fdce, type: 3}
+  explosionPrefab: {fileID: 7206507669195124583, guid: 68643fe617f1d4353aa8eafa5d7d7d8d, type: 3}
   explodeEffectDestroyDelay: 2
   TakeDamageEvent:
     m_PersistentCalls:

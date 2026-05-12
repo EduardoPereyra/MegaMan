@@ -133,7 +133,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.22, y: 0.22}
+  m_Size: {x: 0.14, y: 0.22}
   m_EdgeRadius: 0
 --- !u!212 &5823710016338792544
 SpriteRenderer:
@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   freezeEnemy: 0
+  hasHealthBar: 0
   scorePoints: 50000
   currentHealth: 0
   maxHealth: 28
@@ -257,6 +258,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  damageOverrides:
+  - ignoreInvincibility: 0
+    damageAmount: 2
+    overrideName: Bullet
+    overrideEvent:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &8958088856575330464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +281,14 @@ MonoBehaviour:
   handPos: {fileID: 2442373330433771544}
   bombPrefab: {fileID: 3440074353480861832, guid: 5b761752630104d318568cd5aee02282, type: 3}
   damageSprite: {fileID: 66455889500246442}
+  attackDistance: 1
+  bombHeight: 1
+  targetOffset: 0.25
+  tossVelocity: {x: 0, y: 3}
+  jumpVelocities:
+  - {x: 1, y: 4}
+  - {x: 2, y: 4.5}
+  - {x: 3, y: 5}
   moveDirection: 0
 --- !u!1 &1562661193870885761
 GameObject:
@@ -350,7 +366,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.22, y: 0.22}
+  m_Size: {x: 0.14, y: 0.22}
   m_EdgeRadius: 0
 --- !u!1 &4575823065252900839
 GameObject:

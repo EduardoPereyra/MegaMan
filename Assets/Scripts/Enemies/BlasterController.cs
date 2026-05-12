@@ -7,10 +7,16 @@ public class BlasterController: MonoBehaviour
     Rigidbody2D rb;
     EnemyController enemyController;
 
+    GameObject player;
+    Vector3 playerPosition;
+
+    [SerializeField] bool enableAI;
+
     int bulletIndex = 0;
 
     Bullet.BulletType bulletType;
 
+    public float startDelay = 0f;
     float closedTimer;
     public float closedDuration = 2f;
 
@@ -47,7 +53,9 @@ public class BlasterController: MonoBehaviour
     void Start()
     {
         SetColor(blasterColor);
-        SetOrientation();
+        SetOrientation(blasterOrientation);
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -57,35 +65,70 @@ public class BlasterController: MonoBehaviour
             return;
         }
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        switch (blasterState)
+        if (enableAI)
         {
-            case BlasterState.Closed:
-                animator.Play("Blaster_Closed");
-                if (player && !doAttack)
-                {
-                    float distance = Vector2.Distance(transform.position, player.transform.position);
-                    if (distance <= playerRange)
-                    {
-                        doAttack = true;
-                        closedTimer = closedDuration;
-                    }
-                }
 
-                if (doAttack)
-                {
-                    closedTimer -= Time.deltaTime;
-                    if (closedTimer <= 0f)
+            if (player != null) playerPosition = player.transform.position;
+
+            if (startDelay > 0)
+            {
+                startDelay -= Time.deltaTime;
+                return;
+            }    
+
+            switch (blasterState)
+            {
+                case BlasterState.Closed:
+                    animator.Play("Blaster_Closed");
+                    if (player && !doAttack)
                     {
-                        blasterState = BlasterState.Open;
+                        float distance = Vector2.Distance(transform.position, playerPosition);
+                        if (distance <= playerRange)
+                        {
+                            doAttack = true;
+                            closedTimer = closedDuration;
+                        }
                     }
-                }
-                break;
-            case BlasterState.Open:
-                animator.Play("Blaster_Open");
-                break;
+
+                    if (doAttack)
+                    {
+                        closedTimer -= Time.deltaTime;
+                        if (closedTimer <= 0f)
+                        {
+                            blasterState = BlasterState.Open;
+                        }
+                    }
+                    break;
+                case BlasterState.Open:
+                    animator.Play("Blaster_Open");
+                    break;
+            }
         }
+
+    }
+
+    public void EnableAI(bool enable)
+    {
+        // enable enemy ai logic
+        enableAI = enable;
+    }
+
+    public void SetStartDelay(float delay)
+    {
+        // set start delay before first attack
+        startDelay = delay;
+    }
+
+    public void SetClosedDelay(float delay)
+    {
+        // delay between shooting attacks
+        closedDuration = delay;
+    }
+
+    public void SetPlayerRange(float range)
+    {
+        // distance to search for the player
+        playerRange = range;
     }
 
     public void SetColor(BlasterColors color)
@@ -127,8 +170,9 @@ public class BlasterController: MonoBehaviour
         }
     }
 
-    private void SetOrientation()
+    private void SetOrientation(BlasterOrientation orientation)
     {
+        blasterOrientation = orientation;
         transform.rotation = Quaternion.identity;
 
         switch (blasterOrientation)

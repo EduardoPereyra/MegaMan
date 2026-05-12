@@ -45,31 +45,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5befe9b190deb4b18938f135638f91e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  resolutionScale: 0
   gameRestartDelay: 5
   gamePlayerReadyDelay: 3
   gamePlayerStartLives: 3
   assetPalette: {fileID: 0}
   gameScene: 0
   GameStages:
-  - GameScenes: 4
+  - GameScene: 0
     Completed: 0
-  - GameScenes: 5
+  - GameScene: 0
     Completed: 0
-  - GameScenes: 6
+  - GameScene: 0
     Completed: 0
-  - GameScenes: 7
+  - GameScene: 0
     Completed: 0
-  - GameScenes: 8
+  - GameScene: 0
     Completed: 0
-  - GameScenes: 9
+  - GameScene: 0
     Completed: 0
-  - GameScenes: 10
+  - GameScene: 0
     Completed: 0
-  - GameScenes: 11
+  - GameScene: 0
     Completed: 0
-  - GameScenes: 12
+  - GameScene: 0
     Completed: 0
-  - GameScenes: 13
+  - GameScene: 0
     Completed: 0
 --- !u!114 &8395335135549125831
 MonoBehaviour:
@@ -83,13 +84,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb079a403d4404ff3817b5a96bdcaf49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AssetPalette
-  enemyPrefabs:
+  enemyPrefabs_16x9:
+  - {fileID: 1696577739873424746, guid: 815ff61767a394f4784dd3ac610b2149, type: 3}
   - {fileID: 1211844090857066505, guid: 4b8eb976321ff483382eba8384ec4135, type: 3}
+  - {fileID: 5313128788771032553, guid: 809fdab6d65984949a743a0c7faf0136, type: 3}
+  - {fileID: 4020703203935951878, guid: ebfd8110197f64b5da6c1f6dcf305905, type: 3}
+  - {fileID: 1753979239396464870, guid: 4204a7c47b1d74875994a20251dd485a, type: 3}
+  - {fileID: 1178307714608775636, guid: 211884f9787114c0a8d68bfc3173ba1c, type: 3}
   - {fileID: 2822510357364759288, guid: 215d04223fea74eefaed31a4b6b3cdb9, type: 3}
   - {fileID: 6541698908586634374, guid: 4a0c633414b204a46b679d30c9e7c0f2, type: 3}
+  - {fileID: 8673351568619130092, guid: da90c3859248b48729ba929726ac214e, type: 3}
   - {fileID: 981559370902630984, guid: 3416885be2690416e844002384c2b892, type: 3}
+  - {fileID: 8448936670450732350, guid: 41755308e5e9a428ea6ae735a2c41ce8, type: 3}
+  - {fileID: 1199291730450644266, guid: 98e083ded5509462e8cff07d5daaba45, type: 3}
+  - {fileID: 1503520086952196319, guid: fd140f66e36e14a898dea5adb18bdf79, type: 3}
+  enemyPrefabs_4x3:
+  - {fileID: 7973157041199201293, guid: ce17618d932e54b29b6a233c0ac4cde0, type: 3}
+  - {fileID: 2309355259143817395, guid: 9b5774b24b20d4141aa944a6b0f7e533, type: 3}
+  - {fileID: 7322801205302607062, guid: d30ea3594f61d4563885338ec9d2e25c, type: 3}
+  - {fileID: 1447698956253058986, guid: 7a73639be33ea493d8b8739dae895f26, type: 3}
+  - {fileID: 1307006693955757806, guid: c77ccdaec65b2421d942e8fa60f0a12b, type: 3}
+  - {fileID: 3364918323778110800, guid: ae403040ac9994d2993812303c2e5c11, type: 3}
+  - {fileID: 5067795282590975899, guid: b3e744471df4e46029ca42706f625dcd, type: 3}
+  - {fileID: 7274303125228542748, guid: 36d47b38b79ed408092f35e1e05acb93, type: 3}
+  - {fileID: 3157352515170064102, guid: 3b02126eb04a546858dfc19dd0565329, type: 3}
+  - {fileID: 32404502115020186, guid: 0dabcc6601da34d739303142b89ad543, type: 3}
+  - {fileID: 8888990566171256721, guid: 77c07b65c4e9a4947a0c827fb712cfc4, type: 3}
+  - {fileID: 4788052382474255832, guid: d8035a7d530504675b8c5f1589b59ba6, type: 3}
+  - {fileID: 1201561117585460734, guid: db423791af35749ae8ee2f4e6c2ba992, type: 3}
   enemyList: 0
-  itemsPrefabs:
+  itemPrefabs_16x9:
   - {fileID: 6037158880955212263, guid: 3a703115301d64f5b95a1362d6346333, type: 3}
   - {fileID: 2204963141335753856, guid: f675ede89a2084aaf920939600af9bb8, type: 3}
   - {fileID: 2972845623141719274, guid: 2e5606f83717b416e94d43d9c4defd11, type: 3}
@@ -99,6 +123,16 @@ MonoBehaviour:
   - {fileID: 9061806607824942007, guid: f970c5821ced24dcda88c256a5b6174b, type: 3}
   - {fileID: 4145301397049316363, guid: 97bf7ce6cd76645399771c84d806fdaa, type: 3}
   - {fileID: 9022611836583971601, guid: e2ced66f05454498297b9f7b7d0031b0, type: 3}
+  itemPrefabs_4x3:
+  - {fileID: 3012366453475106234, guid: a35cd132038cb41f8a116211bd5674d4, type: 3}
+  - {fileID: 983833619844818985, guid: 6d471db4d29b842ca8ae9ec29f985fdd, type: 3}
+  - {fileID: 392312264231041874, guid: 2276c19c45b65488fb2be9dc32d42506, type: 3}
+  - {fileID: 2697420299418468564, guid: fab8155429e3b406ebc95b97307e928e, type: 3}
+  - {fileID: 3014686653942711911, guid: a715a8046fca54aad90694012e3aef9b, type: 3}
+  - {fileID: 4691292631263107900, guid: 86aebc46193b749cfa05ddb22ea50195, type: 3}
+  - {fileID: 5800615837290708539, guid: 80bae7feef3974cbdbe70e845aa668e9, type: 3}
+  - {fileID: 889115321821519108, guid: 0497e1df2caa14e97bfe993cc5587033, type: 3}
+  - {fileID: 8652781173211916154, guid: 1da6e324699ec46df8ccc17ddffaa89f, type: 3}
   itemList: 0
   pauseMenuClip: {fileID: 8300000, guid: 0b7e334b5596140f09b413d6943987cd, type: 3}
   pointTallyClip: {fileID: 8300000, guid: b2faad17f466342e0850296ffb45f2ef, type: 3}

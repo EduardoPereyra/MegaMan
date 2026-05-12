@@ -100,21 +100,24 @@ public class AdheringSuzyController : MonoBehaviour
          * the drawback is you have to figure out the position vectors in advance 
          * but it isn't like you don't have to apply other setting changes, right?
          */
-        if (moveSpeed > approachSpeed)
-        {
-            // ground check
-            int layerMask = 1 << LayerMask.NameToLayer("Ground");
-            Vector3 origin = box2d.bounds.center;
-            Vector3 raycastDirection = directionVectors[(int)direction];
-            RaycastHit2D raycastHit = Physics2D.Raycast(origin, raycastDirection, raycastDistance, layerMask);
-            // suzy raycast is touching the ground layer
-            if (raycastHit.collider != null)
+        if (stopMethod == StopMethods.Collision)
+        {            
+            if (moveSpeed > approachSpeed)
             {
-                // use the slower speed before we collide
-                suzySpeed = approachSpeed;
+                // ground check
+                int layerMask = 1 << LayerMask.NameToLayer("Ground");
+                Vector3 origin = box2d.bounds.center;
+                Vector3 raycastDirection = directionVectors[(int)direction];
+                RaycastHit2D raycastHit = Physics2D.Raycast(origin, raycastDirection, raycastDistance, layerMask);
+                // suzy raycast is touching the ground layer
+                if (raycastHit.collider != null)
+                {
+                    // use the slower speed before we collide
+                    suzySpeed = approachSpeed;
+                }
+                // draw debug line
+                Debug.DrawRay(origin, raycastDirection * raycastDistance, Color.magenta);
             }
-            // draw debug line
-            Debug.DrawRay(origin, raycastDirection * raycastDistance, Color.magenta);
         }
     }
 

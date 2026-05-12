@@ -74,6 +74,7 @@ public class MainScene : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.SetResolutionScale(GameManager.ResolutionScales.Scale16x9);
         // how many points is this level worth
         // this is a placeholder until the stage/level select screen is built
         GameManager.Instance.SetLevelPoints(50000);
